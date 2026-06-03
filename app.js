@@ -2917,7 +2917,7 @@ function saveProgress() {
 }
 
 function escapeHtml(value) {
-  return value
+  return String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -3189,6 +3189,44 @@ function renderPractice() {
   renderQuestionActions(questions.length);
 }
 
+const INDONESIAN_EXPLANATION_MARKERS =
+  /\b(agar|akan|atau|bentuk|berarti|dalam|dan|dengan|dari|di|gunakan|jawaban|jika|kalau|karena|kata|ketika|makna|menanyakan|menyatakan|pola|saat|sebagai|tidak|untuk|yang)\b/i;
+
+function explanationLanguage(text) {
+  const value = String(text ?? "").trim();
+  if (!value) return "unknown";
+
+  const japaneseChars = (value.match(/[ぁ-んァ-ン一-龯]/g) || []).length;
+  const latinChars = (value.match(/[A-Za-zÀ-ÿ]/g) || []).length;
+  if (INDONESIAN_EXPLANATION_MARKERS.test(value) || latinChars > japaneseChars) return "id";
+  if (japaneseChars) return "ja";
+  return "id";
+}
+
+function explanationJaFor(question) {
+  if (explanationLanguage(question.explanation) === "ja") return question.explanation;
+
+  const answer = question.choices[question.answer];
+  const pattern = question.pattern ? `この問題では「${question.pattern}」の形を使います。` : "";
+  return `正解は「${answer}」です。${pattern}`;
+}
+
+function explanationIdFor(question) {
+  if (explanationLanguage(question.explanation) === "id") return question.explanation;
+
+  const answer = question.choices[question.answer];
+  const pattern = question.pattern ? `Pola yang dipakai adalah ${question.pattern}.` : "";
+  const meaning = question.meaning ? `Makna/fungsinya: ${question.meaning}.` : "";
+  return [`Jawaban yang benar adalah 「${answer}」.`, pattern, meaning].filter(Boolean).join(" ");
+}
+
+function renderBilingualExplanation(question) {
+  return `
+    <span><strong>日本語:</strong> ${escapeHtml(explanationJaFor(question))}</span>
+    <span><strong>Bahasa Indonesia:</strong> ${escapeHtml(explanationIdFor(question))}</span>
+  `;
+}
+
 function renderFeedback(question) {
   if (isTestMode() && state.testFinished) {
     const questions = currentQuestions();
@@ -3197,7 +3235,8 @@ function renderFeedback(question) {
     els.feedbackBox.className = "feedback correct";
     els.feedbackBox.innerHTML = `
       <strong>Hasil tes: ${correct} / ${questions.length}</strong>
-      <span>Jawaban benar ditandai hijau. Tekan Acak soal atau buka mode tes lagi untuk mulai paket baru.</span>
+      <span><strong>日本語:</strong> 正解は緑色で表示されます。もう一度受けると、新しい問題セットで練習できます。</span>
+      <span><strong>Bahasa Indonesia:</strong> Jawaban benar ditandai hijau. Tekan Acak soal atau buka mode tes lagi untuk mulai paket baru.</span>
     `;
     return;
   }
@@ -3214,7 +3253,7 @@ function renderFeedback(question) {
   els.feedbackBox.className = `feedback ${isCorrect ? "correct" : "wrong"}`;
   els.feedbackBox.innerHTML = `
     <strong>${isCorrect ? "Benar!" : `Salah. Jawaban benar: ${escapeHtml(question.choices[question.answer])}`}</strong>
-    <span>${escapeHtml(question.explanation)}</span>
+    ${renderBilingualExplanation(question)}
   `;
 }
 
