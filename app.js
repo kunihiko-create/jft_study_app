@@ -24,12 +24,12 @@ const questionBank = [
     meaning: "melakukan satu aksi lalu aksi berikutnya",
     dialogue: [
       ["A", "仕事が終わったら、何をしますか。"],
-      ["B", "レストランで [blank]、家に帰ります。"],
+      ["B", "レストランでご飯を [blank]、家に帰ります。"],
     ],
     choices: ["食べます", "食べています", "食べて"],
     answer: 2,
     explanation:
-      "Untuk menyambung urutan kegiatan, gunakan bentuk て: レストランで食べて、家に帰ります.",
+      "日本語: 動作を順番につなぐときは「て形」を使います。レストランでご飯を食べて、家に帰ります。 / Bahasa Indonesia: Untuk menyambung urutan kegiatan, gunakan bentuk て.",
   },
   {
     id: 3,
@@ -55,14 +55,14 @@ const questionBank = [
     pattern: "イ形容詞い -> そうです",
     meaning: "kelihatannya enak / tampak seperti",
     dialogue: [
-      ["お客", "すみませんが、おすすめは何ですか。"],
-      ["店員", "いろいろな定食がありますよ。"],
-      ["お客", "天ぷら定食は、おいし [blank]。じゃ、これをください。"],
+      ["お客", "すみません。おすすめは何ですか。"],
+      ["店員", "天ぷら定食が人気ですよ。写真はこちらです。"],
+      ["お客", "おいし [blank]。じゃ、これをください。"],
     ],
-    choices: ["ようです", "そうです", "いいです"],
+    choices: ["ようです", "そうですね", "いです"],
     answer: 1,
     explanation:
-      "Saat menilai dari tampilan makanan, おいしい berubah menjadi おいしそうです.",
+      "日本語: 見た感じを言うときは「おいしい」ではなく「おいしそうですね」を使うと自然です。 / Bahasa Indonesia: Saat menilai dari tampilan, gunakan おいしそうですね.",
   },
   {
     id: 5,
@@ -2582,6 +2582,494 @@ const questionBank = [
     answer: 0,
     explanation: "予約名を言うときは「田中で予約しています」と言います。",
   },
+  {
+    id: 165,
+    section: "Grammar",
+    category: "買い物",
+    canDo: "shopping",
+    scenario: "Pelanggan membandingkan harga dua kemeja.",
+    pattern: "Nより + 形容詞",
+    meaning: "lebih ... daripada ...",
+    dialogue: [
+      ["客", "このシャツはあのシャツ [blank] 安いですか。"],
+      ["店員", "はい、500円安いです。"],
+    ],
+    choices: ["より", "まで", "から"],
+    answer: 0,
+    explanation: "「より」は比較に使います。 / Untuk membandingkan dua benda, gunakan より.",
+  },
+  {
+    id: 166,
+    section: "Expression",
+    category: "買い物",
+    canDo: "shopping",
+    scenario: "Pelanggan ingin mencoba sepatu sebelum membeli.",
+    pattern: "試着してもいいですか",
+    meaning: "bolehkah mencoba pakaian atau sepatu",
+    dialogue: [
+      ["客", "すみません。この靴を [blank]。"],
+      ["店員", "はい、どうぞ。"],
+    ],
+    choices: ["払ってもいいですか", "予約してもいいですか", "試着してもいいですか"],
+    answer: 2,
+    explanation: "店で試してよいか聞くときは「試着してもいいですか」を使います。 / Untuk meminta izin mencoba barang di toko, gunakan 試着してもいいですか.",
+  },
+  {
+    id: 167,
+    section: "Vocabulary",
+    category: "買い物",
+    canDo: "shopping",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 割引",
+    meaning: "diskon",
+    dialogue: [["問題", "「割引」の意味は何ですか。"]],
+    choices: ["pembayaran", "diskon", "loket"],
+    answer: 1,
+    explanation: "「割引」は値段が安くなることです。 / 割引 berarti harga dikurangi atau diskon.",
+  },
+  {
+    id: 168,
+    section: "Reading",
+    category: "読解掲示",
+    canDo: "shopping",
+    scenario: "Baca pengumuman toko dan pilih jawaban yang tepat.",
+    pattern: "掲示: セール",
+    meaning: "mencari barang yang sedang diskon",
+    dialogue: [
+      ["お知らせ", "週末セール\n6月8日・9日\nくつ 20%引き\nかばん 10%引き"],
+      ["質問", "20%安くなるものは何ですか。"],
+    ],
+    choices: ["かばん", "シャツ", "くつ"],
+    answer: 2,
+    explanation: "掲示に「くつ 20%引き」とあります。 / Pada pengumuman tertulis bahwa sepatu diskon 20%.",
+  },
+  {
+    id: 169,
+    section: "Grammar",
+    category: "交通",
+    canDo: "transport",
+    scenario: "Seseorang menjelaskan cara pergi ke stasiun.",
+    pattern: "Nで + 行きます",
+    meaning: "pergi dengan alat transportasi",
+    dialogue: [
+      ["A", "駅までどうやって行きますか。"],
+      ["B", "バス [blank] 行きます。"],
+    ],
+    choices: ["に", "で", "を"],
+    answer: 1,
+    explanation: "交通手段は「で」で表します。 / Alat transportasi untuk pergi dinyatakan dengan で.",
+  },
+  {
+    id: 170,
+    section: "Expression",
+    category: "交通",
+    canDo: "transport",
+    scenario: "Penumpang membeli tiket pulang-pergi di stasiun.",
+    pattern: "往復でお願いします",
+    meaning: "tolong tiket pulang-pergi",
+    dialogue: [
+      ["駅員", "片道ですか、往復ですか。"],
+      ["客", "[blank]。"],
+    ],
+    choices: ["現金でお願いします", "予約でお願いします", "往復でお願いします"],
+    answer: 2,
+    explanation: "行き帰りの切符は「往復でお願いします」と言います。 / Untuk tiket pergi dan pulang, gunakan 往復でお願いします.",
+  },
+  {
+    id: 171,
+    section: "Vocabulary",
+    category: "交通",
+    canDo: "transport",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 乗り換え",
+    meaning: "ganti kendaraan atau jalur",
+    dialogue: [["問題", "「乗り換え」の意味は何ですか。"]],
+    choices: ["ganti kendaraan", "biaya sewa", "resep obat"],
+    answer: 0,
+    explanation: "「乗り換え」は別の電車やバスなどに移ることです。 / 乗り換え berarti pindah kendaraan atau jalur.",
+  },
+  {
+    id: 172,
+    section: "Reading",
+    category: "読解情報検索",
+    canDo: "transport",
+    scenario: "Baca informasi kereta dan pilih jawaban yang tepat.",
+    pattern: "情報検索: 遅れ",
+    meaning: "mencari lama keterlambatan",
+    dialogue: [
+      ["案内", "電車の遅れ\n事故のため、中央線は10分遅れています。"],
+      ["質問", "中央線はどのくらい遅れていますか。"],
+    ],
+    choices: ["5分", "10分", "30分"],
+    answer: 1,
+    explanation: "案内に「10分遅れています」とあります。 / Pada informasi tertulis terlambat 10 menit.",
+  },
+  {
+    id: 173,
+    section: "Grammar",
+    category: "病院",
+    canDo: "hospital",
+    scenario: "Dokter menjelaskan urutan minum obat dan tidur.",
+    pattern: "Vて + から",
+    meaning: "setelah melakukan sesuatu",
+    dialogue: [
+      ["医者", "この薬を [blank]、寝てください。"],
+      ["患者", "はい、わかりました。"],
+    ],
+    choices: ["飲む前に", "飲みながら", "飲んでから"],
+    answer: 2,
+    explanation: "順番を言うときは「Vてから」を使います。 / Untuk menyatakan urutan setelah melakukan sesuatu, gunakan Vてから.",
+  },
+  {
+    id: 174,
+    section: "Expression",
+    category: "病院",
+    canDo: "hospital",
+    scenario: "Pasien baru datang ke klinik untuk pertama kali.",
+    pattern: "初めてです",
+    meaning: "ini pertama kali",
+    dialogue: [
+      ["受付", "この病院は初めてですか。"],
+      ["患者", "はい、[blank]。"],
+    ],
+    choices: ["初めてです", "久しぶりです", "お大事に"],
+    answer: 0,
+    explanation: "初めて来た場合は「初めてです」と答えます。 / Jika datang untuk pertama kali, jawab 初めてです.",
+  },
+  {
+    id: 175,
+    section: "Vocabulary",
+    category: "病院",
+    canDo: "hospital",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 問診票",
+    meaning: "formulir gejala/kesehatan",
+    dialogue: [["問題", "「問診票」は何ですか。"]],
+    choices: ["tiket kereta", "formulir kesehatan", "struk belanja"],
+    answer: 1,
+    explanation: "「問診票」は診察前に症状を書く用紙です。 / 問診票 adalah formulir untuk menulis gejala sebelum pemeriksaan.",
+  },
+  {
+    id: 176,
+    section: "Reading",
+    category: "読解掲示",
+    canDo: "hospital",
+    scenario: "Baca jadwal klinik dan pilih jawaban yang tepat.",
+    pattern: "掲示: 受付時間",
+    meaning: "mencari waktu pendaftaran klinik",
+    dialogue: [
+      ["掲示", "みどりクリニック\n午前受付 9:00-12:00\n午後受付 14:00-17:30\n日曜日は休み"],
+      ["質問", "午後の受付は何時からですか。"],
+    ],
+    choices: ["9:00", "12:00", "14:00"],
+    answer: 2,
+    explanation: "掲示に「午後受付 14:00-17:30」とあります。 / Pada jadwal tertulis pendaftaran sore mulai pukul 14:00.",
+  },
+  {
+    id: 177,
+    section: "Grammar",
+    category: "役所",
+    canDo: "cityhall",
+    scenario: "Petugas meminta warga menyalin dokumen sebelum menyerahkannya.",
+    pattern: "Vて + から",
+    meaning: "setelah melakukan sesuatu",
+    dialogue: [
+      ["職員", "この書類はコピー [blank]、出してください。"],
+      ["住民", "はい。"],
+    ],
+    choices: ["してから", "すると", "しないで"],
+    answer: 0,
+    explanation: "「コピーしてから」はコピーした後で、という意味です。 / してから berarti setelah menyalin lalu melakukan langkah berikutnya.",
+  },
+  {
+    id: 178,
+    section: "Expression",
+    category: "役所",
+    canDo: "cityhall",
+    scenario: "Warga datang ke kantor pemerintah karena alamatnya berubah.",
+    pattern: "住所が変わったんですが",
+    meaning: "alamat saya berubah, ingin berkonsultasi",
+    dialogue: [
+      ["住民", "すみません。住所が [blank]。"],
+      ["職員", "住所変更ですね。こちらへどうぞ。"],
+    ],
+    choices: ["変わりますか", "変わったんですが", "変わらないでください"],
+    answer: 1,
+    explanation: "相談を始めるときは「んですが」を使うと自然です。 / Saat membuka konsultasi dengan sopan, gunakan んですが.",
+  },
+  {
+    id: 179,
+    section: "Vocabulary",
+    category: "役所",
+    canDo: "cityhall",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 印鑑",
+    meaning: "cap/stempel pribadi",
+    dialogue: [["問題", "「印鑑」は何ですか。"]],
+    choices: ["kartu asuransi", "nomor antrean", "stempel pribadi"],
+    answer: 2,
+    explanation: "「印鑑」は書類に使う個人のはんこです。 / 印鑑 adalah stempel pribadi untuk dokumen.",
+  },
+  {
+    id: 180,
+    section: "Reading",
+    category: "読解情報検索",
+    canDo: "cityhall",
+    scenario: "Baca informasi loket dan pilih jawaban yang tepat.",
+    pattern: "情報検索: 窓口",
+    meaning: "mencari loket yang tepat",
+    dialogue: [
+      ["案内", "市役所 窓口案内\n1番: 住民票\n2番: 国民健康保険\n3番: 在留カードの相談"],
+      ["質問", "在留カードについて相談するとき、どこへ行きますか。"],
+    ],
+    choices: ["3番", "2番", "1番"],
+    answer: 0,
+    explanation: "案内に「3番: 在留カードの相談」とあります。 / Pada informasi tertulis konsultasi kartu izin tinggal di loket nomor 3.",
+  },
+  {
+    id: 181,
+    section: "Grammar",
+    category: "住まい",
+    canDo: "housing",
+    scenario: "Seseorang menjelaskan apartemen yang dekat dari stasiun.",
+    pattern: "イ形容詞い -> くて",
+    meaning: "menghubungkan dua sifat",
+    dialogue: [
+      ["客", "このアパートはどうですか。"],
+      ["店員", "駅に [blank]、便利です。"],
+    ],
+    choices: ["近いで", "近くて", "近いと"],
+    answer: 1,
+    explanation: "イ形容詞をつなぐとき、「近い」は「近くて」になります。 / Untuk menghubungkan i-keiyoushi, 近い berubah menjadi 近くて.",
+  },
+  {
+    id: 182,
+    section: "Expression",
+    category: "住まい",
+    canDo: "housing",
+    scenario: "Calon penyewa ingin melihat kamar.",
+    pattern: "部屋を見てもいいですか",
+    meaning: "bolehkah melihat kamar",
+    dialogue: [
+      ["客", "この部屋を [blank]。"],
+      ["店員", "はい、ご案内します。"],
+    ],
+    choices: ["借りましたか", "住んでいますか", "見てもいいですか"],
+    answer: 2,
+    explanation: "部屋を見る許可を聞くときは「見てもいいですか」を使います。 / Untuk meminta izin melihat kamar, gunakan 見てもいいですか.",
+  },
+  {
+    id: 183,
+    section: "Vocabulary",
+    category: "住まい",
+    canDo: "housing",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 敷金",
+    meaning: "uang jaminan sewa",
+    dialogue: [["問題", "「敷金」は何ですか。"]],
+    choices: ["uang jaminan sewa", "biaya listrik", "alamat baru"],
+    answer: 0,
+    explanation: "「敷金」は部屋を借りるときの保証金です。 / 敷金 adalah uang jaminan saat menyewa kamar atau apartemen.",
+  },
+  {
+    id: 184,
+    section: "Reading",
+    category: "読解掲示",
+    canDo: "housing",
+    scenario: "Baca pengumuman sampah di apartemen.",
+    pattern: "掲示: ごみ出し",
+    meaning: "mencari hari membuang sampah",
+    dialogue: [
+      ["掲示", "ごみ出しのお知らせ\n燃えるごみ: 月曜日・木曜日 朝8時まで\nびん・缶: 水曜日"],
+      ["質問", "燃えるごみはいつ出しますか。"],
+    ],
+    choices: ["水曜日", "月曜日と木曜日", "毎日"],
+    answer: 1,
+    explanation: "掲示に「燃えるごみ: 月曜日・木曜日」とあります。 / Pada pengumuman tertulis sampah terbakar dibuang Senin dan Kamis.",
+  },
+  {
+    id: 185,
+    section: "Grammar",
+    category: "食事",
+    canDo: "food",
+    scenario: "Pelanggan memilih menu karena suka ikan.",
+    pattern: "文 + ので",
+    meaning: "karena / sebab",
+    dialogue: [
+      ["店員", "ご注文は何になさいますか。"],
+      ["客", "魚が好き [blank]、刺身定食にします。"],
+    ],
+    choices: ["でも", "からに", "なので"],
+    answer: 2,
+    explanation: "理由を自然に言うときは「なので」を使えます。 / Untuk menyatakan alasan secara natural, gunakan なので.",
+  },
+  {
+    id: 186,
+    section: "Expression",
+    category: "食事",
+    canDo: "food",
+    scenario: "Pelanggan meminta makanan tidak dibuat pedas.",
+    pattern: "辛くしないでください",
+    meaning: "tolong jangan dibuat pedas",
+    dialogue: [
+      ["客", "すみません。あまり辛く [blank]。"],
+      ["店員", "はい、わかりました。"],
+    ],
+    choices: ["しないでください", "してもいいですか", "したいです"],
+    answer: 0,
+    explanation: "しないようにお願いするときは「しないでください」を使います。 / Untuk meminta agar sesuatu tidak dilakukan, gunakan しないでください.",
+  },
+  {
+    id: 187,
+    section: "Vocabulary",
+    category: "食事",
+    canDo: "food",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 大盛り",
+    meaning: "porsi besar",
+    dialogue: [["問題", "「大盛り」の意味は何ですか。"]],
+    choices: ["tanpa es", "porsi besar", "dibawa pulang"],
+    answer: 1,
+    explanation: "「大盛り」は普通より量が多いことです。 / 大盛り berarti porsi lebih besar dari biasa.",
+  },
+  {
+    id: 188,
+    section: "Reading",
+    category: "読解情報検索",
+    canDo: "food",
+    scenario: "Baca menu restoran dan pilih jawaban yang tepat.",
+    pattern: "情報検索: セットメニュー",
+    meaning: "mencari isi menu set",
+    dialogue: [
+      ["メニュー", "昼の定食\nからあげ定食 850円\nごはん・みそ汁つき\nごはん大盛り無料"],
+      ["質問", "からあげ定食についているものは何ですか。"],
+    ],
+    choices: ["コーヒー", "ケーキ", "ごはんとみそ汁"],
+    answer: 2,
+    explanation: "メニューに「ごはん・みそ汁つき」とあります。 / Pada menu tertulis termasuk nasi dan sup miso.",
+  },
+  {
+    id: 189,
+    section: "Grammar",
+    category: "予約",
+    canDo: "reservation",
+    scenario: "Pelanggan membuat reservasi untuk tiga orang.",
+    pattern: "人数 + で予約します",
+    meaning: "reservasi untuk sejumlah orang",
+    dialogue: [
+      ["客", "土曜日、3人 [blank] 予約したいです。"],
+      ["店員", "はい、何時がよろしいですか。"],
+    ],
+    choices: ["で", "に", "を"],
+    answer: 0,
+    explanation: "予約の人数は「3人で」のように言います。 / Jumlah orang untuk reservasi dapat dinyatakan dengan 3人で.",
+  },
+  {
+    id: 190,
+    section: "Expression",
+    category: "予約",
+    canDo: "reservation",
+    scenario: "Pelanggan ingin memastikan reservasinya lewat telepon.",
+    pattern: "予約を確認したいんですが",
+    meaning: "ingin mengecek reservasi",
+    dialogue: [
+      ["客", "すみません。予約を [blank]。"],
+      ["店員", "お名前をお願いします。"],
+    ],
+    choices: ["キャンセルしました", "確認したいんですが", "食事しました"],
+    answer: 1,
+    explanation: "予約を確認したいときは「確認したいんですが」が自然です。 / Untuk mengecek reservasi dengan sopan, gunakan 確認したいんですが.",
+  },
+  {
+    id: 191,
+    section: "Vocabulary",
+    category: "予約",
+    canDo: "reservation",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 満席",
+    meaning: "semua kursi penuh",
+    dialogue: [["問題", "「満席」の意味は何ですか。"]],
+    choices: ["masih kosong", "sedang libur", "semua kursi penuh"],
+    answer: 2,
+    explanation: "「満席」は席が全部うまっていることです。 / 満席 berarti semua kursi sudah penuh.",
+  },
+  {
+    id: 192,
+    section: "Reading",
+    category: "読解情報検索",
+    canDo: "reservation",
+    scenario: "Baca informasi reservasi hotel dan pilih jawaban yang tepat.",
+    pattern: "情報検索: ホテル予約",
+    meaning: "mencari waktu check-in",
+    dialogue: [
+      ["予約案内", "さくらホテル\nチェックイン 15:00から\nチェックアウト 10:00まで\n朝食 7:00-9:00"],
+      ["質問", "チェックインは何時からですか。"],
+    ],
+    choices: ["15:00", "10:00", "7:00"],
+    answer: 0,
+    explanation: "案内に「チェックイン 15:00から」とあります。 / Pada informasi tertulis check-in mulai pukul 15:00.",
+  },
+  {
+    id: 193,
+    section: "Grammar",
+    category: "道案内",
+    canDo: "directions",
+    scenario: "Petugas memberi arahan setelah keluar dari stasiun.",
+    pattern: "Vて、Vてください",
+    meaning: "lakukan langkah pertama lalu langkah berikutnya",
+    dialogue: [
+      ["A", "市役所はどこですか。"],
+      ["B", "駅を [blank]、左に曲がってください。"],
+    ],
+    choices: ["出ます", "出て", "出たら"],
+    answer: 1,
+    explanation: "続けて指示するときは「て形」を使います。 / Untuk menghubungkan instruksi berurutan, gunakan bentuk て.",
+  },
+  {
+    id: 194,
+    section: "Expression",
+    category: "道案内",
+    canDo: "directions",
+    scenario: "Seseorang bertanya apakah ada ATM di dekat sini.",
+    pattern: "この近くにありますか",
+    meaning: "apakah ada di dekat sini",
+    dialogue: [
+      ["A", "すみません。この近くにATMは [blank]。"],
+      ["B", "はい、コンビニの中にあります。"],
+    ],
+    choices: ["行きますか", "できますか", "ありますか"],
+    answer: 2,
+    explanation: "場所や物があるか聞くときは「ありますか」を使います。 / Untuk menanyakan keberadaan tempat atau benda, gunakan ありますか.",
+  },
+  {
+    id: 195,
+    section: "Vocabulary",
+    category: "道案内",
+    canDo: "directions",
+    scenario: "Pilih arti kata Jepang yang paling tepat.",
+    pattern: "語彙: 交差点",
+    meaning: "persimpangan jalan",
+    dialogue: [["問題", "「交差点」の意味は何ですか。"]],
+    choices: ["persimpangan jalan", "pintu masuk", "halte bus"],
+    answer: 0,
+    explanation: "「交差点」は道が交わる場所です。 / 交差点 berarti persimpangan jalan.",
+  },
+  {
+    id: 196,
+    section: "Reading",
+    category: "読解短文",
+    canDo: "directions",
+    scenario: "Baca petunjuk jalan pendek dan pilih jawaban yang tepat.",
+    pattern: "短文: 道順",
+    meaning: "memahami urutan arah",
+    dialogue: [
+      ["本文", "駅を出て、右に曲がります。二つ目の角を左に曲がると、銀行があります。銀行のとなりが郵便局です。"],
+      ["質問", "郵便局はどこにありますか。"],
+    ],
+    choices: ["駅の中", "銀行の前", "銀行のとなり"],
+    answer: 2,
+    explanation: "本文に「銀行のとなりが郵便局です」とあります。 / Dalam teks tertulis bahwa kantor pos ada di sebelah bank.",
+  },
 ];
 
 const CAN_DO_AREAS = [
@@ -2730,41 +3218,63 @@ function ensureCanDoMarkup() {
     const style = document.createElement("style");
     style.id = styleId;
     style.textContent = `
-      .can-do-view { display: none; }
-      .can-do-view.is-visible { display: block; }
+      .can-do-view,
+      .analysis-view { display: none; }
+      .can-do-view.is-visible,
+      .analysis-view.is-visible { display: block; }
       .can-do-intro,
-      .can-do-card {
+      .can-do-card,
+      .analysis-intro,
+      .analysis-card,
+      .analysis-panel {
         border: 1px solid var(--line, #d9d5ca);
         border-radius: 8px;
         background: var(--surface, #fffdf7);
       }
-      .can-do-intro {
+      .can-do-intro,
+      .analysis-intro {
         margin-bottom: 16px;
         padding: 20px;
       }
       .can-do-intro h3,
       .can-do-intro p,
       .can-do-card h3,
-      .can-do-card p {
+      .can-do-card p,
+      .analysis-intro h3,
+      .analysis-intro p,
+      .analysis-card h3,
+      .analysis-card p,
+      .analysis-panel h3,
+      .analysis-panel p {
         margin: 0;
       }
       .can-do-intro p,
-      .can-do-card p {
+      .can-do-card p,
+      .analysis-intro p,
+      .analysis-card p,
+      .analysis-panel p {
         color: var(--muted, #667078);
         line-height: 1.5;
       }
-      .can-do-grid {
+      .can-do-grid,
+      .analysis-summary-grid,
+      .analysis-area-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 14px;
       }
-      .can-do-card {
+      .can-do-card,
+      .analysis-card {
         display: grid;
         gap: 12px;
         padding: 18px;
       }
-      .can-do-card header {
+      .can-do-card header,
+      .analysis-card header,
+      .analysis-panel header,
+      .analysis-row {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         gap: 12px;
       }
@@ -2777,7 +3287,74 @@ function ensureCanDoMarkup() {
         color: #0c4f3f;
         font-weight: 850;
       }
-      .can-do-card button {
+      .analysis-card strong {
+        font-size: 28px;
+        line-height: 1;
+      }
+      .analysis-panel {
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+        padding: 18px;
+      }
+      .analysis-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .analysis-row {
+        padding: 12px 0;
+        border-top: 1px solid var(--line, #d9d5ca);
+      }
+      .analysis-row:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .analysis-row > div:first-child {
+        flex: 1;
+        min-width: 0;
+      }
+      .analysis-row > div:last-child {
+        display: grid;
+        gap: 6px;
+        justify-items: end;
+      }
+      .analysis-row h4 {
+        margin: 0 0 4px;
+        font-size: 16px;
+      }
+      .analysis-score {
+        min-width: 68px;
+        text-align: right;
+        font-weight: 900;
+        color: var(--green, #1f8a70);
+      }
+      .analysis-score.is-low {
+        color: var(--wrong, #b3261e);
+      }
+      .analysis-score.is-empty {
+        color: var(--muted, #667078);
+      }
+      .analysis-bar {
+        overflow: hidden;
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: #ece7dc;
+      }
+      .analysis-bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--green, #1f8a70), var(--gold, #c28a10));
+      }
+      .analysis-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .can-do-card button,
+      .analysis-actions button {
         justify-self: start;
         min-height: 38px;
         padding: 0 12px;
@@ -2785,6 +3362,17 @@ function ensureCanDoMarkup() {
         border-radius: 8px;
         background: var(--surface-strong, #fff);
         font-weight: 850;
+      }
+      .analysis-empty {
+        padding: 16px;
+        border: 1px dashed var(--line, #d9d5ca);
+        border-radius: 8px;
+        color: var(--muted, #667078);
+      }
+      @media (max-width: 900px) {
+        .analysis-columns {
+          grid-template-columns: 1fr;
+        }
       }
     `;
     document.head.append(style);
@@ -2816,6 +3404,19 @@ function ensureCanDoMarkup() {
     else modeTabs.append(button);
   }
 
+  if (modeTabs && !document.querySelector('[data-view="analysis"]')) {
+    const button = document.createElement("button");
+    button.className = "mode-tab";
+    button.dataset.view = "analysis";
+    button.type = "button";
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", "false");
+    button.innerHTML = '<span aria-hidden="true">◎</span> Analisis';
+    const reviewTab = modeTabs.querySelector('[data-view="review"]');
+    if (reviewTab) modeTabs.insertBefore(button, reviewTab);
+    else modeTabs.append(button);
+  }
+
   const workspace = document.querySelector(".workspace") || document.querySelector("main");
   if (workspace && !document.querySelector("#canDoView")) {
     const view = document.createElement("section");
@@ -2827,6 +3428,58 @@ function ensureCanDoMarkup() {
         <p>JFT Basic A2は生活場面ベースです。文法順だけでなく、買い物・交通・病院・役所・職場・住まい・食事・予約・道案内から練習できます。</p>
       </div>
       <div class="can-do-grid" id="canDoGrid"></div>
+    `;
+    workspace.append(view);
+  }
+
+  if (workspace && !document.querySelector("#analysisView")) {
+    const view = document.createElement("section");
+    view.className = "view analysis-view";
+    view.id = "analysisView";
+    view.innerHTML = `
+      <div class="analysis-intro">
+        <h3>弱点分析 / Analisis kelemahan</h3>
+        <p>Can-do、セクション、カテゴリごとに正答率とミスを見ます。Bagian yang lemah akan lebih mudah dipilih untuk latihan ulang.</p>
+      </div>
+      <div class="analysis-summary-grid" id="analysisSummary"></div>
+      <section class="analysis-panel">
+        <header>
+          <div>
+            <h3>Can-do別の強み・弱み</h3>
+            <p>Akurasi berdasarkan situasi kehidupan.</p>
+          </div>
+        </header>
+        <div class="analysis-area-list" id="analysisCanDoList"></div>
+      </section>
+      <div class="analysis-columns">
+        <section class="analysis-panel">
+          <header>
+            <div>
+              <h3>セクション別</h3>
+              <p>Grammar, Expression, Vocabulary, Reading.</p>
+            </div>
+          </header>
+          <div id="analysisSectionList"></div>
+        </section>
+        <section class="analysis-panel">
+          <header>
+            <div>
+              <h3>弱いカテゴリ</h3>
+              <p>Kategori dengan prioritas latihan tertinggi.</p>
+            </div>
+          </header>
+          <div id="analysisCategoryList"></div>
+        </section>
+      </div>
+      <section class="analysis-panel">
+        <header>
+          <div>
+            <h3>優先レビュー問題</h3>
+            <p>Kesalahan terbanyak ditampilkan paling atas.</p>
+          </div>
+        </header>
+        <div class="question-list" id="analysisQuestionList"></div>
+      </section>
     `;
     workspace.append(view);
   }
@@ -2851,6 +3504,7 @@ const els = {
   views: {
     practice: document.querySelector("#practiceView"),
     cando: document.querySelector("#canDoView"),
+    analysis: document.querySelector("#analysisView"),
     test: document.querySelector("#practiceView"),
     mock: document.querySelector("#practiceView"),
     bank: document.querySelector("#bankView"),
@@ -2859,12 +3513,15 @@ const els = {
   questionSection: document.querySelector("#questionSection"),
   questionCategory: document.querySelector("#questionCategory"),
   questionNumber: document.querySelector("#questionNumber"),
+  questionPanel: document.querySelector(".question-panel"),
   scenarioText: document.querySelector("#scenarioText"),
   dialogueBox: document.querySelector("#dialogueBox"),
   choicesBox: document.querySelector("#choicesBox"),
   feedbackBox: document.querySelector("#feedbackBox"),
   prevBtn: document.querySelector("#prevBtn"),
   nextBtn: document.querySelector("#nextBtn"),
+  topPrevBtn: document.querySelector("#topPrevBtn"),
+  topNextBtn: document.querySelector("#topNextBtn"),
   patternLabel: document.querySelector("#patternLabel"),
   patternText: document.querySelector("#patternText"),
   meaningLabel: document.querySelector("#meaningLabel"),
@@ -2876,6 +3533,11 @@ const els = {
   reviewSummary: document.querySelector("#reviewSummary"),
   reviewList: document.querySelector("#reviewList"),
   canDoGrid: document.querySelector("#canDoGrid"),
+  analysisSummary: document.querySelector("#analysisSummary"),
+  analysisCanDoList: document.querySelector("#analysisCanDoList"),
+  analysisSectionList: document.querySelector("#analysisSectionList"),
+  analysisCategoryList: document.querySelector("#analysisCategoryList"),
+  analysisQuestionList: document.querySelector("#analysisQuestionList"),
 };
 
 const state = {
@@ -2895,16 +3557,20 @@ const state = {
 function loadProgress() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) return normalizeProgress(JSON.parse(raw));
   } catch {
     // localStorage can be unavailable in some preview contexts.
   }
+  return normalizeProgress();
+}
+
+function normalizeProgress(progress = {}) {
   return {
-    answered: 0,
-    correct: 0,
-    streak: 0,
-    attempts: {},
-    mistakes: {},
+    answered: progress.answered || 0,
+    correct: progress.correct || 0,
+    streak: progress.streak || 0,
+    attempts: progress.attempts || {},
+    mistakes: progress.mistakes || {},
   };
 }
 
@@ -3259,17 +3925,26 @@ function renderFeedback(question) {
 
 function renderQuestionActions(total) {
   const isLast = state.index === total - 1;
-  els.prevBtn.style.visibility = isTestMode() && state.index === 0 ? "hidden" : "visible";
+  const prevButtons = [els.prevBtn, els.topPrevBtn].filter(Boolean);
+  const nextButtons = [els.nextBtn, els.topNextBtn].filter(Boolean);
+  prevButtons.forEach((button) => {
+    button.style.visibility = isTestMode() && state.index === 0 ? "hidden" : "visible";
+  });
 
   if (isTestMode()) {
-    els.nextBtn.innerHTML =
+    const nextLabel =
       isLast && state.selected !== null && !state.testFinished
         ? 'Selesai <span aria-hidden="true">✓</span>'
         : 'Berikutnya <span aria-hidden="true">›</span>';
+    nextButtons.forEach((button) => {
+      button.innerHTML = nextLabel;
+    });
     return;
   }
 
-  els.nextBtn.innerHTML = 'Berikutnya <span aria-hidden="true">›</span>';
+  nextButtons.forEach((button) => {
+    button.innerHTML = 'Berikutnya <span aria-hidden="true">›</span>';
+  });
 }
 
 function chooseAnswer(choiceIndex) {
@@ -3343,9 +4018,11 @@ function setView(view) {
         ? TEST_CONFIGS[view].title
         : view === "cando"
           ? "Can-do別学習"
-          : view === "bank"
-            ? "Bank Soal"
-            : "Review";
+          : view === "analysis"
+            ? "弱点分析"
+            : view === "bank"
+              ? "Bank Soal"
+              : "Review";
   renderAll();
 }
 
@@ -3383,6 +4060,241 @@ function renderCanDoView() {
       setView("practice");
     });
   });
+}
+
+function questionStats(questions) {
+  const attempts = questions.reduce((total, question) => total + (state.progress.attempts[question.id] || 0), 0);
+  const mistakes = questions.reduce((total, question) => total + (state.progress.mistakes[question.id] || 0), 0);
+  const answeredQuestions = questions.filter((question) => (state.progress.attempts[question.id] || 0) > 0).length;
+  const correct = Math.max(0, attempts - mistakes);
+  return {
+    attempts,
+    mistakes,
+    correct,
+    answeredQuestions,
+    totalQuestions: questions.length,
+    accuracy: attempts ? Math.round((correct / attempts) * 100) : null,
+  };
+}
+
+function accuracyText(stats) {
+  return stats.accuracy === null ? "Belum ada" : `${stats.accuracy}%`;
+}
+
+function accuracyClass(stats) {
+  if (stats.accuracy === null) return "is-empty";
+  return stats.accuracy < 70 ? "is-low" : "";
+}
+
+function sortWeakGroups(a, b) {
+  if (a.stats.attempts === 0 && b.stats.attempts > 0) return 1;
+  if (a.stats.attempts > 0 && b.stats.attempts === 0) return -1;
+  if (a.stats.accuracy !== b.stats.accuracy) return (a.stats.accuracy ?? 101) - (b.stats.accuracy ?? 101);
+  return b.stats.mistakes - a.stats.mistakes;
+}
+
+function renderAnalysisSummary() {
+  const overall = questionStats(questionBank);
+  const weakAreas = CAN_DO_AREAS.map((area) => ({
+    area,
+    stats: questionStats(questionBank.filter((question) => question.canDo === area.id)),
+  }))
+    .filter((item) => item.stats.attempts > 0)
+    .sort(sortWeakGroups);
+  const weakest = weakAreas[0];
+  const untouched = questionBank.filter((question) => (state.progress.attempts[question.id] || 0) === 0).length;
+  const reviewCount = Object.values(state.progress.mistakes).filter((count) => count > 0).length;
+
+  els.analysisSummary.innerHTML = [
+    {
+      label: "全体正答率 / Akurasi",
+      value: accuracyText(overall),
+      detail: `${overall.correct} benar dari ${overall.attempts} jawaban`,
+    },
+    {
+      label: "最優先 / Prioritas",
+      value: weakest ? weakest.area.labelJa : "-",
+      detail: weakest ? `${weakest.area.labelId}・${accuracyText(weakest.stats)}` : "Jawab beberapa soal dulu",
+    },
+    {
+      label: "未挑戦 / Belum dicoba",
+      value: untouched,
+      detail: `${questionBank.length - untouched} dari ${questionBank.length} soal sudah dicoba`,
+    },
+    {
+      label: "Review",
+      value: reviewCount,
+      detail: "soal dengan riwayat salah",
+    },
+  ]
+    .map(
+      (item) => `
+        <article class="analysis-card">
+          <p>${escapeHtml(item.label)}</p>
+          <strong>${escapeHtml(item.value)}</strong>
+          <p>${escapeHtml(item.detail)}</p>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderAnalysisRow({ title, subtitle, stats, buttonText, buttonAttrs }) {
+  const width = stats.accuracy ?? 0;
+  return `
+    <article class="analysis-row">
+      <div>
+        <h4>${escapeHtml(title)}</h4>
+        <p>${escapeHtml(subtitle)}</p>
+        <div class="analysis-bar" aria-hidden="true"><span style="width: ${width}%"></span></div>
+      </div>
+      <div>
+        <div class="analysis-score ${accuracyClass(stats)}">${escapeHtml(accuracyText(stats))}</div>
+        <p>${stats.answeredQuestions}/${stats.totalQuestions} soal・${stats.mistakes} salah</p>
+        ${
+          buttonAttrs
+            ? `<div class="analysis-actions"><button type="button" ${buttonAttrs}>${escapeHtml(buttonText)}</button></div>`
+            : ""
+        }
+      </div>
+    </article>
+  `;
+}
+
+function renderCanDoAnalysis() {
+  els.analysisCanDoList.innerHTML = CAN_DO_AREAS.map((area) => {
+    const questions = questionBank.filter((question) => question.canDo === area.id);
+    const stats = questionStats(questions);
+    const width = stats.accuracy ?? 0;
+    return `
+      <article class="analysis-card">
+        <header>
+          <div>
+            <h3>${escapeHtml(area.labelJa)}</h3>
+            <p>${escapeHtml(area.labelId)}</p>
+          </div>
+          <span class="analysis-score ${accuracyClass(stats)}">${escapeHtml(accuracyText(stats))}</span>
+        </header>
+        <div class="analysis-bar" aria-hidden="true"><span style="width: ${width}%"></span></div>
+        <p>${stats.answeredQuestions}/${stats.totalQuestions} soal dicoba・${stats.mistakes} salah</p>
+        <div class="analysis-actions">
+          <button type="button" data-analysis-cando="${area.id}">Latih area ini</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function sectionAnalysisItems() {
+  return ["Grammar", "Expression", "Vocabulary", "Reading"].map((section) => {
+    const questions = questionBank.filter((question) => question.section === section);
+    return {
+      section,
+      stats: questionStats(questions),
+      total: questions.length,
+    };
+  });
+}
+
+function categoryAnalysisItems() {
+  const groups = new Map();
+  questionBank.forEach((question) => {
+    const key = `${question.section}::${question.category}`;
+    if (!groups.has(key)) groups.set(key, { section: question.section, category: question.category, questions: [] });
+    groups.get(key).questions.push(question);
+  });
+
+  return [...groups.values()]
+    .map((group) => ({
+      ...group,
+      stats: questionStats(group.questions),
+    }))
+    .filter((group) => group.stats.attempts > 0 || group.stats.mistakes > 0)
+    .sort(sortWeakGroups)
+    .slice(0, 8);
+}
+
+function attachAnalysisButtons() {
+  els.analysisCanDoList?.querySelectorAll("[data-analysis-cando]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (els.canDoFilter) els.canDoFilter.value = button.dataset.analysisCando;
+      els.sectionFilter.value = "all";
+      renderCategoryOptions();
+      els.categoryFilter.value = "all";
+      state.index = 0;
+      state.selected = null;
+      setView("practice");
+    });
+  });
+
+  els.analysisSectionList?.querySelectorAll("[data-analysis-section]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (els.canDoFilter) els.canDoFilter.value = "all";
+      els.sectionFilter.value = button.dataset.analysisSection;
+      renderCategoryOptions();
+      els.categoryFilter.value = "all";
+      state.index = 0;
+      state.selected = null;
+      setView("practice");
+    });
+  });
+
+  els.analysisCategoryList?.querySelectorAll("[data-analysis-category]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (els.canDoFilter) els.canDoFilter.value = "all";
+      els.sectionFilter.value = button.dataset.analysisSection;
+      renderCategoryOptions();
+      els.categoryFilter.value = button.dataset.analysisCategory;
+      state.index = 0;
+      state.selected = null;
+      setView("practice");
+    });
+  });
+}
+
+function renderAnalysis() {
+  if (!els.analysisSummary) return;
+
+  renderAnalysisSummary();
+  renderCanDoAnalysis();
+
+  els.analysisSectionList.innerHTML = sectionAnalysisItems()
+    .map((item) =>
+      renderAnalysisRow({
+        title: item.section,
+        subtitle: `${item.total} soal`,
+        stats: item.stats,
+        buttonText: "Latih bagian ini",
+        buttonAttrs: `data-analysis-section="${escapeHtml(item.section)}"`,
+      }),
+    )
+    .join("");
+
+  const categoryItems = categoryAnalysisItems();
+  els.analysisCategoryList.innerHTML = categoryItems.length
+    ? categoryItems
+        .map((item) =>
+          renderAnalysisRow({
+            title: item.category,
+            subtitle: `${item.section}・${item.questions.length} soal`,
+            stats: item.stats,
+            buttonText: "Latih kategori ini",
+            buttonAttrs: `data-analysis-section="${escapeHtml(item.section)}" data-analysis-category="${escapeHtml(item.category)}"`,
+          }),
+        )
+        .join("")
+    : '<div class="analysis-empty">Belum ada data kategori. Jawab beberapa soal dulu agar kelemahan terlihat.</div>';
+
+  const reviewQuestions = questionBank
+    .filter((question) => (state.progress.mistakes[question.id] || 0) > 0)
+    .sort((a, b) => (state.progress.mistakes[b.id] || 0) - (state.progress.mistakes[a.id] || 0))
+    .slice(0, 6);
+
+  els.analysisQuestionList.innerHTML = reviewQuestions.length
+    ? reviewQuestions.map(renderListItem).join("")
+    : '<div class="analysis-empty">Belum ada soal yang salah. Jika nanti ada kesalahan, prioritas review akan muncul di sini.</div>';
+  attachAnalysisButtons();
+  attachListButtons(els.analysisQuestionList);
 }
 
 function renderBank() {
@@ -3492,14 +4404,78 @@ function renderAll() {
   els.toolbarMeta.textContent =
     state.view === "cando"
       ? `${CAN_DO_AREAS.length} Can-do area dari ${questionBank.length} soal`
+      : state.view === "analysis"
+        ? `${state.progress.answered} jawaban dianalisis`
       : isTestMode()
       ? `${count} soal acak dari ${questionBank.length} soal${state.testDurationMs ? ` | ${formatTime(remainingMs())}` : ""}`
       : `${count} soal aktif dari ${questionBank.length} soal`;
   renderStats();
   renderPractice();
   if (state.view === "cando") renderCanDoView();
+  if (state.view === "analysis") renderAnalysis();
   if (state.view === "bank") renderBank();
   if (state.view === "review") renderReview();
+}
+
+function bindSwipeNavigation() {
+  if (!els.questionPanel) return;
+
+  const interactiveSelector = "button, a, input, select, textarea, [role='button']";
+  const swipe = {
+    startX: 0,
+    startY: 0,
+    startedAt: 0,
+    active: false,
+  };
+
+  els.questionPanel.addEventListener(
+    "touchstart",
+    (event) => {
+      const startedOnControl =
+        event.target instanceof Element && Boolean(event.target.closest(interactiveSelector));
+      if (event.touches.length !== 1 || startedOnControl) {
+        swipe.active = false;
+        return;
+      }
+
+      const touch = event.touches[0];
+      swipe.startX = touch.clientX;
+      swipe.startY = touch.clientY;
+      swipe.startedAt = Date.now();
+      swipe.active = true;
+    },
+    { passive: true },
+  );
+
+  els.questionPanel.addEventListener(
+    "touchend",
+    (event) => {
+      if (!swipe.active || !event.changedTouches.length) return;
+      swipe.active = false;
+
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - swipe.startX;
+      const deltaY = touch.clientY - swipe.startY;
+      const elapsed = Date.now() - swipe.startedAt;
+      const isHorizontalFlick =
+        Math.abs(deltaX) >= 64 &&
+        Math.abs(deltaX) > Math.abs(deltaY) * 1.35 &&
+        elapsed <= 1000;
+
+      if (!isHorizontalFlick) return;
+      if (isTestMode() && deltaX > 0 && state.index === 0) return;
+      moveQuestion(deltaX < 0 ? 1 : -1);
+    },
+    { passive: true },
+  );
+
+  els.questionPanel.addEventListener(
+    "touchcancel",
+    () => {
+      swipe.active = false;
+    },
+    { passive: true },
+  );
 }
 
 function bindEvents() {
@@ -3530,8 +4506,12 @@ function bindEvents() {
     tab.addEventListener("click", () => setView(tab.dataset.view));
   });
 
-  els.prevBtn.addEventListener("click", () => moveQuestion(-1));
-  els.nextBtn.addEventListener("click", () => moveQuestion(1));
+  [els.prevBtn, els.topPrevBtn].filter(Boolean).forEach((button) => {
+    button.addEventListener("click", () => moveQuestion(-1));
+  });
+  [els.nextBtn, els.topNextBtn].filter(Boolean).forEach((button) => {
+    button.addEventListener("click", () => moveQuestion(1));
+  });
   els.shuffleBtn.addEventListener("click", shuffleQuestion);
   [els.resetBtn, els.sidebarResetBtn].filter(Boolean).forEach((button) => {
     button.addEventListener("click", resetProgress);
@@ -3540,6 +4520,7 @@ function bindEvents() {
     state.search = event.target.value;
     renderBank();
   });
+  bindSwipeNavigation();
 }
 
 renderCanDoOptions();

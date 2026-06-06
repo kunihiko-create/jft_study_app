@@ -310,6 +310,8 @@ select {
 .question-panel {
   min-height: 650px;
   padding: 24px;
+  touch-action: pan-y;
+  overscroll-behavior-x: contain;
 }
 
 .question-head {
@@ -496,6 +498,12 @@ select {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+}
+
+.question-actions-top {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
 }
 
 .primary-button,
@@ -811,6 +819,10 @@ select {
   .question-actions {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .question-actions-top {
+    grid-template-columns: 1fr 1fr;
   }
 
   .primary-button,
