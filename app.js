@@ -3528,6 +3528,12 @@ const els = {
   meaningText: document.querySelector("#meaningText"),
   progressFill: document.querySelector("#progressFill"),
   progressText: document.querySelector("#progressText"),
+  testProgressPanel: document.querySelector("#testProgressPanel"),
+  testProgressTitle: document.querySelector("#testProgressTitle"),
+  testAnsweredCount: document.querySelector("#testAnsweredCount"),
+  testCorrectCount: document.querySelector("#testCorrectCount"),
+  testAccuracy: document.querySelector("#testAccuracy"),
+  testAnswerProgressFill: document.querySelector("#testAnswerProgressFill"),
   searchInput: document.querySelector("#searchInput"),
   questionList: document.querySelector("#questionList"),
   reviewSummary: document.querySelector("#reviewSummary"),
@@ -3592,7 +3598,7 @@ function escapeHtml(value) {
 }
 
 function renderTextWithBlank(text) {
-  return escapeHtml(text).replaceAll("[blank]", '<span class="blank">[ ]</span>');
+  return escapeHtml(text).replaceAll("[blank]", '<span class="blank">[&ensp;&ensp;]</span>');
 }
 
 function isTestMode(view = state.view) {
@@ -3766,9 +3772,29 @@ function renderStats() {
   els.metricReview.textContent = reviewCount;
 }
 
+function renderTestProgress(questions) {
+  if (!els.testProgressPanel) return;
+
+  const visible = isTestMode();
+  els.testProgressPanel.hidden = !visible;
+  if (!visible) return;
+
+  const answered = questions.filter((question) => state.testAnswers[question.id] !== undefined).length;
+  const correct = questions.filter((question) => state.testAnswers[question.id] === question.answer).length;
+  const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
+  const progress = questions.length ? (answered / questions.length) * 100 : 0;
+
+  els.testProgressTitle.textContent = TEST_CONFIGS[state.view].title;
+  els.testAnsweredCount.textContent = `${answered} / ${questions.length}`;
+  els.testCorrectCount.textContent = `${correct}`;
+  els.testAccuracy.textContent = `${accuracy}%`;
+  els.testAnswerProgressFill.style.width = `${progress}%`;
+}
+
 function renderPractice() {
   finishTestIfExpired();
   const questions = currentQuestions();
+  renderTestProgress(questions);
   if (!questions.length) {
     els.scenarioText.textContent = "Tidak ada soal pada filter ini.";
     els.dialogueBox.innerHTML = "";

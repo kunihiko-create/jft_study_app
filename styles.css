@@ -300,6 +300,7 @@ select {
 
 .question-panel,
 .learning-panel,
+.test-progress-panel,
 .review-summary {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -528,12 +529,87 @@ select {
   background: #176f5a;
 }
 
+.learning-rail {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 24px;
+}
+
 .learning-panel {
   display: grid;
   gap: 14px;
   padding: 18px;
-  position: sticky;
-  top: 24px;
+}
+
+.test-progress-panel {
+  padding: 18px;
+}
+
+.test-progress-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.test-progress-head span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.test-progress-head strong {
+  font-size: 18px;
+}
+
+.test-progress-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.test-progress-metric {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+}
+
+.test-progress-metric span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.test-progress-metric strong {
+  font-size: 22px;
+}
+
+.test-progress-metric-wide {
+  grid-column: 1 / -1;
+}
+
+.test-answer-progress {
+  height: 8px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.test-answer-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green);
+  transition: width 180ms ease;
 }
 
 .mini-visual {
@@ -757,8 +833,11 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .learning-panel {
+  .learning-rail {
     position: static;
+  }
+
+  .learning-panel {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 

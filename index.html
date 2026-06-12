@@ -137,27 +137,53 @@
               </div>
             </article>
 
-            <aside class="learning-panel" aria-label="Ringkasan soal">
-              <div class="mini-visual" aria-hidden="true">
-                <div class="flash-card card-a">JFT</div>
-                <div class="flash-card card-b">A2</div>
-                <div class="pencil"></div>
-              </div>
-              <div class="pattern-box">
-                <span id="patternLabel">Petunjuk</span>
-                <strong id="patternText">Vて + います</strong>
-              </div>
-              <div class="pattern-box">
-                <span id="meaningLabel">Status</span>
-                <strong id="meaningText">sedang / keadaan</strong>
-              </div>
-              <div class="mini-progress">
-                <div class="progress-bar">
-                  <span id="progressFill"></span>
+            <div class="learning-rail">
+              <aside class="learning-panel" aria-label="Ringkasan soal">
+                <div class="mini-visual" aria-hidden="true">
+                  <div class="flash-card card-a">JFT</div>
+                  <div class="flash-card card-b">A2</div>
+                  <div class="pencil"></div>
                 </div>
-                <p id="progressText">1 / 35</p>
-              </div>
-            </aside>
+                <div class="pattern-box">
+                  <span id="patternLabel">Petunjuk</span>
+                  <strong id="patternText">Vて + います</strong>
+                </div>
+                <div class="pattern-box">
+                  <span id="meaningLabel">Status</span>
+                  <strong id="meaningText">sedang / keadaan</strong>
+                </div>
+                <div class="mini-progress">
+                  <div class="progress-bar">
+                    <span id="progressFill"></span>
+                  </div>
+                  <p id="progressText">1 / 35</p>
+                </div>
+              </aside>
+
+              <section class="test-progress-panel" id="testProgressPanel" aria-live="polite" hidden>
+                <div class="test-progress-head">
+                  <span>進捗</span>
+                  <strong id="testProgressTitle">Tes 20</strong>
+                </div>
+                <div class="test-progress-metrics">
+                  <div class="test-progress-metric">
+                    <span>解答済み / Dijawab</span>
+                    <strong id="testAnsweredCount">0 / 20</strong>
+                  </div>
+                  <div class="test-progress-metric">
+                    <span>正解 / Benar</span>
+                    <strong id="testCorrectCount">0</strong>
+                  </div>
+                  <div class="test-progress-metric test-progress-metric-wide">
+                    <span>正答率 / Akurasi</span>
+                    <strong id="testAccuracy">0%</strong>
+                  </div>
+                </div>
+                <div class="test-answer-progress" aria-hidden="true">
+                  <span id="testAnswerProgressFill"></span>
+                </div>
+              </section>
+            </div>
           </div>
         </section>
 
