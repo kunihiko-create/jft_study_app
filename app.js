@@ -1,2289 +1,547 @@
+const canDoAreas = [
+  {
+    id: "shopping",
+    labelJa: "買い物",
+    labelId: "Belanja",
+    description: "Harga, ukuran, pembayaran, struk, dan permintaan barang di toko.",
+  },
+  {
+    id: "transport",
+    labelJa: "交通",
+    labelId: "Transportasi",
+    description: "Tiket, jadwal, waktu tempuh, keterlambatan, dan pindah kendaraan.",
+  },
+  {
+    id: "hospital",
+    labelJa: "病院",
+    labelId: "Rumah sakit",
+    description: "Gejala, obat, larangan, janji temu, dan ucapan setelah berobat.",
+  },
+  {
+    id: "cityhall",
+    labelJa: "役所",
+    labelId: "Kantor pemerintah",
+    description: "Formulir, kartu identitas, loket, nomor antrean, dan dokumen.",
+  },
+  {
+    id: "workplace",
+    labelJa: "職場",
+    labelId: "Tempat kerja",
+    description: "Salam kerja, alat kantor, rapat, izin pulang, dan laporan.",
+  },
+  {
+    id: "housing",
+    labelJa: "住まい",
+    labelId: "Tempat tinggal",
+    description: "Mencari kamar, sewa, fasilitas rusak, sampah, dan pindahan.",
+  },
+  {
+    id: "food",
+    labelJa: "食事",
+    labelId: "Makan",
+    description: "Restoran, pesanan, rekomendasi, makan di tempat, dan ucapan makan.",
+  },
+  {
+    id: "reservation",
+    labelJa: "予約",
+    labelId: "Reservasi",
+    description: "Memesan tempat, mengubah jadwal, membatalkan, dan memberi data.",
+  },
+  {
+    id: "directions",
+    labelJa: "道案内",
+    labelId: "Petunjuk jalan",
+    description: "Bertanya lokasi, arah, pintu keluar, lama perjalanan, dan rute.",
+  },
+];
+
 const questionBank = [
   {
     id: 1,
     section: "Grammar",
-    category: "Vている",
-    scenario: "Percakapan tentang pekerjaan di Jepang.",
-    pattern: "Vて + います",
-    meaning: "sedang melakukan / keadaan pekerjaan sekarang",
+    category: "有無",
+    canDo: "shopping",
+    scenario: "Pelanggan bertanya apakah ukuran yang diinginkan tersedia.",
+    pattern: "Nはありますか",
+    meaning: "menanyakan apakah barang tersedia",
     dialogue: [
-      ["A", "日本で何をしていますか。"],
-      ["B", "野菜を [blank]。"],
+      ["客", "すみません。このシャツのMサイズは [blank]。"],
+      ["店員", "はい、こちらにあります。"],
     ],
-    choices: ["作ります", "作っています", "作りです"],
-    answer: 1,
-    explanation:
-      "Pertanyaan ini menanyakan kegiatan atau pekerjaan sekarang. Bentuk yang cocok adalah つくっています.",
+    choices: ["いますか", "ありますか", "行きますか"],
+    answer: "ありますか",
+    explanation: "Barang memakai あります。Orang atau hewan memakai います。",
   },
   {
     id: 2,
-    section: "Grammar",
-    category: "て形",
-    scenario: "Dua rekan kerja berbicara tentang rencana setelah pekerjaan selesai.",
-    pattern: "Vて、Vます",
-    meaning: "melakukan satu aksi lalu aksi berikutnya",
+    section: "Expression",
+    category: "許可",
+    canDo: "shopping",
+    scenario: "Pelanggan ingin mencoba pakaian sebelum membeli.",
+    pattern: "Vてもいいですか",
+    meaning: "meminta izin melakukan sesuatu",
     dialogue: [
-      ["A", "仕事が終わったら、何をしますか。"],
-      ["B", "レストランでご飯を [blank]、家に帰ります。"],
+      ["客", "このコートを [blank]。"],
+      ["店員", "はい、試着室はこちらです。"],
     ],
-    choices: ["食べます", "食べています", "食べて"],
-    answer: 2,
-    explanation:
-      "日本語: 動作を順番につなぐときは「て形」を使います。レストランでご飯を食べて、家に帰ります。 / Bahasa Indonesia: Untuk menyambung urutan kegiatan, gunakan bentuk て.",
+    choices: ["試着してもいいですか", "試着しています", "試着しました"],
+    answer: "試着してもいいですか",
+    explanation: "Meminta izin memakai pola て形 + もいいですか。",
   },
   {
     id: 3,
-    section: "Grammar",
-    category: "希望",
-    scenario: "Percakapan dua anak tentang cita-cita.",
-    pattern: "Nに + なりたいです",
-    meaning: "ingin menjadi sesuatu",
+    section: "Expression",
+    category: "値段",
+    canDo: "shopping",
+    scenario: "Pelanggan menanyakan harga barang.",
+    pattern: "これはいくらですか",
+    meaning: "menanyakan harga",
     dialogue: [
-      ["A", "将来、何になりたいですか。"],
-      ["B", "子どもが好きですから、小学校の教師に [blank]。"],
+      ["客", "すみません。これは [blank]。"],
+      ["店員", "1,200円です。"],
     ],
-    choices: ["したいです", "なりたいです", "します"],
-    answer: 1,
-    explanation:
-      "Untuk cita-cita atau profesi yang ingin dicapai, gunakan Nになりたいです.",
+    choices: ["どこですか", "なんですか", "いくらですか"],
+    answer: "いくらですか",
+    explanation: "Harga ditanyakan dengan いくらですか。",
   },
   {
     id: 4,
-    section: "Grammar",
-    category: "様子",
-    scenario: "Pelanggan melihat menu dan mulai memesan makanan.",
-    pattern: "イ形容詞い -> そうです",
-    meaning: "kelihatannya enak / tampak seperti",
+    section: "Vocabulary",
+    category: "支払い",
+    canDo: "shopping",
+    scenario: "Pelanggan memilih cara pembayaran.",
+    pattern: "現金で払います",
+    meaning: "membayar dengan tunai",
     dialogue: [
-      ["お客", "すみません。おすすめは何ですか。"],
-      ["店員", "天ぷら定食が人気ですよ。写真はこちらです。"],
-      ["お客", "おいし [blank]。じゃ、これをください。"],
+      ["店員", "お支払いはどうなさいますか。"],
+      ["客", "[blank] 払います。"],
     ],
-    choices: ["ようです", "そうですね", "いです"],
-    answer: 1,
-    explanation:
-      "日本語: 見た感じを言うときは「おいしい」ではなく「おいしそうですね」を使うと自然です。 / Bahasa Indonesia: Saat menilai dari tampilan, gunakan おいしそうですね.",
+    choices: ["現金で", "現金に", "現金を"],
+    answer: "現金で",
+    explanation: "Alat atau cara memakai partikel で。",
   },
   {
     id: 5,
-    section: "Grammar",
-    category: "逆接",
-    scenario: "Percakapan tentang tempat terbaik untuk tinggal.",
-    pattern: "文 + だけど",
-    meaning: "tetapi / walaupun begitu",
+    section: "Expression",
+    category: "不要",
+    canDo: "shopping",
+    scenario: "Pelanggan tidak membutuhkan kantong belanja.",
+    pattern: "袋は要りません",
+    meaning: "menolak kantong dengan sopan",
     dialogue: [
-      ["A", "田舎と町と、どちらが好きですか。"],
-      ["B", "そうですね。田舎のほうがいいと思います。"],
-      ["A", "どうしてですか。"],
-      ["B", "田舎は町よりちょっと不便 [blank]、静かですよ。"],
+      ["店員", "袋はご利用ですか。"],
+      ["客", "いいえ、袋は [blank]。"],
     ],
-    choices: ["で", "です", "だけど"],
-    answer: 2,
-    explanation:
-      "Ada kontras antara 不便 dan しずか. Karena itu gunakan だけど.",
+    choices: ["要りません", "ありません", "使いませんか"],
+    answer: "要りません",
+    explanation: "Saat menyatakan tidak perlu, gunakan 要りません。",
   },
   {
     id: 6,
-    section: "Grammar",
-    category: "助詞",
-    scenario: "Seseorang baru tiba di kantor dan menjelaskan alasan terlambat.",
-    pattern: "Nで",
-    meaning: "karena / akibat suatu peristiwa",
+    section: "Expression",
+    category: "依頼",
+    canDo: "shopping",
+    scenario: "Pelanggan meminta struk setelah membayar.",
+    pattern: "Nをください",
+    meaning: "meminta sesuatu",
     dialogue: [
-      ["A", "遅れて、すみませんでした。"],
-      ["B", "アブさん、どうしたの?"],
-      ["A", "先ほど、事故 [blank]、電車が止まりました。"],
+      ["客", "すみません。レシートを [blank]。"],
+      ["店員", "はい、どうぞ。"],
     ],
-    choices: ["で", "に", "が"],
-    answer: 0,
-    explanation:
-      "Untuk menyebut penyebab peristiwa, gunakan で: 事故で電車が止まりました.",
+    choices: ["ください", "あります", "します"],
+    answer: "ください",
+    explanation: "Untuk meminta benda, gunakan Nをください。",
   },
   {
     id: 7,
-    section: "Grammar",
-    category: "経験",
-    scenario: "Dua teman berbicara tentang Tokyo Skytree.",
-    pattern: "Vた + ことがあります",
-    meaning: "pernah melakukan sesuatu",
+    section: "Expression",
+    category: "比較",
+    canDo: "shopping",
+    scenario: "Pelanggan ingin barang yang lebih murah.",
+    pattern: "もう少し安いもの",
+    meaning: "barang yang sedikit lebih murah",
     dialogue: [
-      ["A", "東京スカイツリーに [blank] ことがありますか。"],
-      ["B", "いいえ、ありません。"],
-      ["A", "ぜひ週末に一緒に行きましょう。"],
+      ["客", "すみません。もう少し [blank] ものはありますか。"],
+      ["店員", "はい、こちらはいかがですか。"],
     ],
-    choices: ["のぼる", "のぼって", "のぼった"],
-    answer: 2,
-    explanation:
-      "Pola pengalaman memakai bentuk lampau biasa: のぼったことがあります.",
+    choices: ["安い", "安く", "安かった"],
+    answer: "安い",
+    explanation: "Sebelum もの, kata sifat i tetap bentuk kamus: 安いもの。",
   },
   {
     id: 8,
     section: "Grammar",
-    category: "時間",
-    scenario: "Dua teman berbicara tentang naik Shinkansen.",
-    pattern: "Nの + 前に",
-    meaning: "sebelum sesuatu",
+    category: "数量",
+    canDo: "shopping",
+    scenario: "Pelanggan membeli dua barang yang sama.",
+    pattern: "Nを二つください",
+    meaning: "meminta dua buah barang",
     dialogue: [
-      ["A", "新幹線に乗ったことがありますか。"],
-      ["B", "いいえ、まだです。ぜひ行きましょう。"],
-      ["A", "じゃ、旅行の [blank]、切符を買います。"],
+      ["客", "このお菓子を [blank] ください。"],
+      ["店員", "はい、少々お待ちください。"],
     ],
-    choices: ["前に", "後で", "から"],
-    answer: 0,
-    explanation:
-      "Membeli tiket dilakukan sebelum perjalanan, jadi gunakan 旅行の前に.",
+    choices: ["二つ", "二人", "二枚"],
+    answer: "二つ",
+    explanation: "Benda umum dihitung dengan ひとつ、ふたつ、みっつ。",
   },
   {
     id: 9,
-    section: "Grammar",
-    category: "方法",
-    scenario: "Dua teman berada di restoran.",
-    pattern: "Vます形 + 方",
-    meaning: "cara melakukan sesuatu",
+    section: "Expression",
+    category: "所要時間",
+    canDo: "transport",
+    scenario: "Seseorang bertanya lama perjalanan ke stasiun.",
+    pattern: "どのくらいかかりますか",
+    meaning: "menanyakan lama waktu",
     dialogue: [
-      ["A", "お箸の [blank] 方が上手ですね。教えてもらえませんか。"],
-      ["B", "いいですよ。"],
+      ["客", "ここから駅まで [blank] かかりますか。"],
+      ["係員", "歩いて10分ぐらいです。"],
     ],
-    choices: ["つかい", "つかう", "つかって"],
-    answer: 0,
-    explanation:
-      "Cara memakai sesuatu dinyatakan dengan bentuk ます tanpa ます + 方: 使い方.",
+    choices: ["どれ", "どのくらい", "なんじ"],
+    answer: "どのくらい",
+    explanation: "Lama waktu atau jumlah kira-kira ditanyakan dengan どのくらい。",
   },
   {
     id: 10,
-    section: "Grammar",
-    category: "て形",
-    scenario: "Sika memperkenalkan makanan khas Indonesia kepada rekan kerja Jepang.",
-    pattern: "Vて + 食べます",
-    meaning: "melakukan aksi sebagai cara sebelum makan",
+    section: "Vocabulary",
+    category: "切符",
+    canDo: "transport",
+    scenario: "Penumpang membeli tiket sekali jalan.",
+    pattern: "片道の切符",
+    meaning: "tiket sekali jalan",
     dialogue: [
-      ["シカ", "インドネシア料理はいろいろありますよ。"],
-      ["よしこ", "そうですか。例えば?"],
-      ["シカ", "ガドガドです。"],
-      ["よしこ", "どうやって食べますか。"],
-      ["シカ", "ゆでた野菜にピーナッツソースを [blank]、食べます。おいしいです。"],
+      ["客", "大阪まで [blank] の切符をください。"],
+      ["駅員", "はい、片道ですね。"],
     ],
-    choices: ["かけて", "かけないで", "かける"],
-    answer: 0,
-    explanation:
-      "Urutan cara makan memakai bentuk て: ソースをかけて食べます.",
+    choices: ["片道", "往復", "全部"],
+    answer: "片道",
+    explanation: "Sekali jalan adalah 片道。Pulang pergi adalah 往復。",
   },
   {
     id: 11,
-    section: "Grammar",
-    category: "条件",
-    scenario: "Rekan kerja menjelaskan cara memakai mesin fotokopi.",
-    pattern: "V辞書形 + と",
-    meaning: "kalau melakukan ini, hasilnya otomatis terjadi",
+    section: "Vocabulary",
+    category: "切符",
+    canDo: "transport",
+    scenario: "Penumpang membeli tiket pulang pergi.",
+    pattern: "往復の切符",
+    meaning: "tiket pulang pergi",
     dialogue: [
-      ["A", "このコピー機の使い方、分かりますか。"],
-      ["B", "このスタートボタンを [blank]、コピーが始まりますよ。"],
-      ["A", "どうもすみません。"],
-      ["B", "いいえ、だいじょうぶ。"],
+      ["客", "京都まで [blank] の切符をください。"],
+      ["駅員", "はい、往復ですね。"],
     ],
-    choices: ["おすと", "おして", "おし"],
-    answer: 0,
-    explanation:
-      "Untuk hubungan otomatis seperti tombol ditekan lalu mesin mulai, gunakan と.",
+    choices: ["片道", "往復", "入口"],
+    answer: "往復",
+    explanation: "Pulang pergi adalah 往復。",
   },
   {
     id: 12,
-    section: "Grammar",
-    category: "禁止・依頼",
-    scenario: "Percakapan dokter dan pasien.",
-    pattern: "Vないでください",
-    meaning: "tolong jangan melakukan sesuatu",
+    section: "Expression",
+    category: "時刻",
+    canDo: "transport",
+    scenario: "Penumpang menanyakan jam bus berikutnya.",
+    pattern: "次のバスは何時ですか",
+    meaning: "menanyakan jam kendaraan berikutnya",
     dialogue: [
-      ["医者", "どうしましたか。"],
-      ["患者", "頭が痛くて、鼻水が出ます。"],
-      ["医者", "風邪ですね。今晩は、遅くまで [blank]。寝る前に、この薬を飲んでください。"],
+      ["客", "すみません。次のバスは [blank]。"],
+      ["係員", "午後3時10分です。"],
     ],
-    choices: ["起きてください", "起きないでください", "起きてはいけません"],
-    answer: 1,
-    explanation:
-      "Dokter memberi nasihat agar tidak begadang. Bentuk sopan yang tepat adalah 起きないでください.",
+    choices: ["何時ですか", "何人ですか", "何枚ですか"],
+    answer: "何時ですか",
+    explanation: "Waktu jam ditanyakan dengan 何時ですか。",
   },
   {
     id: 13,
     section: "Grammar",
-    category: "程度",
-    scenario: "Rekan kerja berbicara tentang kondisi badan.",
-    pattern: "Vます形 + すぎます",
-    meaning: "terlalu banyak / berlebihan",
+    category: "可能",
+    canDo: "transport",
+    scenario: "Seseorang bertanya apakah bisa pergi ke stasiun dengan berjalan kaki.",
+    pattern: "歩いて行けますか",
+    meaning: "menanyakan bisa pergi dengan berjalan",
     dialogue: [
-      ["A", "大丈夫ですか。顔色が悪いですよ。"],
-      ["B", "頭が痛いんです。昨日の夜、ビールを [blank]。"],
-      ["A", "それはいけませんね。早退してください。"],
+      ["客", "駅まで歩いて [blank]。"],
+      ["係員", "はい、行けますよ。"],
     ],
-    choices: ["飲みます", "飲まない", "飲みすぎました"],
-    answer: 2,
-    explanation:
-      "Sakit kepala karena minum bir terlalu banyak tadi malam: 飲みすぎました.",
+    choices: ["行けますか", "行きましたか", "行っていますか"],
+    answer: "行けますか",
+    explanation: "Kemampuan atau kemungkinan memakai bentuk potensial: 行けます。",
   },
   {
     id: 14,
-    section: "Grammar",
-    category: "伝聞",
-    scenario: "Dua teman berbicara tentang kabar seseorang yang lulus JFT.",
-    pattern: "普通形 + そうです",
-    meaning: "katanya / saya dengar",
+    section: "Expression",
+    category: "乗り換え",
+    canDo: "transport",
+    scenario: "Penumpang bertanya tempat pindah kereta.",
+    pattern: "どこで乗り換えますか",
+    meaning: "bertanya tempat transit",
     dialogue: [
-      ["A", "カリナさんはJFTに合格した [blank]。"],
-      ["B", "そうですか。よかったですね。"],
-      ["A", "いつも勉強していたので、合格できたそうです。"],
+      ["客", "新宿へ行きたいんですが、どこで [blank]。"],
+      ["駅員", "池袋で乗り換えてください。"],
     ],
-    choices: ["くれます", "のです", "そうです"],
-    answer: 2,
-    explanation:
-      "Kalimat ini menyampaikan kabar yang didengar. Gunakan そうです setelah bentuk biasa.",
+    choices: ["乗りますか", "乗り換えますか", "降りますか"],
+    answer: "乗り換えますか",
+    explanation: "Transit atau pindah kendaraan disebut 乗り換えます。",
   },
   {
     id: 15,
     section: "Grammar",
-    category: "時間",
-    scenario: "Karina adalah pegawai baru dan berkenalan dengan calon rekan kerja.",
-    pattern: "Vた + ばかりです",
-    meaning: "baru saja melakukan sesuatu",
+    category: "理由",
+    canDo: "transport",
+    scenario: "Pegawai menjelaskan kereta terlambat karena hujan deras.",
+    pattern: "雨で電車が遅れています",
+    meaning: "menyatakan sebab dengan で",
     dialogue: [
-      ["A", "はじめまして。カリナです。インドネシアから来ました。"],
-      ["B", "はじめまして。田中です。よろしくお願いします。"],
-      ["A", "こちらこそ、よろしくお願いします。"],
-      ["B", "カリナさんは、いつ日本に来ましたか。"],
-      ["A", "一昨日、日本に来た [blank]。"],
-      ["B", "インドネシアから、どのくらいかかりましたか。"],
-      ["A", "ひこうきで7時間ぐらいです。"],
+      ["駅員", "大雨 [blank]、電車が遅れています。"],
+      ["客", "そうですか。"],
     ],
-    choices: ["そうです", "ばかりです", "きます"],
-    answer: 1,
-    explanation:
-      "一昨日来た means she arrived very recently. Use 来たばかりです.",
+    choices: ["で", "に", "を"],
+    answer: "で",
+    explanation: "Sebab seperti hujan atau kecelakaan bisa dinyatakan dengan で。",
   },
   {
     id: 16,
-    section: "Grammar",
-    category: "理由の並列",
-    scenario: "Dua teman berbicara tentang artis idola.",
-    pattern: "文 + し、文 + し",
-    meaning: "memberi beberapa alasan",
+    section: "Expression",
+    category: "場所",
+    canDo: "transport",
+    scenario: "Penumpang mencari tempat naik taksi.",
+    pattern: "タクシー乗り場はどこですか",
+    meaning: "bertanya lokasi tempat naik taksi",
     dialogue: [
-      ["A", "スダさんを知っていますか。"],
-      ["B", "だれですか。"],
-      ["A", "人気の歌を歌っている歌手ですよ。"],
-      ["B", "ああ、すごい歌手ですね。"],
-      ["A", "私は彼が好きです。かっこいい [blank]、歌もダンスも上手です。"],
+      ["客", "すみません。タクシー乗り場は [blank]。"],
+      ["係員", "駅の南口にあります。"],
     ],
-    choices: ["し", "で", "と"],
-    answer: 0,
-    explanation:
-      "Saat menyebut beberapa alasan, pakai し: かっこいいし、歌もダンスも上手です.",
+    choices: ["どこですか", "いつですか", "いくらですか"],
+    answer: "どこですか",
+    explanation: "Lokasi ditanyakan dengan どこですか。",
   },
   {
     id: 17,
-    section: "Grammar",
-    category: "条件",
-    scenario: "Dua sahabat berbicara tentang rekomendasi restoran.",
-    pattern: "Nなら",
-    meaning: "kalau bicara tentang N",
+    section: "Expression",
+    category: "症状",
+    canDo: "hospital",
+    scenario: "Dokter menanyakan keadaan pasien.",
+    pattern: "どうしましたか",
+    meaning: "menanyakan masalah atau gejala",
     dialogue: [
-      ["スサン", "この近くに、おすすめの店がありますか。"],
-      ["田中", "そうですね。さくら寿司ですよ。"],
-      ["スサン", "いちばんおいしい料理は何ですか。"],
-      ["田中", "あの店 [blank]、何を食べてもおいしいよ。"],
-      ["スサン", "そうなんですか。"],
+      ["医者", "[blank]。"],
+      ["患者", "頭が痛いです。"],
     ],
-    choices: ["なら", "だから", "それから"],
-    answer: 0,
-    explanation:
-      "なら mengangkat topik yang sudah disebut: kalau restoran itu, apa pun enak.",
+    choices: ["どうしましたか", "どうしますか", "どうですか"],
+    answer: "どうしましたか",
+    explanation: "Di klinik, dokter biasa bertanya どうしましたか。",
   },
   {
     id: 18,
-    section: "Grammar",
-    category: "推量",
-    scenario: "Seseorang melihat cuaca sebelum pergi ke perpustakaan.",
-    pattern: "普通形 + みたいです",
-    meaning: "kelihatannya / sepertinya",
+    section: "Vocabulary",
+    category: "症状",
+    canDo: "hospital",
+    scenario: "Pasien mengatakan ia demam.",
+    pattern: "熱があります",
+    meaning: "demam",
     dialogue: [
-      ["A", "昼、図書館へ行きたいんですが、雨が降る [blank]。"],
-      ["B", "そうですか。じゃ、それなら、かさをもっていったほうがいいですよ。"],
+      ["医者", "熱はありますか。"],
+      ["患者", "はい、少し [blank]。"],
     ],
-    choices: ["でしょう", "みたいです", "いいです"],
-    answer: 1,
-    explanation:
-      "Saat menebak dari tanda-tanda yang terlihat, gunakan みたいです.",
+    choices: ["熱があります", "熱をします", "熱に行きます"],
+    answer: "熱があります",
+    explanation: "Demam diungkapkan dengan 熱があります。",
   },
   {
     id: 19,
-    section: "Grammar",
-    category: "予定・意志",
-    scenario: "Liya dan Rezal berbicara tentang rencana setelah lulus JFT.",
-    pattern: "V辞書形 + つもりです",
-    meaning: "bermaksud / berencana",
+    section: "Expression",
+    category: "助言",
+    canDo: "hospital",
+    scenario: "Dokter menyarankan pasien tidur lebih awal.",
+    pattern: "早く寝てください",
+    meaning: "meminta atau menyarankan tidur cepat",
     dialogue: [
-      ["リヤ", "JFT試験に合格してから、どうすればいいですか。"],
-      ["レザル", "まず、面接を受けてください。"],
-      ["リヤ", "そうですか。"],
-      ["レザル", "ところで、どうして日本で働く [blank] か。"],
-      ["リヤ", "日本で技術を学びたいからです。"],
+      ["医者", "今日は早く [blank]。"],
+      ["患者", "はい、わかりました。"],
     ],
-    choices: ["よていです", "いきます", "つもりです"],
-    answer: 2,
-    explanation:
-      "Untuk menyatakan niat bekerja di Jepang, gunakan 働くつもりです.",
+    choices: ["寝てください", "寝ないでください", "寝ています"],
+    answer: "寝てください",
+    explanation: "Permintaan atau nasihat memakai て形 + ください。",
   },
   {
     id: 20,
     section: "Grammar",
-    category: "条件",
-    scenario: "Ayu dan Vinka berencana menonton pertandingan baseball.",
-    pattern: "Vたら",
-    meaning: "kalau terjadi",
+    category: "時間表現",
+    canDo: "hospital",
+    scenario: "Dokter memberi petunjuk minum obat sebelum tidur.",
+    pattern: "寝る前に薬を飲む",
+    meaning: "minum obat sebelum tidur",
     dialogue: [
-      ["アユ", "明日は野球の試合ですね。一緒に見ましょう。"],
-      ["ヴィンカ", "そうしましょう。"],
-      ["アユ", "でも、天気予報によると、明日は雨が降るそうですよ。"],
-      ["ヴィンカ", "雨が [blank]、中止になりますよ。"],
-      ["アユ", "ええ。仕方がない。"],
+      ["医者", "寝る [blank] に、この薬を飲んでください。"],
+      ["患者", "はい。"],
     ],
-    choices: ["ふったら", "ふっても", "ふってから"],
-    answer: 0,
-    explanation:
-      "中止になる adalah akibat jika hujan turun. Gunakan ふったら.",
+    choices: ["前", "後", "中"],
+    answer: "前",
+    explanation: "Sebelum melakukan sesuatu adalah V辞書形 + 前に。",
   },
   {
     id: 21,
-    section: "Grammar",
-    category: "目的",
-    scenario: "Riska dan Rana berbicara tentang kelas bahasa Jepang.",
-    pattern: "可能形 + ように",
-    meaning: "agar bisa melakukan sesuatu",
+    section: "Vocabulary",
+    category: "受付",
+    canDo: "hospital",
+    scenario: "Petugas klinik meminta kartu asuransi kesehatan.",
+    pattern: "保険証を見せる",
+    meaning: "menunjukkan kartu asuransi kesehatan",
     dialogue: [
-      ["リスカ", "ラナさん、日本語教室はどうですか。"],
-      ["ラナ", "初めは難しいですが、おもしろいです。"],
-      ["リスカ", "日本語が話せる [blank]、毎日練習してください。"],
-      ["ラナ", "わかりました。家でも練習します。"],
-      ["リスカ", "これからも頑張ってくださいね。"],
+      ["受付", "保険証を [blank]。"],
+      ["患者", "はい、どうぞ。"],
     ],
-    choices: ["ように", "ために", "そうに"],
-    answer: 0,
-    explanation:
-      "Untuk tujuan berupa kemampuan, gunakan ように: 話せるように.",
+    choices: ["見せてください", "見てください", "聞いてください"],
+    answer: "見せてください",
+    explanation: "Meminta seseorang menunjukkan sesuatu: 見せてください。",
   },
   {
     id: 22,
-    section: "Grammar",
-    category: "失敗・完了",
-    scenario: "Dua teman berbicara lewat telepon dan janji bertemu.",
-    pattern: "Vて + しまいました",
-    meaning: "terlanjur / tidak sengaja terjadi",
+    section: "Expression",
+    category: "予約確認",
+    canDo: "hospital",
+    scenario: "Petugas klinik menanyakan apakah pasien sudah reservasi.",
+    pattern: "予約していますか",
+    meaning: "menanyakan apakah sudah reservasi",
     dialogue: [
-      ["A", "もしもし、ニナさん、どこにいるの?"],
-      ["B", "ええと。"],
-      ["A", "もう30分待っていましたよ。"],
-      ["B", "地図を見ながら行きましたが、道を間違えて [blank]。すみません。"],
-      ["A", "そうですか。たいへんですね。じゃ、気をつけてね。"],
+      ["受付", "今日は [blank]。"],
+      ["患者", "はい、10時に予約しています。"],
     ],
-    choices: ["おきました", "しました", "しまいました"],
-    answer: 2,
-    explanation:
-      "Untuk kesalahan yang disesali, gunakan てしまいました: まちがえてしまいました.",
+    choices: ["予約していますか", "予約しましたか", "予約しますか"],
+    answer: "予約していますか",
+    explanation: "Status reservasi sekarang dinyatakan dengan 予約しています。",
   },
   {
     id: 23,
-    section: "Grammar",
-    category: "副詞化",
-    scenario: "Nina berada di salon.",
-    pattern: "イ形容詞い -> く + V",
-    meaning: "membuat atau melakukan menjadi keadaan tertentu",
+    section: "Expression",
+    category: "挨拶",
+    canDo: "hospital",
+    scenario: "Seseorang mengucapkan salam kepada orang yang sakit.",
+    pattern: "お大事に",
+    meaning: "semoga lekas sembuh",
     dialogue: [
-      ["美容師", "いらっしゃいませ。今日はどうなさいますか。"],
-      ["ニナ", "カット、お願いします。"],
-      ["美容師", "カットはどうなさいますか。"],
-      ["ニナ", "この写真みたいにしてください。でも、ちょっと [blank] 切ってください。"],
-      ["美容師", "はい、わかりました。"],
+      ["患者", "ありがとうございました。"],
+      ["受付", "[blank]。"],
     ],
-    choices: ["みじかく", "みじかいに", "めじく"],
-    answer: 0,
-    explanation:
-      "Sebelum kata kerja カットする, みじかい berubah menjadi みじかく.",
+    choices: ["お大事に", "いただきます", "いらっしゃいませ"],
+    answer: "お大事に",
+    explanation: "Ucapan kepada orang sakit adalah お大事に。",
   },
   {
     id: 24,
     section: "Grammar",
-    category: "用途",
-    scenario: "Pira bertanya tentang benda yang baru pertama kali dilihat.",
-    pattern: "V辞書形 + のに使います",
-    meaning: "dipakai untuk melakukan sesuatu",
+    category: "禁止",
+    canDo: "hospital",
+    scenario: "Dokter melarang pasien mandi hari ini.",
+    pattern: "Vないでください",
+    meaning: "meminta agar tidak melakukan sesuatu",
     dialogue: [
-      ["ピラ", "これは何ですか。"],
-      ["デウィ", "ふろしきです。"],
-      ["ピラ", "プレゼントを包む布ですね。"],
-      ["デウィ", "はい。荷物を包む [blank]。"],
-      ["ピラ", "いいですね。どこで買えますか。"],
-      ["デウィ", "いろいろなところで買えますよ。"],
+      ["医者", "今日はお風呂に [blank]。"],
+      ["患者", "はい、わかりました。"],
     ],
-    choices: ["にします", "ようにします", "のにつかいます"],
-    answer: 2,
-    explanation:
-      "Furoshiki dipakai untuk membungkus barang. Polanya V辞書形 + のに使います.",
+    choices: ["入らないでください", "入ってください", "入りました"],
+    answer: "入らないでください",
+    explanation: "Larangan sopan memakai ない形 + でください。",
   },
   {
     id: 25,
     section: "Expression",
-    category: "例示",
-    scenario: "Dua sahabat berbicara tentang makanan Jepang yang disukai.",
-    pattern: "Nとか",
-    meaning: "misalnya / dan sebagainya",
+    category: "手続き",
+    canDo: "cityhall",
+    scenario: "Penduduk ingin mengubah alamat di kantor pemerintah.",
+    pattern: "住所を変えたいです",
+    meaning: "ingin mengubah alamat",
     dialogue: [
-      ["A", "どんな日本の料理が好きですか。"],
-      ["B", "日本料理なら、魚料理が好きです。すし [blank]。"],
+      ["住民", "すみません。住所を [blank]。"],
+      ["職員", "では、この用紙に書いてください。"],
     ],
-    choices: ["や", "と", "とか"],
-    answer: 2,
-    explanation:
-      "とか memberi contoh dengan nuansa santai: すしとか.",
+    choices: ["変えたいです", "変えました", "変えています"],
+    answer: "変えたいです",
+    explanation: "Keinginan dinyatakan dengan ます形 + たいです。",
   },
   {
     id: 26,
-    section: "Expression",
-    category: "訂正",
-    scenario: "Seorang nenek menanyakan asal daerah Yuni.",
-    pattern: "Nじゃなくて",
-    meaning: "bukan N, melainkan",
-    dialogue: [
-      ["おばあさん", "ユニさんはどこから来ましたか。"],
-      ["ユニ", "インドネシアのジャカルタです。"],
-      ["おばあさん", "インド人ですね。どんな国ですか。"],
-      ["ユニ", "ちがいますよ。インド [blank]、インドネシアです。"],
-    ],
-    choices: ["だから", "じゃなくて", "から"],
-    answer: 1,
-    explanation:
-      "Untuk membetulkan salah paham, gunakan じゃなくて: インドじゃなくて、インドネシアです.",
-  },
-  {
-    id: 27,
-    section: "Expression",
-    category: "誘い",
-    scenario: "Dua sahabat berbicara tentang restoran baru.",
-    pattern: "Vませんか",
-    meaning: "mengajak dengan sopan",
-    dialogue: [
-      ["A", "新しいレストランはもうすぐ開きますよ。"],
-      ["B", "どこにありますか。"],
-      ["A", "駅の前にありますよ。一緒に [blank]。"],
-      ["B", "ええ、仕事が終わったら、ぜひ行きましょう。"],
-    ],
-    choices: ["行きたいです", "行くだろう", "行きませんか"],
-    answer: 2,
-    explanation:
-      "Untuk mengajak orang lain secara sopan, gunakan Vませんか.",
-  },
-  {
-    id: 28,
-    section: "Expression",
-    category: "所要時間",
-    scenario: "Di pinggir jalan, seseorang bertanya kepada petugas.",
-    pattern: "どのぐらい + かかりますか",
-    meaning: "berapa lama waktu yang dibutuhkan",
-    dialogue: [
-      ["A", "ここから近くの駅まで [blank] かかりますか。"],
-      ["B", "歩いて10分ですよ。"],
-    ],
-    choices: ["どのぐらい", "どれ", "なんじ"],
-    answer: 0,
-    explanation:
-      "Untuk menanyakan durasi, gunakan どのぐらいかかりますか.",
-  },
-  {
-    id: 29,
-    section: "Expression",
-    category: "申し出",
-    scenario: "Rekan kerja kesulitan memakai mesin.",
-    pattern: "Vましょうか",
-    meaning: "menawarkan bantuan",
-    dialogue: [
-      ["A", "この機械の使い方が難しいんですが。"],
-      ["B", "手伝い [blank]。"],
-    ],
-    choices: ["ますか", "みたいですか", "ましょうか"],
-    answer: 2,
-    explanation:
-      "Untuk menawarkan bantuan, gunakan ましょうか: 手伝いましょうか.",
-  },
-  {
-    id: 30,
-    section: "Expression",
-    category: "比較",
-    scenario: "Dua sahabat berbicara tentang cara pergi ke kantor.",
-    pattern: "Nより Nのほうがいいです",
-    meaning: "lebih baik daripada",
-    dialogue: [
-      ["A", "会社へ行くには、何が便利だと思いますか。"],
-      ["B", "車より自転車の [blank]。"],
-    ],
-    choices: ["便利です", "ほうが便利です", "すごいです"],
-    answer: 1,
-    explanation:
-      "Perbandingan pilihan memakai Nより Nのほうが + 形容詞です.",
-  },
-  {
-    id: 31,
-    section: "Expression",
-    category: "接続詞",
-    scenario: "Susan ingin mengadakan pesta dan bertanya kepada temannya.",
-    pattern: "それで",
-    meaning: "karena itu / akibatnya",
-    dialogue: [
-      ["スサン", "誕生日のパーティーは、どこにしましょうか。"],
-      ["友だち", "さくらレストランは、どうですか。"],
-      ["スサン", "いいでしょうか。"],
-      ["友だち", "料理がおいしいし、場所も広いし、[blank] 人気があるんですよ。"],
-    ],
-    choices: ["そして", "それで", "それに"],
-    answer: 1,
-    explanation:
-      "Setelah alasan yang membuat tempat itu populer, それで menunjukkan hasil.",
-  },
-  {
-    id: 32,
-    section: "Expression",
-    category: "訪問",
-    scenario: "Hana-san sedang berkunjung ke rumah temannya.",
-    pattern: "おじゃまします",
-    meaning: "ungkapan saat masuk ke rumah orang",
-    dialogue: [
-      ["Hana", "ごめんください。"],
-      ["友だち", "いらっしゃい。どうぞ お上がりください。"],
-      ["Hana", "[blank]"],
-    ],
-    choices: ["おかげさまで", "ちょっと", "おじゃまします"],
-    answer: 2,
-    explanation:
-      "Saat masuk ke rumah orang lain, ucapkan おじゃまします.",
-  },
-  {
-    id: 33,
-    section: "Expression",
-    category: "接客",
-    scenario: "Percakapan antara pelanggan dan pelayan restoran.",
-    pattern: "何人ですか / 何名様ですか",
-    meaning: "menanyakan jumlah orang",
-    dialogue: [
-      ["店員", "いらっしゃいませ。お客様、[blank]"],
-      ["お客", "2人です。"],
-      ["店員", "2名様ですね。テーブルへご案内します。"],
-      ["お客", "はい。お願いします。"],
-      ["店員", "こちらへどうぞ。"],
-    ],
-    choices: ["いくつですか", "何人ですか", "何名様ですか"],
-    answer: 2,
-    explanation:
-      "Dalam layanan restoran, bentuk sopan untuk jumlah orang adalah 何名様ですか.",
-  },
-  {
-    id: 34,
-    section: "Expression",
-    category: "相談",
-    scenario: "Meriya dan Ana berbicara tentang rencana liburan musim panas.",
-    pattern: "どうしたらいいですか",
-    meaning: "apa yang sebaiknya dilakukan",
-    dialogue: [
-      ["メリヤ", "夏休みはどこに行くの?"],
-      ["アナ", "まだ考えていないよ。君は?"],
-      ["メリヤ", "ひまわりの里へ行きたいんですが、[blank]"],
-      ["アナ", "そうね。電車で行くといいよ。お金を多めに持って行って、上着も持って行ったほうがいいよ。"],
-    ],
-    choices: ["どうですか", "どうしたらいいですか", "どうなりますか"],
-    answer: 1,
-    explanation:
-      "Saat meminta saran tentang cara bertindak, gunakan どうしたらいいですか.",
-  },
-  {
-    id: 35,
-    section: "Expression",
-    category: "限定",
-    scenario: "Deka menelepon Ratna untuk mengajak bepergian.",
-    pattern: "Nしか + Vません",
-    meaning: "hanya / tidak selain itu",
-    dialogue: [
-      ["デカ", "もしもし、ラトナさんは、いますか。"],
-      ["ラトナ", "はい、ラトナです。デカさん、何ですか。"],
-      ["デカ", "富士山に登ったことがありますか。週末、一緒に行きませんか。"],
-      ["ラトナ", "週末はちょっと。日曜日 [blank] 休めませんから、なかなか旅行に行けません。"],
-      ["デカ", "残念ですね。"],
-    ],
-    choices: ["だけ", "しか", "だけで"],
-    answer: 1,
-    explanation:
-      "しか selalu dipakai dengan bentuk negatif: 日曜日しか休めません.",
-  },
-  {
-    id: 36,
-    section: "Grammar",
-    category: "助詞",
-    scenario: "Rani berbicara tentang rencana belanja setelah kelas.",
-    pattern: "場所 + に/へ + 行きます",
-    meaning: "pergi ke suatu tempat",
-    dialogue: [
-      ["A", "授業が終わったら、どこへ行きますか。"],
-      ["B", "スーパー [blank] 行きます。晩ごはんの材料を買います。"],
-    ],
-    choices: ["で", "に", "を"],
-    answer: 1,
-    explanation:
-      "Tujuan pergi ditandai dengan に atau へ. Jadi スーパーに行きます.",
-  },
-  {
-    id: 37,
-    section: "Grammar",
-    category: "時間",
-    scenario: "Dokter menjelaskan cara minum obat kepada pasien.",
-    pattern: "Vて + から",
-    meaning: "setelah melakukan sesuatu",
-    dialogue: [
-      ["医者", "この薬は、ごはんを食べて [blank] 飲んでください。"],
-      ["患者", "はい、わかりました。"],
-    ],
-    choices: ["から", "まで", "より"],
-    answer: 0,
-    explanation:
-      "Untuk urutan setelah melakukan sesuatu, gunakan Vてから: 食べてから飲みます.",
-  },
-  {
-    id: 38,
-    section: "Grammar",
-    category: "同時動作",
-    scenario: "Dua teman berbicara tentang cara belajar.",
-    pattern: "Vます形 + ながら",
-    meaning: "melakukan dua kegiatan bersamaan",
-    dialogue: [
-      ["A", "いつ日本語を勉強しますか。"],
-      ["B", "電車で音楽を聞き [blank]、単語を覚えます。"],
-    ],
-    choices: ["ながら", "から", "あとで"],
-    answer: 0,
-    explanation:
-      "Dua kegiatan yang dilakukan bersamaan memakai ながら: 聞きながら覚えます.",
-  },
-  {
-    id: 39,
-    section: "Grammar",
-    category: "義務",
-    scenario: "Pegawai baru bertanya tentang aturan perusahaan.",
-    pattern: "Vない形 + といけません",
-    meaning: "harus melakukan sesuatu",
-    dialogue: [
-      ["新人", "明日は何時に来ればいいですか。"],
-      ["先輩", "会議がありますから、8時までに来 [blank]。"],
-    ],
-    choices: ["ないといけません", "てもいいです", "ないでください"],
-    answer: 0,
-    explanation:
-      "Kewajiban dinyatakan dengan Vないといけません: 来ないといけません.",
-  },
-  {
-    id: 40,
-    section: "Grammar",
-    category: "助言",
-    scenario: "Teman memberi nasihat karena cuaca dingin.",
-    pattern: "Vた形 + ほうがいいです",
-    meaning: "sebaiknya melakukan sesuatu",
-    dialogue: [
-      ["A", "今日はとても寒いですね。"],
-      ["B", "ええ。コートを [blank] ほうがいいですよ。"],
-    ],
-    choices: ["着る", "着た", "着て"],
-    answer: 1,
-    explanation:
-      "Nasihat memakai Vた形 + ほうがいいです: コートを着たほうがいいです.",
-  },
-  {
-    id: 41,
-    section: "Grammar",
-    category: "例示",
-    scenario: "Dua teman membicarakan kegiatan akhir pekan.",
-    pattern: "Vたり、Vたりします",
-    meaning: "memberi contoh beberapa kegiatan",
-    dialogue: [
-      ["A", "週末、何をしましたか。"],
-      ["B", "映画を見 [blank]、買い物したりしました。"],
-    ],
-    choices: ["たり", "ても", "ながら"],
-    answer: 0,
-    explanation:
-      "Untuk menyebut beberapa contoh kegiatan, gunakan Vたり、Vたりします.",
-  },
-  {
-    id: 42,
-    section: "Grammar",
-    category: "意見",
-    scenario: "Dua teman berbicara tentang tinggal di Jepang.",
-    pattern: "普通形 + と思います",
-    meaning: "menurut saya / saya pikir",
-    dialogue: [
-      ["A", "日本の生活はどうですか。"],
-      ["B", "便利だ [blank]。でも、物価が高いです。"],
-    ],
-    choices: ["と思います", "にします", "があります"],
-    answer: 0,
-    explanation:
-      "Untuk menyatakan pendapat, gunakan と思います: 便利だと思います.",
-  },
-  {
-    id: 43,
-    section: "Grammar",
-    category: "推量",
-    scenario: "Ayu belum melihat temannya di kelas.",
-    pattern: "普通形 + かもしれません",
-    meaning: "mungkin",
-    dialogue: [
-      ["A", "リナさんはまだ来ませんね。"],
-      ["B", "今日は病気 [blank]。"],
-    ],
-    choices: ["かもしれません", "にします", "でした"],
-    answer: 0,
-    explanation:
-      "Kemungkinan yang belum pasti dinyatakan dengan かもしれません.",
-  },
-  {
-    id: 44,
-    section: "Grammar",
-    category: "可能",
-    scenario: "Seseorang bertanya apakah bisa memakai kartu di toko.",
-    pattern: "V辞書形 + ことができます",
-    meaning: "bisa melakukan sesuatu",
-    dialogue: [
-      ["客", "カードで払う [blank]。"],
-      ["店員", "はい、できます。"],
-    ],
-    choices: ["ことができますか", "ことですか", "ものですか"],
-    answer: 0,
-    explanation:
-      "Kemampuan atau izin umum bisa memakai V辞書形 + ことができます.",
-  },
-  {
-    id: 45,
-    section: "Grammar",
-    category: "目的",
-    scenario: "Teman bertanya alasan belajar bahasa Jepang.",
-    pattern: "Nのために / V辞書形ために",
-    meaning: "untuk tujuan tertentu",
-    dialogue: [
-      ["A", "どうして日本語を勉強していますか。"],
-      ["B", "日本で働く [blank]、毎日勉強しています。"],
-    ],
-    choices: ["ために", "ように", "そうに"],
-    answer: 0,
-    explanation:
-      "Jika tujuannya adalah tindakan yang disengaja, gunakan ために: 働くために.",
-  },
-  {
-    id: 46,
-    section: "Grammar",
-    category: "理由",
-    scenario: "Teman menjelaskan alasan tidak bisa pergi.",
-    pattern: "普通形 + ので",
-    meaning: "karena, dengan nuansa sopan",
-    dialogue: [
-      ["A", "今晩、いっしょにごはんを食べませんか。"],
-      ["B", "すみません。明日試験がある [blank]、今日は早く帰ります。"],
-    ],
-    choices: ["ので", "ながら", "たり"],
-    answer: 0,
-    explanation:
-      "Untuk memberi alasan dengan sopan, gunakan ので.",
-  },
-  {
-    id: 47,
-    section: "Grammar",
-    category: "許可",
-    scenario: "Di kelas, seorang siswa meminta izin.",
-    pattern: "Vて + もいいですか",
-    meaning: "bolehkah melakukan sesuatu",
-    dialogue: [
-      ["学生", "先生、ここで写真を撮っ [blank]。"],
-      ["先生", "はい、いいですよ。"],
-    ],
-    choices: ["てもいいですか", "てはいけませんか", "ないでください"],
-    answer: 0,
-    explanation:
-      "Meminta izin memakai Vてもいいですか: 写真を撮ってもいいですか.",
-  },
-  {
-    id: 48,
-    section: "Grammar",
-    category: "禁止",
-    scenario: "Petugas menjelaskan aturan di museum.",
-    pattern: "Vて + はいけません",
-    meaning: "tidak boleh melakukan sesuatu",
-    dialogue: [
-      ["客", "この絵の写真を撮ってもいいですか。"],
-      ["係員", "すみません。ここで写真を撮っ [blank]。"],
-    ],
-    choices: ["てもいいです", "てはいけません", "てください"],
-    answer: 1,
-    explanation:
-      "Larangan memakai Vてはいけません: 撮ってはいけません.",
-  },
-  {
-    id: 49,
-    section: "Grammar",
-    category: "授受",
-    scenario: "Dua teman berbicara tentang hadiah ulang tahun.",
-    pattern: "人に Nを あげます",
-    meaning: "memberikan sesuatu kepada orang lain",
-    dialogue: [
-      ["A", "妹さんの誕生日に何をしますか。"],
-      ["B", "妹に花を [blank]。"],
-    ],
-    choices: ["あげます", "もらいます", "くれます"],
-    answer: 0,
-    explanation:
-      "Jika pembicara memberi kepada orang lain, gunakan あげます.",
-  },
-  {
-    id: 50,
-    section: "Grammar",
-    category: "変化",
-    scenario: "Seorang pelajar berbicara tentang kemampuan bahasa Jepangnya.",
-    pattern: "イ形容詞い -> くなります",
-    meaning: "menjadi lebih ...",
-    dialogue: [
-      ["A", "日本語の勉強はどうですか。"],
-      ["B", "毎日練習したら、日本語の勉強が少し楽しく [blank]。"],
-    ],
-    choices: ["なりました", "しました", "あります"],
-    answer: 0,
-    explanation:
-      "Perubahan untuk イ形容詞 memakai くなります: 楽しい -> 楽しくなりました.",
-  },
-  {
-    id: 51,
-    section: "Grammar",
-    category: "変化",
-    scenario: "Percakapan tentang musim dan cuaca.",
-    pattern: "ナ形容詞/名詞 + に + なります",
-    meaning: "menjadi suatu keadaan",
-    dialogue: [
-      ["A", "日本の秋はどうですか。"],
-      ["B", "9月ごろから、だんだん すずしく [blank]。"],
-    ],
-    choices: ["なります", "します", "あります"],
-    answer: 0,
-    explanation:
-      "Untuk perubahan keadaan, gunakan なります: すずしくなります.",
-  },
-  {
-    id: 52,
-    section: "Grammar",
-    category: "準備",
-    scenario: "Dua teman menyiapkan perjalanan.",
-    pattern: "Vて + おきます",
-    meaning: "melakukan sesuatu sebagai persiapan",
-    dialogue: [
-      ["A", "旅行の前に何をしますか。"],
-      ["B", "ホテルを予約し [blank]。"],
-    ],
-    choices: ["ておきます", "ています", "てしまいます"],
-    answer: 0,
-    explanation:
-      "Persiapan sebelum kejadian memakai Vておきます: 予約しておきます.",
-  },
-  {
-    id: 53,
-    section: "Expression",
-    category: "健康",
-    scenario: "Teman sakit dan akan pulang lebih cepat.",
-    pattern: "お大事に",
-    meaning: "semoga lekas sembuh / jaga kesehatan",
-    dialogue: [
-      ["A", "頭が痛いので、今日は帰ります。"],
-      ["B", "そうですか。[blank]。"],
-    ],
-    choices: ["お大事に", "いただきます", "いらっしゃいませ"],
-    answer: 0,
-    explanation:
-      "Saat orang sakit, ungkapan yang tepat adalah お大事に.",
-  },
-  {
-    id: 54,
-    section: "Expression",
-    category: "接客",
-    scenario: "Pelanggan menelepon restoran untuk bertanya meja kosong.",
-    pattern: "少々お待ちください",
-    meaning: "mohon tunggu sebentar",
-    dialogue: [
-      ["客", "今晩、席がありますか。"],
-      ["店員", "確認しますので、[blank]。"],
-    ],
-    choices: ["少々お待ちください", "ごちそうさまでした", "おじゃまします"],
-    answer: 0,
-    explanation:
-      "Dalam layanan pelanggan, minta menunggu sebentar dengan 少々お待ちください.",
-  },
-  {
-    id: 55,
-    section: "Expression",
-    category: "職場",
-    scenario: "Pegawai masuk ke ruang rapat.",
-    pattern: "失礼します",
-    meaning: "permisi saat masuk/meninggalkan ruang",
-    dialogue: [
-      ["社員", "[blank]。資料を持ってきました。"],
-      ["部長", "ありがとうございます。"],
-    ],
-    choices: ["失礼します", "おかえりなさい", "いただきます"],
-    answer: 0,
-    explanation:
-      "Saat masuk ke ruangan kantor dengan sopan, gunakan 失礼します.",
-  },
-  {
-    id: 56,
-    section: "Expression",
-    category: "食事",
-    scenario: "Setelah makan di rumah teman.",
-    pattern: "ごちそうさまでした",
-    meaning: "terima kasih atas makanannya",
-    dialogue: [
-      ["A", "今日はたくさん食べましたね。"],
-      ["B", "はい、とてもおいしかったです。[blank]。"],
-    ],
-    choices: ["ごちそうさまでした", "ごめんください", "お大事に"],
-    answer: 0,
-    explanation:
-      "Setelah makan, ucapkan ごちそうさまでした.",
-  },
-  {
-    id: 57,
-    section: "Expression",
-    category: "自己紹介",
-    scenario: "Pegawai baru memperkenalkan diri.",
-    pattern: "どうぞよろしくお願いします",
-    meaning: "senang berkenalan / mohon kerja samanya",
-    dialogue: [
-      ["新人", "はじめまして。アリです。インドネシアから来ました。"],
-      ["先輩", "田中です。[blank]。"],
-    ],
-    choices: ["どうぞよろしくお願いします", "お疲れさまでした", "いただきます"],
-    answer: 0,
-    explanation:
-      "Dalam perkenalan, gunakan どうぞよろしくお願いします.",
-  },
-  {
-    id: 58,
-    section: "Expression",
-    category: "聞き返し",
-    scenario: "Di kelas, siswa tidak mendengar instruksi guru.",
-    pattern: "もう一度お願いします",
-    meaning: "tolong ulangi sekali lagi",
-    dialogue: [
-      ["先生", "宿題は20ページまでです。"],
-      ["学生", "すみません。[blank]。"],
-    ],
-    choices: ["もう一度お願いします", "お先に失礼します", "かしこまりました"],
-    answer: 0,
-    explanation:
-      "Saat ingin lawan bicara mengulang, gunakan もう一度お願いします.",
-  },
-  {
-    id: 59,
-    section: "Expression",
-    category: "提案",
-    scenario: "Pelayan menawarkan minuman kepada pelanggan.",
-    pattern: "Nは いかがですか",
-    meaning: "bagaimana dengan / mau ...?",
-    dialogue: [
-      ["店員", "お飲み物は [blank]。"],
-      ["客", "水をお願いします。"],
-    ],
-    choices: ["いかがですか", "何名様ですか", "どちらですか"],
-    answer: 0,
-    explanation:
-      "Dalam pelayanan, menawarkan sesuatu dengan sopan memakai いかがですか.",
-  },
-  {
-    id: 60,
-    section: "Expression",
-    category: "予約",
-    scenario: "Seseorang menelepon hotel.",
-    pattern: "予約したいんですが",
-    meaning: "saya ingin membuat reservasi",
-    dialogue: [
-      ["ホテル", "はい、さくらホテルでございます。"],
-      ["客", "すみません。部屋を [blank]。"],
-    ],
-    choices: ["予約したいんですが", "食べたいんですが", "見たいんですが"],
-    answer: 0,
-    explanation:
-      "Untuk menyampaikan ingin reservasi dengan sopan, gunakan 予約したいんですが.",
-  },
-  {
-    id: 61,
-    section: "Expression",
-    category: "おすすめ",
-    scenario: "Pelanggan bertanya makanan yang direkomendasikan.",
-    pattern: "おすすめは何ですか",
-    meaning: "apa rekomendasinya?",
-    dialogue: [
-      ["客", "すみません。[blank]。"],
-      ["店員", "今日のおすすめはカレーです。"],
-    ],
-    choices: ["おすすめは何ですか", "お名前は何ですか", "お仕事は何ですか"],
-    answer: 0,
-    explanation:
-      "Untuk menanyakan rekomendasi, gunakan おすすめは何ですか.",
-  },
-  {
-    id: 62,
-    section: "Expression",
-    category: "気遣い",
-    scenario: "Teman terlihat tidak sehat di kantor.",
-    pattern: "大丈夫ですか",
-    meaning: "apakah kamu baik-baik saja?",
-    dialogue: [
-      ["A", "顔色が悪いですよ。[blank]。"],
-      ["B", "少し頭が痛いです。"],
-    ],
-    choices: ["大丈夫ですか", "おめでとうございます", "いらっしゃいませ"],
-    answer: 0,
-    explanation:
-      "Saat mengkhawatirkan kondisi orang lain, gunakan 大丈夫ですか.",
-  },
-  {
-    id: 63,
-    section: "Expression",
-    category: "接客",
-    scenario: "Pelayan menerima pesanan pelanggan.",
-    pattern: "かしこまりました",
-    meaning: "baik, saya mengerti",
-    dialogue: [
-      ["客", "コーヒーを一つください。"],
-      ["店員", "[blank]。少々お待ちください。"],
-    ],
-    choices: ["かしこまりました", "ただいま", "おかげさまで"],
-    answer: 0,
-    explanation:
-      "Dalam layanan pelanggan, menerima pesanan dengan sopan memakai かしこまりました.",
-  },
-  {
-    id: 64,
-    section: "Expression",
-    category: "職場",
-    scenario: "Pegawai pulang lebih dulu dari kantor.",
-    pattern: "お先に失礼します",
-    meaning: "saya permisi pulang dulu",
-    dialogue: [
-      ["社員", "[blank]。"],
-      ["同僚", "お疲れさまでした。"],
-    ],
-    choices: ["お先に失礼します", "いただきます", "ごめんください"],
-    answer: 0,
-    explanation:
-      "Saat pulang lebih dulu dari kantor, ucapkan お先に失礼します.",
-  },
-  {
-    id: 65,
-    section: "Expression",
-    category: "感謝",
-    scenario: "Seseorang dibantu membawa barang berat.",
-    pattern: "助かりました",
-    meaning: "sangat terbantu",
-    dialogue: [
-      ["A", "荷物を持ちましょうか。"],
-      ["B", "ありがとうございます。[blank]。"],
-    ],
-    choices: ["助かりました", "おじゃましました", "いらっしゃいました"],
-    answer: 0,
-    explanation:
-      "Setelah dibantu dan merasa tertolong, gunakan 助かりました.",
-  },
-  {
-    id: 66,
-    section: "Grammar",
-    category: "可能",
-    scenario: "Dua rekan kerja berbicara tentang kemampuan membaca kanji.",
-    pattern: "可能形",
-    meaning: "bisa melakukan sesuatu",
-    dialogue: [
-      ["A", "田中さんは漢字が読めますか。"],
-      ["B", "はい、少し [blank]。"],
-    ],
-    choices: ["読みます", "読めます", "読んでいます"],
-    answer: 1,
-    explanation:
-      "Kemampuan membaca memakai bentuk potensial: 読めます.",
-  },
-  {
-    id: 67,
-    section: "Grammar",
-    category: "経験",
-    scenario: "Dua teman berbicara tentang perjalanan ke Okinawa.",
-    pattern: "Vた + ことがあります",
-    meaning: "pernah melakukan sesuatu",
-    dialogue: [
-      ["A", "沖縄へ行ったことがありますか。"],
-      ["B", "いいえ、まだ [blank]。"],
-    ],
-    choices: ["ありません", "いません", "しません"],
-    answer: 0,
-    explanation:
-      "Untuk menjawab pengalaman belum pernah, gunakan まだありません.",
-  },
-  {
-    id: 68,
-    section: "Grammar",
-    category: "時間",
-    scenario: "Seorang ibu mengingatkan anaknya sebelum tidur.",
-    pattern: "Nの + 前に",
-    meaning: "sebelum sesuatu",
-    dialogue: [
-      ["母", "寝る [blank]、歯をみがいてください。"],
-      ["子", "はい。"],
-    ],
-    choices: ["前に", "後で", "まで"],
-    answer: 0,
-    explanation:
-      "Menyikat gigi dilakukan sebelum tidur, jadi gunakan 寝る前に.",
-  },
-  {
-    id: 69,
-    section: "Grammar",
-    category: "期間",
-    scenario: "Pelajar berbicara tentang hal yang ingin dilakukan selama di Jepang.",
-    pattern: "Nの + 間に",
-    meaning: "selama periode tertentu",
-    dialogue: [
-      ["A", "日本にいる間に、何をしたいですか。"],
-      ["B", "日本にいる [blank]、富士山に登りたいです。"],
-    ],
-    choices: ["前に", "後で", "間に"],
-    answer: 2,
-    explanation:
-      "Untuk kegiatan yang ingin dilakukan selama periode tinggal, gunakan 間に.",
-  },
-  {
-    id: 70,
-    section: "Grammar",
-    category: "付帯",
-    scenario: "Siswa datang ke sekolah tanpa sarapan.",
-    pattern: "Vないで",
-    meaning: "tanpa melakukan sesuatu",
-    dialogue: [
-      ["先生", "どうして元気がないんですか。"],
-      ["学生", "朝ごはんを [blank]、学校に来ました。"],
-    ],
-    choices: ["食べないで", "食べて", "食べたら"],
-    answer: 0,
-    explanation:
-      "Untuk menyatakan tanpa sarapan, gunakan 食べないで.",
-  },
-  {
-    id: 71,
-    section: "Grammar",
-    category: "時間",
-    scenario: "Teman meminta telepon setelah pekerjaan selesai.",
-    pattern: "Vて + から",
-    meaning: "setelah melakukan sesuatu",
-    dialogue: [
-      ["A", "いつ電話しますか。"],
-      ["B", "仕事が終わって [blank]、電話します。"],
-    ],
-    choices: ["まで", "から", "ながら"],
-    answer: 1,
-    explanation:
-      "Untuk urutan setelah pekerjaan selesai, gunakan 終わってから.",
-  },
-  {
-    id: 72,
-    section: "Grammar",
-    category: "時間",
-    scenario: "Dua teman berbicara tentang masa kecil.",
-    pattern: "Nの + とき",
-    meaning: "ketika / saat",
-    dialogue: [
-      ["A", "子どものとき、よく何をしましたか。"],
-      ["B", "子どもの [blank]、川で泳ぎました。"],
-    ],
-    choices: ["ところ", "とき", "ため"],
-    answer: 1,
-    explanation:
-      "Saat menyebut waktu masa kecil, gunakan 子どものとき.",
-  },
-  {
-    id: 73,
-    section: "Grammar",
-    category: "条件",
-    scenario: "Dua teman membicarakan rencana jika ada waktu.",
-    pattern: "条件形 + ば",
-    meaning: "jika / kalau",
-    dialogue: [
-      ["A", "今週、映画を見に行きませんか。"],
-      ["B", "時間が [blank]、行きたいです。"],
-    ],
-    choices: ["あると", "あれば", "あって"],
-    answer: 1,
-    explanation:
-      "Untuk kondisi 'kalau ada waktu', gunakan あれば.",
-  },
-  {
-    id: 74,
-    section: "Grammar",
-    category: "形容詞接続",
-    scenario: "Teman menjelaskan kamar barunya.",
-    pattern: "イ形容詞い -> くて",
-    meaning: "menghubungkan dua sifat",
-    dialogue: [
-      ["A", "新しい部屋はどうですか。"],
-      ["B", "広 [blank]、きれいです。"],
-    ],
-    choices: ["いで", "くて", "いと"],
-    answer: 1,
-    explanation:
-      "Untuk menghubungkan イ形容詞, ubah い menjadi くて: 広くて.",
-  },
-  {
-    id: 75,
-    section: "Grammar",
-    category: "選択",
-    scenario: "Pelanggan memilih menu di restoran.",
-    pattern: "Nにします",
-    meaning: "memilih / memutuskan",
-    dialogue: [
-      ["店員", "ご注文は何になさいますか。"],
-      ["客", "私はカレー [blank]。"],
-    ],
-    choices: ["があります", "にします", "をします"],
-    answer: 1,
-    explanation:
-      "Saat memilih menu, gunakan Nにします.",
-  },
-  {
-    id: 76,
-    section: "Grammar",
-    category: "義務",
-    scenario: "Siswa berbicara tentang PR bahasa Jepang.",
-    pattern: "Vなければなりません",
-    meaning: "harus melakukan sesuatu",
-    dialogue: [
-      ["A", "今日も宿題がありますか。"],
-      ["B", "はい。毎日、漢字を練習し [blank]。"],
-    ],
-    choices: ["なければなりません", "てもいいです", "ないでください"],
-    answer: 0,
-    explanation:
-      "Kewajiban formal dinyatakan dengan Vなければなりません.",
-  },
-  {
-    id: 77,
-    section: "Grammar",
-    category: "逆接条件",
-    scenario: "Teman tetap pergi meskipun hujan.",
-    pattern: "Vて + も",
-    meaning: "meskipun",
-    dialogue: [
-      ["A", "明日、雨ですよ。"],
-      ["B", "雨が降っ [blank]、行きます。"],
-    ],
-    choices: ["たら", "ても", "てから"],
-    answer: 1,
-    explanation:
-      "Untuk 'meskipun hujan', gunakan 降っても.",
-  },
-  {
-    id: 78,
-    section: "Grammar",
-    category: "評価",
-    scenario: "Teman menilai kamus elektronik.",
-    pattern: "Vます形 + やすい",
-    meaning: "mudah untuk melakukan sesuatu",
-    dialogue: [
-      ["A", "この辞書はどうですか。"],
-      ["B", "字が大きいので、使い [blank] です。"],
-    ],
-    choices: ["やすい", "にくい", "たい"],
-    answer: 0,
-    explanation:
-      "Mudah digunakan dinyatakan dengan 使いやすいです.",
-  },
-  {
-    id: 79,
-    section: "Grammar",
-    category: "評価",
-    scenario: "Pelajar mengatakan kanji sulit diingat.",
-    pattern: "Vます形 + にくい",
-    meaning: "sulit untuk melakukan sesuatu",
-    dialogue: [
-      ["A", "この漢字は覚えましたか。"],
-      ["B", "いいえ、形が複雑で、覚え [blank] です。"],
-    ],
-    choices: ["やすい", "にくい", "たい"],
-    answer: 1,
-    explanation:
-      "Sulit diingat dinyatakan dengan 覚えにくいです.",
-  },
-  {
-    id: 80,
-    section: "Grammar",
-    category: "予定・意志",
-    scenario: "Teman berbicara tentang rencana tahun depan.",
-    pattern: "V辞書形 + 予定です",
-    meaning: "berencana melakukan sesuatu",
-    dialogue: [
-      ["A", "来年は何をしますか。"],
-      ["B", "日本へ留学する [blank]。"],
-    ],
-    choices: ["予定です", "ところです", "ことです"],
-    answer: 0,
-    explanation:
-      "Rencana yang sudah dipikirkan dapat dinyatakan dengan 予定です.",
-  },
-  {
-    id: 81,
-    section: "Expression",
-    category: "依頼",
-    scenario: "Seseorang ingin bertanya kepada petugas.",
-    pattern: "すみませんが",
-    meaning: "maaf, tetapi / permisi",
-    dialogue: [
-      ["客", "[blank]、トイレはどこですか。"],
-      ["店員", "あちらです。"],
-    ],
-    choices: ["いただきます", "すみませんが", "ごちそうさま"],
-    answer: 1,
-    explanation:
-      "Sebelum bertanya dengan sopan, gunakan すみませんが.",
-  },
-  {
-    id: 82,
-    section: "Expression",
-    category: "職場",
-    scenario: "Rekan kerja saling menyapa di kantor.",
-    pattern: "お疲れさまです",
-    meaning: "sapaan sopan di tempat kerja",
-    dialogue: [
-      ["A", "おはようございます。"],
-      ["B", "[blank]。今日もよろしくお願いします。"],
-    ],
-    choices: ["お疲れさまです", "お大事に", "おじゃまします"],
-    answer: 0,
-    explanation:
-      "Di tempat kerja, お疲れさまです sering dipakai sebagai sapaan sopan.",
-  },
-  {
-    id: 83,
-    section: "Expression",
-    category: "接客",
-    scenario: "Pelayan kembali setelah pelanggan menunggu.",
-    pattern: "お待たせしました",
-    meaning: "maaf sudah membuat Anda menunggu",
-    dialogue: [
-      ["店員", "[blank]。こちらがメニューです。"],
-      ["客", "ありがとうございます。"],
-    ],
-    choices: ["お待たせしました", "お先に失礼します", "おかえりなさい"],
-    answer: 0,
-    explanation:
-      "Setelah membuat pelanggan menunggu, gunakan お待たせしました.",
-  },
-  {
-    id: 84,
-    section: "Expression",
-    category: "案内",
-    scenario: "Tuan rumah mempersilakan tamu masuk.",
-    pattern: "どうぞ",
-    meaning: "silakan",
-    dialogue: [
-      ["客", "ごめんください。"],
-      ["家の人", "いらっしゃい。[blank] 入ってください。"],
-    ],
-    choices: ["どうぞ", "たぶん", "ちょっと"],
-    answer: 0,
-    explanation:
-      "Untuk mempersilakan seseorang, gunakan どうぞ.",
-  },
-  {
-    id: 85,
-    section: "Expression",
-    category: "会計",
-    scenario: "Pelanggan selesai makan di restoran.",
-    pattern: "お会計お願いします",
-    meaning: "tolong hitung tagihannya",
-    dialogue: [
-      ["客", "すみません。[blank]。"],
-      ["店員", "はい、少々お待ちください。"],
-    ],
-    choices: ["お会計お願いします", "お大事に", "お名前は何ですか"],
-    answer: 0,
-    explanation:
-      "Untuk meminta tagihan di restoran, gunakan お会計お願いします.",
-  },
-  {
-    id: 86,
-    section: "Expression",
-    category: "会計",
-    scenario: "Dua teman ingin membayar sendiri-sendiri.",
-    pattern: "別々でお願いします",
-    meaning: "bayar terpisah",
-    dialogue: [
-      ["店員", "お会計はご一緒ですか。"],
-      ["客", "すみません、[blank]。"],
-    ],
-    choices: ["別々でお願いします", "店内でお願いします", "大盛りでお願いします"],
-    answer: 0,
-    explanation:
-      "Saat ingin membayar terpisah, gunakan 別々でお願いします.",
-  },
-  {
-    id: 87,
-    section: "Expression",
-    category: "注文",
-    scenario: "Pelanggan membeli makanan untuk dibawa pulang.",
-    pattern: "持ち帰りでお願いします",
-    meaning: "untuk dibawa pulang",
-    dialogue: [
-      ["店員", "こちらで召し上がりますか。"],
-      ["客", "[blank]。"],
-    ],
-    choices: ["持ち帰りでお願いします", "予約でお願いします", "右にお願いします"],
-    answer: 0,
-    explanation:
-      "Untuk take away, gunakan 持ち帰りでお願いします.",
-  },
-  {
-    id: 88,
-    section: "Expression",
-    category: "注文",
-    scenario: "Pelanggan makan di restoran, bukan dibawa pulang.",
-    pattern: "店内で食べます",
-    meaning: "makan di tempat",
-    dialogue: [
-      ["店員", "お持ち帰りですか。"],
-      ["客", "いいえ、[blank]。"],
-    ],
-    choices: ["店内で食べます", "家で寝ます", "駅で待ちます"],
-    answer: 0,
-    explanation:
-      "Jika makan di tempat, jawab 店内で食べます.",
-  },
-  {
-    id: 89,
-    section: "Expression",
-    category: "道案内",
-    scenario: "Seseorang bertanya arah dengan sopan.",
-    pattern: "教えていただけませんか",
-    meaning: "bisakah Anda memberi tahu saya?",
-    dialogue: [
-      ["A", "すみません。駅までの道を [blank]。"],
-      ["B", "はい、いいですよ。"],
-    ],
-    choices: ["教えていただけませんか", "食べていただけませんか", "払っていただけませんか"],
-    answer: 0,
-    explanation:
-      "Permintaan sangat sopan memakai ていただけませんか.",
-  },
-  {
-    id: 90,
-    section: "Expression",
-    category: "道案内",
-    scenario: "Petugas menjelaskan arah ke stasiun.",
-    pattern: "まっすぐ行ってください",
-    meaning: "silakan jalan lurus",
-    dialogue: [
-      ["A", "駅はどこですか。"],
-      ["B", "この道を [blank]。"],
-    ],
-    choices: ["まっすぐ行ってください", "ここで食べてください", "名前を書いてください"],
-    answer: 0,
-    explanation:
-      "Untuk memberi instruksi jalan lurus, gunakan まっすぐ行ってください.",
-  },
-  {
-    id: 91,
-    section: "Expression",
-    category: "道案内",
-    scenario: "Petugas menjelaskan belokan menuju kantor pos.",
-    pattern: "右に曲がってください",
-    meaning: "belok kanan",
-    dialogue: [
-      ["A", "郵便局はどこですか。"],
-      ["B", "次の信号を [blank]。"],
-    ],
-    choices: ["右に曲がってください", "水を飲んでください", "席に座ってください"],
-    answer: 0,
-    explanation:
-      "Untuk memberi arah belok kanan, gunakan 右に曲がってください.",
-  },
-  {
-    id: 92,
-    section: "Expression",
-    category: "予約",
-    scenario: "Pelanggan bertanya apakah ada kamar kosong.",
-    pattern: "空いていますか",
-    meaning: "apakah tersedia / kosong?",
-    dialogue: [
-      ["客", "今晩、部屋は [blank]。"],
-      ["ホテル", "はい、一部屋ございます。"],
-    ],
-    choices: ["空いていますか", "開けていますか", "住んでいますか"],
-    answer: 0,
-    explanation:
-      "Untuk menanyakan ketersediaan kamar atau tempat, gunakan 空いていますか.",
-  },
-  {
-    id: 93,
-    section: "Expression",
-    category: "買い物",
-    scenario: "Pelanggan mencari ukuran baju.",
-    pattern: "Mサイズはありますか",
-    meaning: "apakah ada ukuran M?",
-    dialogue: [
-      ["客", "すみません。[blank]。"],
-      ["店員", "はい、こちらにあります。"],
-    ],
-    choices: ["Mサイズはありますか", "Mサイズは食べますか", "Mサイズは行きますか"],
-    answer: 0,
-    explanation:
-      "Untuk menanyakan ketersediaan ukuran, gunakan サイズはありますか.",
-  },
-  {
-    id: 94,
-    section: "Expression",
-    category: "買い物",
-    scenario: "Pelanggan ingin mencoba pakaian.",
-    pattern: "試着してもいいですか",
-    meaning: "bolehkah saya mencoba?",
-    dialogue: [
-      ["客", "このシャツを [blank]。"],
-      ["店員", "はい、どうぞ。"],
-    ],
-    choices: ["試着してもいいですか", "予約してもいいですか", "早退してもいいですか"],
-    answer: 0,
-    explanation:
-      "Untuk meminta izin mencoba pakaian, gunakan 試着してもいいですか.",
-  },
-  {
-    id: 95,
-    section: "Expression",
-    category: "買い物",
-    scenario: "Pelanggan meminta struk setelah membayar.",
-    pattern: "レシートをください",
-    meaning: "tolong beri struk",
-    dialogue: [
-      ["店員", "ありがとうございました。"],
-      ["客", "すみません。[blank]。"],
-    ],
-    choices: ["レシートをください", "テーブルをください", "住所をください"],
-    answer: 0,
-    explanation:
-      "Untuk meminta struk, gunakan レシートをください.",
-  },
-  {
-    id: 96,
-    section: "Expression",
-    category: "健康",
-    scenario: "Seseorang merasa tidak enak badan.",
-    pattern: "気分が悪いです",
-    meaning: "saya merasa tidak enak badan",
-    dialogue: [
-      ["A", "どうしましたか。"],
-      ["B", "[blank]。少し休みたいです。"],
-    ],
-    choices: ["気分が悪いです", "気分が安いです", "気分が新しいです"],
-    answer: 0,
-    explanation:
-      "Untuk mengatakan kondisi badan tidak enak, gunakan 気分が悪いです.",
-  },
-  {
-    id: 97,
-    section: "Expression",
-    category: "健康",
-    scenario: "Pasien menjelaskan gejala kepada dokter.",
-    pattern: "熱があります",
-    meaning: "demam",
-    dialogue: [
-      ["医者", "どんな症状ですか。"],
-      ["患者", "頭が痛くて、[blank]。"],
-    ],
-    choices: ["熱があります", "席があります", "駅があります"],
-    answer: 0,
-    explanation:
-      "Untuk menyatakan demam, gunakan 熱があります.",
-  },
-  {
-    id: 98,
-    section: "Expression",
-    category: "病院",
-    scenario: "Resepsionis klinik bertanya kepada pasien.",
-    pattern: "保険証をお持ちですか",
-    meaning: "apakah membawa kartu asuransi?",
-    dialogue: [
-      ["受付", "[blank]。"],
-      ["患者", "はい、持っています。"],
-    ],
-    choices: ["保険証をお持ちですか", "切符を買いましたか", "料理を作りますか"],
-    answer: 0,
-    explanation:
-      "Di klinik, petugas biasanya bertanya 保険証をお持ちですか.",
-  },
-  {
-    id: 99,
-    section: "Expression",
-    category: "予約",
-    scenario: "Seseorang menelepon untuk membatalkan reservasi.",
-    pattern: "予約をキャンセルしたいんですが",
-    meaning: "saya ingin membatalkan reservasi",
-    dialogue: [
-      ["店員", "はい、さくらレストランです。"],
-      ["客", "すみません。予約を [blank]。"],
-    ],
-    choices: ["キャンセルしたいんですが", "勉強したいんですが", "紹介したいんですが"],
-    answer: 0,
-    explanation:
-      "Untuk membatalkan reservasi dengan sopan, gunakan キャンセルしたいんですが.",
-  },
-  {
-    id: 100,
-    section: "Expression",
-    category: "断り",
-    scenario: "Teman menolak ajakan secara halus.",
-    pattern: "また今度お願いします",
-    meaning: "lain kali saja",
-    dialogue: [
-      ["A", "今晩、カラオケに行きませんか。"],
-      ["B", "すみません。今日は用事があります。[blank]。"],
-    ],
-    choices: ["また今度お願いします", "お会計お願いします", "少々お待ちください"],
-    answer: 0,
-    explanation:
-      "Untuk menolak ajakan dengan halus dan membuka kesempatan lain kali, gunakan また今度お願いします.",
-  },
-  {
-    id: 101,
     section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 受付",
-    meaning: "resepsionis / loket pendaftaran",
-    dialogue: [["問題", "「受付」の意味は何ですか。"]],
-    choices: ["tempat pendaftaran", "ruang kelas", "tempat sampah"],
-    answer: 0,
-    explanation: "受付 adalah tempat menerima tamu atau pendaftaran, seperti resepsionis.",
-  },
-  {
-    id: 102,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 予約",
-    meaning: "reservasi",
-    dialogue: [["問題", "「予約」の意味は何ですか。"]],
-    choices: ["reservasi", "pembayaran", "pemeriksaan"],
-    answer: 0,
-    explanation: "予約 berarti memesan tempat, kamar, tiket, atau jadwal terlebih dahulu.",
-  },
-  {
-    id: 103,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 支払い",
-    meaning: "pembayaran",
-    dialogue: [["問題", "「支払い」の意味は何ですか。"]],
-    choices: ["pembayaran", "undangan", "pengiriman"],
-    answer: 0,
-    explanation: "支払い berarti pembayaran atau proses membayar.",
-  },
-  {
-    id: 104,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 変更",
-    meaning: "perubahan",
-    dialogue: [["問題", "「変更」の意味は何ですか。"]],
-    choices: ["perubahan", "larangan", "jawaban"],
-    answer: 0,
-    explanation: "変更 berarti mengubah jadwal, isi, tempat, atau rencana.",
-  },
-  {
-    id: 105,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 中止",
-    meaning: "dibatalkan / dihentikan",
-    dialogue: [["問題", "「中止」の意味は何ですか。"]],
-    choices: ["dibatalkan", "dimulai", "diperpanjang"],
-    answer: 0,
-    explanation: "中止 berarti suatu acara atau kegiatan dihentikan atau dibatalkan.",
-  },
-  {
-    id: 106,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 必要",
-    meaning: "perlu / dibutuhkan",
-    dialogue: [["問題", "「必要」の意味は何ですか。"]],
-    choices: ["perlu", "mudah", "gratis"],
-    answer: 0,
-    explanation: "必要 berarti sesuatu yang dibutuhkan atau wajib disiapkan.",
-  },
-  {
-    id: 107,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 無料",
-    meaning: "gratis",
-    dialogue: [["問題", "「無料」の意味は何ですか。"]],
-    choices: ["gratis", "mahal", "tunai"],
-    answer: 0,
-    explanation: "無料 berarti tidak perlu membayar.",
-  },
-  {
-    id: 108,
-    section: "Vocabulary",
-    category: "語彙意味",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 現金",
-    meaning: "uang tunai",
-    dialogue: [["問題", "「現金」の意味は何ですか。"]],
-    choices: ["uang tunai", "kartu identitas", "struk"],
-    answer: 0,
-    explanation: "現金 berarti uang tunai, bukan kartu atau pembayaran elektronik.",
-  },
-  {
-    id: 109,
-    section: "Vocabulary",
-    category: "語彙用法",
-    scenario: "Pilih kata yang paling cocok untuk kalimat.",
-    pattern: "語彙用法: 忘れ物",
-    meaning: "barang tertinggal",
-    dialogue: [["問題", "電車にかばんを忘れました。駅の [blank] に聞きます。"]],
-    choices: ["忘れ物センター", "台所", "教室"],
-    answer: 0,
-    explanation: "Barang yang tertinggal ditanyakan di 忘れ物センター.",
-  },
-  {
-    id: 110,
-    section: "Vocabulary",
-    category: "語彙用法",
-    scenario: "Pilih kata yang paling cocok untuk kalimat.",
-    pattern: "語彙用法: 診察",
-    meaning: "pemeriksaan dokter",
-    dialogue: [["問題", "病院で医者に体を見てもらいます。これは [blank] です。"]],
-    choices: ["診察", "会計", "旅行"],
-    answer: 0,
-    explanation: "Pemeriksaan oleh dokter disebut 診察.",
-  },
-  {
-    id: 111,
-    section: "Vocabulary",
-    category: "語彙用法",
-    scenario: "Pilih kata yang paling cocok untuk kalimat.",
-    pattern: "語彙用法: 締め切り",
-    meaning: "batas waktu",
-    dialogue: [["問題", "申込書は金曜日までです。金曜日が [blank] です。"]],
-    choices: ["締め切り", "入口", "売り場"],
-    answer: 0,
-    explanation: "Batas akhir pengumpulan atau pendaftaran disebut 締め切り.",
-  },
-  {
-    id: 112,
-    section: "Vocabulary",
-    category: "語彙用法",
-    scenario: "Pilih kata yang paling cocok untuk kalimat.",
-    pattern: "語彙用法: 片道",
-    meaning: "sekali jalan",
-    dialogue: [["問題", "帰りの切符はいりません。[blank] の切符をください。"]],
-    choices: ["片道", "往復", "全部"],
-    answer: 0,
-    explanation: "Jika hanya pergi tanpa tiket pulang, gunakan 片道.",
-  },
-  {
-    id: 113,
-    section: "Vocabulary",
-    category: "語彙用法",
-    scenario: "Pilih kata yang paling cocok untuk kalimat.",
-    pattern: "語彙用法: 往復",
-    meaning: "pulang-pergi",
-    dialogue: [["問題", "行きと帰りの切符を買います。[blank] の切符です。"]],
-    choices: ["往復", "片道", "無料"],
-    answer: 0,
-    explanation: "Tiket pergi dan pulang disebut 往復.",
-  },
-  {
-    id: 114,
-    section: "Vocabulary",
-    category: "漢字読み",
-    scenario: "Pilih cara baca kanji.",
-    pattern: "漢字読み: 病院",
-    meaning: "rumah sakit",
-    dialogue: [["問題", "「病院」の読み方はどれですか。"]],
-    choices: ["びょういん", "びよういん", "びょうえん"],
-    answer: 0,
-    explanation: "病院 dibaca びょういん.",
-  },
-  {
-    id: 115,
-    section: "Vocabulary",
-    category: "漢字読み",
-    scenario: "Pilih cara baca kanji.",
-    pattern: "漢字読み: 会社",
-    meaning: "perusahaan",
-    dialogue: [["問題", "「会社」の読み方はどれですか。"]],
-    choices: ["かいしゃ", "がいしゃ", "かいじゃ"],
-    answer: 0,
-    explanation: "会社 dibaca かいしゃ.",
-  },
-  {
-    id: 116,
-    section: "Vocabulary",
-    category: "漢字読み",
-    scenario: "Pilih cara baca kanji.",
-    pattern: "漢字読み: 住所",
-    meaning: "alamat",
-    dialogue: [["問題", "「住所」の読み方はどれですか。"]],
-    choices: ["じゅうしょ", "じゅしょ", "じょうしょ"],
-    answer: 0,
-    explanation: "住所 dibaca じゅうしょ.",
-  },
-  {
-    id: 117,
-    section: "Vocabulary",
-    category: "漢字読み",
-    scenario: "Pilih cara baca kanji.",
-    pattern: "漢字読み: 電話",
-    meaning: "telepon",
-    dialogue: [["問題", "「電話」の読み方はどれですか。"]],
-    choices: ["でんわ", "てんわ", "でんご"],
-    answer: 0,
-    explanation: "電話 dibaca でんわ.",
-  },
-  {
-    id: 118,
-    section: "Vocabulary",
-    category: "漢字読み",
-    scenario: "Pilih cara baca kanji.",
-    pattern: "漢字読み: 休憩",
-    meaning: "istirahat",
-    dialogue: [["問題", "「休憩」の読み方はどれですか。"]],
-    choices: ["きゅうけい", "きゅけい", "きゅうかい"],
-    answer: 0,
-    explanation: "休憩 dibaca きゅうけい.",
-  },
-  {
-    id: 119,
-    section: "Vocabulary",
-    category: "漢字意味",
-    scenario: "Pilih arti kanji yang paling tepat.",
-    pattern: "漢字意味: 営業時間",
-    meaning: "jam buka / jam operasional",
-    dialogue: [["問題", "「営業時間」は何のことですか。"]],
-    choices: ["店が開いている時間", "電車に乗る時間", "寝る時間"],
-    answer: 0,
-    explanation: "営業時間 berarti jam operasional toko atau layanan.",
-  },
-  {
-    id: 120,
-    section: "Vocabulary",
-    category: "漢字意味",
-    scenario: "Pilih arti kanji yang paling tepat.",
-    pattern: "漢字意味: 定休日",
-    meaning: "hari libur tetap",
-    dialogue: [["問題", "「定休日」は何のことですか。"]],
-    choices: ["毎週決まって休む日", "毎日開く日", "特別に安い日"],
-    answer: 0,
-    explanation: "定休日 adalah hari tutup rutin, misalnya setiap Selasa.",
-  },
-  {
-    id: 121,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca pengumuman toko dan pilih jawaban yang tepat.",
-    pattern: "掲示: 営業時間",
-    meaning: "mencari informasi jam buka",
-    dialogue: [
-      ["お知らせ", "さくらスーパー\n営業時間: 9:00-21:00\n毎週火曜日は休みです。"],
-      ["質問", "このスーパーはいつ休みですか。"],
-    ],
-    choices: ["火曜日", "日曜日", "毎日"],
-    answer: 0,
-    explanation: "掲示に「毎週火曜日は休みです」とあります。",
-  },
-  {
-    id: 122,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca pengumuman restoran dan pilih jawaban yang tepat.",
-    pattern: "掲示: ラストオーダー",
-    meaning: "mencari informasi batas pesanan",
-    dialogue: [
-      ["お知らせ", "レストラン海\n営業時間 11:00-22:00\nラストオーダー 21:30"],
-      ["質問", "最後に注文できる時間はいつですか。"],
-    ],
-    choices: ["21:30", "22:00", "11:00"],
-    answer: 0,
-    explanation: "ラストオーダーは最後に注文できる時間です。",
-  },
-  {
-    id: 123,
-    section: "Reading",
-    category: "読解メッセージ",
-    scenario: "Baca pesan pendek dan pilih jawaban yang tepat.",
-    pattern: "メッセージ: 待ち合わせ",
-    meaning: "memahami tempat dan waktu janji",
-    dialogue: [
-      ["メッセージ", "田中さんへ\n今日は駅の東口で18時に会いましょう。雨なので、かさを持ってきてください。"],
-      ["質問", "どこで会いますか。"],
-    ],
-    choices: ["駅の東口", "会社の前", "レストランの中"],
-    answer: 0,
-    explanation: "メッセージに「駅の東口で18時に」とあります。",
-  },
-  {
-    id: 124,
-    section: "Reading",
-    category: "読解メッセージ",
-    scenario: "Baca pesan dari teman dan pilih jawaban yang tepat.",
-    pattern: "メッセージ: 持ち物",
-    meaning: "memahami barang yang perlu dibawa",
-    dialogue: [
-      ["メッセージ", "明日の料理教室は10時からです。エプロンとタオルを持ってきてください。材料はこちらで用意します。"],
-      ["質問", "何を持って行きますか。"],
-    ],
-    choices: ["エプロンとタオル", "材料と皿", "お金と切符"],
-    answer: 0,
-    explanation: "持ち物は「エプロンとタオル」です。",
-  },
-  {
-    id: 125,
-    section: "Reading",
-    category: "読解短文",
-    scenario: "Baca teks pendek tentang kehidupan sehari-hari.",
-    pattern: "短文: 理由",
-    meaning: "memahami alasan",
-    dialogue: [
-      ["本文", "リンさんは毎朝6時に起きます。会社が家から遠いので、7時の電車に乗らなければなりません。"],
-      ["質問", "リンさんはどうして早く起きますか。"],
-    ],
-    choices: ["会社が遠いから", "朝ごはんを作るから", "日本語を勉強するから"],
-    answer: 0,
-    explanation: "本文に「会社が家から遠いので」とあります。",
-  },
-  {
-    id: 126,
-    section: "Reading",
-    category: "読解短文",
-    scenario: "Baca teks pendek dan pilih jawaban yang tepat.",
-    pattern: "短文: 予定",
-    meaning: "memahami rencana",
-    dialogue: [
-      ["本文", "日曜日、アリさんは友だちと公園へ行きます。公園で昼ごはんを食べて、写真を撮る予定です。"],
-      ["質問", "アリさんは日曜日に何をしますか。"],
-    ],
-    choices: ["公園へ行きます", "病院へ行きます", "学校で試験を受けます"],
-    answer: 0,
-    explanation: "本文の最初に「友だちと公園へ行きます」とあります。",
-  },
-  {
-    id: 127,
-    section: "Reading",
-    category: "読解情報検索",
-    scenario: "Baca informasi kelas dan pilih jawaban yang tepat.",
-    pattern: "情報検索: 教室案内",
-    meaning: "mencari informasi lokasi",
-    dialogue: [
-      ["案内", "日本語クラス\n初級: 2階 201教室\n中級: 3階 305教室\n会話クラス: 1階 102教室"],
-      ["質問", "会話クラスはどこですか。"],
-    ],
-    choices: ["1階102教室", "2階201教室", "3階305教室"],
-    answer: 0,
-    explanation: "案内に「会話クラス: 1階 102教室」とあります。",
-  },
-  {
-    id: 128,
-    section: "Reading",
-    category: "読解情報検索",
-    scenario: "Baca jadwal bus dan pilih jawaban yang tepat.",
-    pattern: "情報検索: 時刻表",
-    meaning: "mencari waktu keberangkatan",
-    dialogue: [
-      ["時刻表", "駅行きバス\n8:10 / 8:40 / 9:10 / 9:40"],
-      ["質問", "8時30分のあと、いちばん早いバスは何時ですか。"],
-    ],
-    choices: ["8:40", "9:10", "9:40"],
-    answer: 0,
-    explanation: "8時30分の後で一番早い時刻は8:40です。",
-  },
-  {
-    id: 129,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca pengumuman di apartemen.",
-    pattern: "掲示: 工事",
-    meaning: "memahami tanggal dan isi pengumuman",
-    dialogue: [
-      ["お知らせ", "水道工事のお知らせ\n6月10日 9:00-12:00\nこの時間は水が使えません。"],
-      ["質問", "6月10日の午前中、何ができませんか。"],
-    ],
-    choices: ["水を使うこと", "電気を使うこと", "外へ出ること"],
-    answer: 0,
-    explanation: "お知らせに「水が使えません」とあります。",
-  },
-  {
-    id: 130,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca aturan fasilitas umum.",
-    pattern: "掲示: 禁止",
-    meaning: "memahami larangan",
-    dialogue: [
-      ["掲示", "図書館からのお願い\n館内では食べ物を食べないでください。飲み物はふたがあるものだけです。"],
-      ["質問", "図書館でしてはいけないことは何ですか。"],
-    ],
-    choices: ["食べ物を食べること", "本を読むこと", "ふたがある飲み物を飲むこと"],
-    answer: 0,
-    explanation: "掲示に「食べ物を食べないでください」とあります。",
-  },
-  {
-    id: 131,
-    section: "Reading",
-    category: "読解メッセージ",
-    scenario: "Baca pesan dari atasan di tempat kerja.",
-    pattern: "メッセージ: 依頼",
-    meaning: "memahami tugas yang diminta",
-    dialogue: [
-      ["メッセージ", "山田さんへ\n会議の前に、資料を10部コピーしてください。会議は午後2時からです。"],
-      ["質問", "山田さんは何をしますか。"],
-    ],
-    choices: ["資料を10部コピーします", "午後2時に帰ります", "会議室を掃除します"],
-    answer: 0,
-    explanation: "依頼は「資料を10部コピーしてください」です。",
-  },
-  {
-    id: 132,
-    section: "Reading",
-    category: "読解短文",
-    scenario: "Baca teks pendek tentang belanja.",
-    pattern: "短文: 比較",
-    meaning: "memahami pilihan",
-    dialogue: [
-      ["本文", "この店の野菜はスーパーより少し高いですが、とても新鮮です。だから、ミラさんはよくこの店で買います。"],
-      ["質問", "ミラさんはどうしてこの店で野菜を買いますか。"],
-    ],
-    choices: ["野菜が新鮮だから", "野菜が一番安いから", "店が駅に近いから"],
-    answer: 0,
-    explanation: "本文に「とても新鮮です。だから」とあります。",
-  },
-  {
-    id: 133,
-    section: "Reading",
-    category: "読解情報検索",
-    scenario: "Baca informasi lowongan kerja.",
-    pattern: "情報検索: 求人",
-    meaning: "mencari syarat kerja",
-    dialogue: [
-      ["求人", "レストランスタッフ募集\n時間: 17:00-22:00\n時給: 1,150円\n日本語で簡単な会話ができる人"],
-      ["質問", "この仕事で必要なことは何ですか。"],
-    ],
-    choices: ["日本語で簡単な会話ができること", "車を運転できること", "朝から働けること"],
-    answer: 0,
-    explanation: "求人に「日本語で簡単な会話ができる人」とあります。",
-  },
-  {
-    id: 134,
-    section: "Reading",
-    category: "読解情報検索",
-    scenario: "Baca menu restoran.",
-    pattern: "情報検索: メニュー",
-    meaning: "mencari harga",
-    dialogue: [
-      ["メニュー", "カレー 750円\nラーメン 680円\nてんぷら定食 980円\nコーヒー 300円"],
-      ["質問", "ラーメンはいくらですか。"],
-    ],
-    choices: ["680円", "750円", "980円"],
-    answer: 0,
-    explanation: "メニューに「ラーメン 680円」とあります。",
-  },
-  {
-    id: 135,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca pengumuman acara komunitas.",
-    pattern: "掲示: イベント",
-    meaning: "memahami waktu acara",
-    dialogue: [
-      ["お知らせ", "国際交流パーティー\n日時: 7月5日 18:30-20:30\n場所: 市民センター 2階"],
-      ["質問", "パーティーは何時に始まりますか。"],
-    ],
-    choices: ["18:30", "20:30", "7:05"],
-    answer: 0,
-    explanation: "日時に「18:30-20:30」とあるので、始まりは18:30です。",
-  },
-  {
-    id: 136,
-    section: "Reading",
-    category: "読解短文",
-    scenario: "Baca teks pendek tentang kesehatan.",
-    pattern: "短文: 助言",
-    meaning: "memahami saran",
-    dialogue: [
-      ["本文", "デニさんは最近よく眠れません。医者は、夜コーヒーを飲まないで、早く寝たほうがいいと言いました。"],
-      ["質問", "医者は何と言いましたか。"],
-    ],
-    choices: ["夜コーヒーを飲まないほうがいい", "夜たくさん運動したほうがいい", "朝遅く起きたほうがいい"],
-    answer: 0,
-    explanation: "本文に「夜コーヒーを飲まないで」とあります。",
-  },
-  {
-    id: 137,
-    section: "Reading",
-    category: "読解メッセージ",
-    scenario: "Baca pesan tentang perubahan jadwal.",
-    pattern: "メッセージ: 変更",
-    meaning: "memahami perubahan waktu",
-    dialogue: [
-      ["メッセージ", "すみません。今日の勉強会は19時からではなく、20時からになりました。場所は同じです。"],
-      ["質問", "勉強会は何時からですか。"],
-    ],
-    choices: ["20時", "19時", "場所が変わりました"],
-    answer: 0,
-    explanation: "「20時からになりました」とあります。",
-  },
-  {
-    id: 138,
-    section: "Reading",
-    category: "読解掲示",
-    scenario: "Baca informasi fasilitas.",
-    pattern: "掲示: 利用時間",
-    meaning: "mencari waktu penggunaan",
-    dialogue: [
-      ["掲示", "自転車置き場\n利用時間: 6:00-23:00\n夜23時から朝6時までは入れません。"],
-      ["質問", "自転車置き場に入れない時間はいつですか。"],
-    ],
-    choices: ["23時から6時まで", "6時から23時まで", "昼12時から13時まで"],
-    answer: 0,
-    explanation: "掲示に「夜23時から朝6時までは入れません」とあります。",
-  },
-  {
-    id: 139,
-    section: "Reading",
-    category: "読解情報検索",
-    scenario: "Baca jadwal pelajaran.",
-    pattern: "情報検索: スケジュール",
-    meaning: "mencari mata pelajaran pada hari tertentu",
-    dialogue: [
-      ["予定表", "月: 文法\n火: 会話\n水: 漢字\n木: 読解\n金: 聴解"],
-      ["質問", "水曜日は何を勉強しますか。"],
-    ],
-    choices: ["漢字", "会話", "聴解"],
-    answer: 0,
-    explanation: "予定表に「水: 漢字」とあります。",
-  },
-  {
-    id: 140,
-    section: "Reading",
-    category: "読解短文",
-    scenario: "Baca teks pendek tentang transportasi.",
-    pattern: "短文: 交通",
-    meaning: "memahami cara pergi",
-    dialogue: [
-      ["本文", "駅から会社までは歩いて15分です。雨の日はバスで行きますが、晴れの日は歩きます。"],
-      ["質問", "晴れの日、どうやって会社へ行きますか。"],
-    ],
-    choices: ["歩いて行きます", "バスで行きます", "電車で行きます"],
-    answer: 0,
-    explanation: "本文に「晴れの日は歩きます」とあります。",
-  },
-  {
-    id: 141,
-    section: "Expression",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Warga ingin mengurus perubahan alamat di kantor pemerintah.",
-    pattern: "住所変更をしたいんですが",
-    meaning: "ingin mengurus perubahan alamat",
-    dialogue: [
-      ["住民", "すみません。住所変更を [blank]。"],
-      ["職員", "では、この用紙に書いてください。"],
-    ],
-    choices: ["したいんですが", "しています", "しますか"],
-    answer: 0,
-    explanation: "相談するときは「Vたいんですが」を使うと自然です。",
-  },
-  {
-    id: 142,
-    section: "Vocabulary",
-    category: "役所",
+    category: "書類",
     canDo: "cityhall",
     scenario: "Petugas meminta kartu izin tinggal.",
-    pattern: "在留カードを見せてください",
-    meaning: "tolong tunjukkan kartu izin tinggal",
+    pattern: "在留カード",
+    meaning: "kartu izin tinggal",
     dialogue: [
       ["職員", "[blank] を見せてください。"],
       ["住民", "はい、どうぞ。"],
     ],
     choices: ["在留カード", "診察券", "定期券"],
-    answer: 0,
-    explanation: "役所の手続きでよく使う身分証明は「在留カード」です。",
+    answer: "在留カード",
+    explanation: "Kartu izin tinggal disebut 在留カード。",
   },
   {
-    id: 143,
+    id: 27,
     section: "Grammar",
-    category: "役所",
+    category: "依頼",
     canDo: "cityhall",
-    scenario: "Petugas meminta warga menulis nama dan alamat di formulir.",
-    pattern: "この用紙に書いてください",
-    meaning: "tolong tulis di formulir ini",
+    scenario: "Petugas meminta pengunjung menulis nama pada formulir.",
+    pattern: "この紙に名前を書いてください",
+    meaning: "tolong tulis nama di kertas ini",
     dialogue: [
-      ["職員", "この用紙 [blank] 名前と住所を書いてください。"],
-      ["住民", "はい、わかりました。"],
-    ],
-    choices: ["に", "で", "を"],
-    answer: 0,
-    explanation: "書く場所を表すときは「用紙に書く」と言います。",
-  },
-  {
-    id: 144,
-    section: "Expression",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Petugas meminta pengunjung mengambil nomor antrean.",
-    pattern: "番号札を取ってください",
-    meaning: "tolong ambil nomor antrean",
-    dialogue: [
-      ["職員", "まず、番号札を [blank]、お待ちください。"],
+      ["職員", "この紙 [blank] 名前を書いてください。"],
       ["住民", "はい。"],
     ],
-    choices: ["取って", "置いて", "払って"],
-    answer: 0,
-    explanation: "番号札は「取る」を使います。文を続けるので「取って」です。",
+    choices: ["に", "で", "を"],
+    answer: "に",
+    explanation: "Tempat menulis nama pada kertas ditandai dengan に。",
   },
   {
-    id: 145,
-    section: "Expression",
-    category: "役所",
+    id: 28,
+    section: "Vocabulary",
+    category: "受付",
     canDo: "cityhall",
-    scenario: "Warga bertanya di mana bisa mendapatkan surat domisili.",
-    pattern: "どこでもらえますか",
-    meaning: "di mana bisa mendapatkannya",
+    scenario: "Pengunjung perlu mengambil nomor antrean.",
+    pattern: "番号札を取る",
+    meaning: "mengambil nomor antrean",
     dialogue: [
-      ["住民", "すみません。住民票はどこで [blank]。"],
-      ["職員", "3番の窓口でもらえます。"],
+      ["職員", "まず、番号札を [blank]。"],
+      ["住民", "わかりました。"],
+    ],
+    choices: ["取ってください", "置いてください", "払ってください"],
+    answer: "取ってください",
+    explanation: "Mengambil nomor antrean: 番号札を取ります。",
+  },
+  {
+    id: 29,
+    section: "Expression",
+    category: "窓口",
+    canDo: "cityhall",
+    scenario: "Petugas mengarahkan warga ke loket yang tepat.",
+    pattern: "こちらの窓口へ行ってください",
+    meaning: "silakan pergi ke loket ini",
+    dialogue: [
+      ["職員", "住民票は、こちらの窓口 [blank] 行ってください。"],
+      ["住民", "ありがとうございます。"],
+    ],
+    choices: ["へ", "を", "で"],
+    answer: "へ",
+    explanation: "Arah tujuan dapat memakai へ。",
+  },
+  {
+    id: 30,
+    section: "Expression",
+    category: "書類",
+    canDo: "cityhall",
+    scenario: "Warga bertanya di mana mendapatkan formulir.",
+    pattern: "申請書はどこでもらえますか",
+    meaning: "bertanya tempat mendapat formulir",
+    dialogue: [
+      ["住民", "申請書はどこで [blank]。"],
+      ["職員", "受付でもらえます。"],
     ],
     choices: ["もらえますか", "もらいましたか", "もっていますか"],
-    answer: 0,
-    explanation: "可能形を使って「もらえますか」と聞きます。",
+    answer: "もらえますか",
+    explanation: "Kemungkinan mendapat sesuatu memakai もらえます。",
   },
   {
-    id: 146,
+    id: 31,
     section: "Grammar",
-    category: "役所",
+    category: "期限",
     canDo: "cityhall",
-    scenario: "Petugas menjelaskan batas akhir penyerahan dokumen.",
+    scenario: "Petugas menjelaskan batas waktu penyerahan dokumen.",
     pattern: "来週までに出してください",
     meaning: "serahkan paling lambat minggu depan",
     dialogue: [
@@ -2291,77 +549,158 @@ const questionBank = [
       ["住民", "はい、わかりました。"],
     ],
     choices: ["までに", "まで", "から"],
-    answer: 0,
-    explanation: "締め切りを言うときは「までに」を使います。",
+    answer: "までに",
+    explanation: "Batas akhir tindakan memakai までに。",
   },
   {
-    id: 147,
-    section: "Expression",
-    category: "役所",
+    id: 32,
+    section: "Vocabulary",
+    category: "書類",
     canDo: "cityhall",
-    scenario: "Warga bertanya nomor loket yang harus dikunjungi.",
-    pattern: "窓口は何番ですか",
-    meaning: "loketnya nomor berapa",
+    scenario: "Petugas meminta satu lembar salinan dokumen.",
+    pattern: "コピーを一枚取る",
+    meaning: "membuat satu lembar salinan",
     dialogue: [
-      ["住民", "すみません。保険の窓口は [blank]。"],
-      ["職員", "5番です。"],
-    ],
-    choices: ["何番ですか", "何時ですか", "何人ですか"],
-    answer: 0,
-    explanation: "番号を聞くときは「何番ですか」を使います。",
-  },
-  {
-    id: 148,
-    section: "Expression",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Petugas meminta warga menandatangani dokumen.",
-    pattern: "ここにサインしてください",
-    meaning: "tolong tanda tangan di sini",
-    dialogue: [
-      ["職員", "内容を確認して、ここに [blank] ください。"],
+      ["職員", "このページのコピーを一枚 [blank]。"],
       ["住民", "はい。"],
     ],
-    choices: ["サインして", "サインします", "サインしました"],
-    answer: 0,
-    explanation: "依頼は「て形 + ください」です。",
+    choices: ["取ってください", "食べてください", "乗ってください"],
+    answer: "取ってください",
+    explanation: "Membuat salinan sering dikatakan コピーを取ります。",
   },
   {
-    id: 149,
-    section: "Vocabulary",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Petugas menjelaskan dokumen yang diperlukan untuk prosedur.",
-    pattern: "本人確認書類が必要です",
-    meaning: "dokumen identitas diperlukan",
-    dialogue: [
-      ["職員", "手続きには本人確認書類が [blank]。"],
-      ["住民", "在留カードでいいですか。"],
-    ],
-    choices: ["必要です", "無料です", "便利です"],
-    answer: 0,
-    explanation: "手続きに必要なものを言うときは「必要です」を使います。",
-  },
-  {
-    id: 150,
+    id: 33,
     section: "Expression",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Warga tidak tahu cara mengisi formulir.",
-    pattern: "書き方を教えていただけますか",
-    meaning: "bisakah menjelaskan cara menulisnya",
+    category: "自己紹介",
+    canDo: "workplace",
+    scenario: "Pegawai baru memperkenalkan diri di kantor.",
+    pattern: "よろしくお願いします",
+    meaning: "mohon kerja samanya",
     dialogue: [
-      ["住民", "すみません。申請書の書き方を [blank]。"],
-      ["職員", "はい、説明します。"],
+      ["社員", "はじめまして。山田です。"],
+      ["同僚", "こちらこそ、[blank]。"],
     ],
-    choices: ["教えていただけますか", "教えましたか", "教えていますか"],
-    answer: 0,
-    explanation: "丁寧にお願いするときは「教えていただけますか」が自然です。",
+    choices: ["よろしくお願いします", "ごちそうさまでした", "お大事に"],
+    answer: "よろしくお願いします",
+    explanation: "Saat perkenalan kerja, gunakan よろしくお願いします。",
   },
   {
-    id: 151,
+    id: 34,
+    section: "Grammar",
+    category: "手順",
+    canDo: "workplace",
+    scenario: "Rekan kerja menjelaskan cara memakai mesin fotokopi.",
+    pattern: "ボタンを押すと始まります",
+    meaning: "kalau menekan tombol, proses mulai",
+    dialogue: [
+      ["社員", "このスタートボタンを [blank]、コピーが始まります。"],
+      ["同僚", "ありがとうございます。"],
+    ],
+    choices: ["押すと", "押しても", "押さないで"],
+    answer: "押すと",
+    explanation: "Untuk akibat yang biasa terjadi pada mesin, pola と cocok。",
+  },
+  {
+    id: 35,
+    section: "Grammar",
+    category: "理由",
+    canDo: "workplace",
+    scenario: "Pegawai terlambat karena kecelakaan.",
+    pattern: "事故で遅れました",
+    meaning: "terlambat karena kecelakaan",
+    dialogue: [
+      ["社員", "遅れて、すみませんでした。"],
+      ["上司", "どうしたんですか。"],
+      ["社員", "途中で事故があって、電車が [blank]。"],
+    ],
+    choices: ["遅れました", "遅れます", "遅れたいです"],
+    answer: "遅れました",
+    explanation: "Kejadian yang sudah terjadi memakai bentuk lampau 遅れました。",
+  },
+  {
+    id: 36,
     section: "Expression",
-    category: "住まい",
+    category: "時間",
+    canDo: "workplace",
+    scenario: "Pegawai bertanya jam mulai rapat.",
+    pattern: "何時からですか",
+    meaning: "mulai jam berapa",
+    dialogue: [
+      ["社員", "今日の会議は [blank]。"],
+      ["同僚", "3時からです。"],
+    ],
+    choices: ["何時からですか", "何人ですか", "何枚ですか"],
+    answer: "何時からですか",
+    explanation: "Jam mulai ditanyakan dengan 何時からですか。",
+  },
+  {
+    id: 37,
+    section: "Expression",
+    category: "退勤",
+    canDo: "workplace",
+    scenario: "Pegawai pulang lebih dulu dari kantor.",
+    pattern: "お先に失礼します",
+    meaning: "izin pulang lebih dulu",
+    dialogue: [
+      ["社員", "[blank]。"],
+      ["同僚", "お疲れさまでした。"],
+    ],
+    choices: ["お先に失礼します", "いただきます", "いらっしゃいませ"],
+    answer: "お先に失礼します",
+    explanation: "Saat pulang lebih dulu dari kantor, ucapkan お先に失礼します。",
+  },
+  {
+    id: 38,
+    section: "Expression",
+    category: "挨拶",
+    canDo: "workplace",
+    scenario: "Rekan kerja mengucapkan salam setelah pekerjaan selesai.",
+    pattern: "お疲れさまでした",
+    meaning: "terima kasih atas kerja kerasnya",
+    dialogue: [
+      ["社員", "今日はこれで終わります。"],
+      ["同僚", "[blank]。"],
+    ],
+    choices: ["お疲れさまでした", "お大事に", "ごめんください"],
+    answer: "お疲れさまでした",
+    explanation: "Ucapan umum di tempat kerja setelah bekerja adalah お疲れさまでした。",
+  },
+  {
+    id: 39,
+    section: "Expression",
+    category: "依頼",
+    canDo: "workplace",
+    scenario: "Pegawai meminta diajari cara memakai alat kerja.",
+    pattern: "教えてもらえませんか",
+    meaning: "bisakah saya diajari",
+    dialogue: [
+      ["社員", "この機械の使い方を [blank]。"],
+      ["同僚", "いいですよ。"],
+    ],
+    choices: ["教えてもらえませんか", "教えましたか", "教えません"],
+    answer: "教えてもらえませんか",
+    explanation: "Permintaan sopan memakai てもらえませんか。",
+  },
+  {
+    id: 40,
+    section: "Expression",
+    category: "連絡",
+    canDo: "workplace",
+    scenario: "Atasan meminta pegawai mengirim laporan melalui email.",
+    pattern: "メールで送ってください",
+    meaning: "tolong kirim melalui email",
+    dialogue: [
+      ["上司", "このレポートをメール [blank] 送ってください。"],
+      ["社員", "はい、わかりました。"],
+    ],
+    choices: ["で", "に", "を"],
+    answer: "で",
+    explanation: "Cara atau media pengiriman memakai で。",
+  },
+  {
+    id: 41,
+    section: "Expression",
+    category: "部屋探し",
     canDo: "housing",
     scenario: "Seseorang sedang mencari kamar untuk ditinggali.",
     pattern: "部屋を探しています",
@@ -2371,13 +710,13 @@ const questionBank = [
       ["店員", "どんな部屋がいいですか。"],
     ],
     choices: ["探しています", "探しました", "探しますか"],
-    answer: 0,
-    explanation: "今していることは「Vています」で表します。",
+    answer: "探しています",
+    explanation: "Keadaan sedang mencari dinyatakan dengan ています。",
   },
   {
-    id: 152,
+    id: 42,
     section: "Vocabulary",
-    category: "住まい",
+    category: "家賃",
     canDo: "housing",
     scenario: "Calon penyewa menanyakan biaya sewa bulanan.",
     pattern: "家賃はいくらですか",
@@ -2387,15 +726,15 @@ const questionBank = [
       ["店員", "月7万円です。"],
     ],
     choices: ["いくらですか", "いつですか", "どこですか"],
-    answer: 0,
-    explanation: "値段や料金を聞くときは「いくらですか」を使います。",
+    answer: "いくらですか",
+    explanation: "Biaya ditanyakan dengan いくらですか。",
   },
   {
-    id: 153,
+    id: 43,
     section: "Grammar",
-    category: "住まい",
+    category: "比較",
     canDo: "housing",
-    scenario: "Calon penyewa bertanya apakah apartemen dekat dari stasiun.",
+    scenario: "Calon penyewa bertanya apakah kamar dekat dari stasiun.",
     pattern: "駅から近いですか",
     meaning: "apakah dekat dari stasiun",
     dialogue: [
@@ -2403,13 +742,13 @@ const questionBank = [
       ["店員", "はい、歩いて5分です。"],
     ],
     choices: ["から", "まで", "を"],
-    answer: 0,
-    explanation: "距離の起点は「から」で表します。",
+    answer: "から",
+    explanation: "Titik awal jarak memakai から。",
   },
   {
-    id: 154,
-    section: "Expression",
-    category: "住まい",
+    id: 44,
+    section: "Vocabulary",
+    category: "故障",
     canDo: "housing",
     scenario: "Penghuni melapor bahwa AC rusak.",
     pattern: "エアコンが壊れています",
@@ -2419,15 +758,15 @@ const questionBank = [
       ["管理人", "すぐ確認します。"],
     ],
     choices: ["壊れています", "壊します", "壊れたいです"],
-    answer: 0,
-    explanation: "壊れた状態が続いているので「壊れています」です。",
+    answer: "壊れています",
+    explanation: "Keadaan rusak dinyatakan dengan 壊れています。",
   },
   {
-    id: 155,
+    id: 45,
     section: "Expression",
-    category: "住まい",
+    category: "トラブル",
     canDo: "housing",
-    scenario: "Penghuni melapor bahwa air di dapur tidak keluar.",
+    scenario: "Penghuni melapor air tidak keluar.",
     pattern: "水が出ません",
     meaning: "air tidak keluar",
     dialogue: [
@@ -2435,13 +774,13 @@ const questionBank = [
       ["管理人", "それは困りましたね。"],
     ],
     choices: ["出ません", "出ます", "出ました"],
-    answer: 0,
-    explanation: "水が出ない状態は「水が出ません」と言います。",
+    answer: "出ません",
+    explanation: "Tidak keluar adalah 出ません。",
   },
   {
-    id: 156,
+    id: 46,
     section: "Expression",
-    category: "住まい",
+    category: "ごみ",
     canDo: "housing",
     scenario: "Penghuni baru bertanya hari membuang sampah.",
     pattern: "ごみはいつ出しますか",
@@ -2451,13 +790,13 @@ const questionBank = [
       ["隣人", "月曜日と木曜日です。"],
     ],
     choices: ["出しますか", "出しましたか", "出ていますか"],
-    answer: 0,
-    explanation: "予定や習慣を聞くときは「出しますか」が自然です。",
+    answer: "出しますか",
+    explanation: "Menanyakan jadwal kebiasaan memakai bentuk sekarang: 出しますか。",
   },
   {
-    id: 157,
+    id: 47,
     section: "Vocabulary",
-    category: "住まい",
+    category: "引っ越し",
     canDo: "housing",
     scenario: "Seseorang menceritakan rencana pindahan bulan depan.",
     pattern: "来月引っ越します",
@@ -2467,13 +806,13 @@ const questionBank = [
       ["住人", "[blank] 引っ越します。"],
     ],
     choices: ["来月", "昨日", "去年"],
-    answer: 0,
-    explanation: "これからの予定なので「来月」が合います。",
+    answer: "来月",
+    explanation: "Rencana masa depan cocok dengan 来月。",
   },
   {
-    id: 158,
+    id: 48,
     section: "Expression",
-    category: "住まい",
+    category: "相談",
     canDo: "housing",
     scenario: "Calon penyewa bertanya apakah boleh tinggal bersama keluarga.",
     pattern: "家族と住んでもいいですか",
@@ -2483,77 +822,205 @@ const questionBank = [
       ["店員", "はい、大丈夫です。"],
     ],
     choices: ["住んでもいいですか", "住んでいます", "住みました"],
-    answer: 0,
-    explanation: "許可を聞くときは「て形 + もいいですか」を使います。",
+    answer: "住んでもいいですか",
+    explanation: "Meminta izin memakai て形 + もいいですか。",
   },
   {
-    id: 159,
+    id: 49,
     section: "Expression",
-    category: "住まい",
-    canDo: "housing",
-    scenario: "Penghuni berkonsultasi karena kamar sebelah berisik.",
-    pattern: "隣の部屋がうるさいんですが",
-    meaning: "kamar sebelah berisik, ingin berkonsultasi",
+    category: "入店",
+    canDo: "food",
+    scenario: "Pelayan restoran menanyakan jumlah orang.",
+    pattern: "何名様ですか",
+    meaning: "berapa orang",
     dialogue: [
-      ["住人", "すみません。隣の部屋が [blank]。"],
-      ["管理人", "そうですか。確認します。"],
+      ["店員", "いらっしゃいませ。お客様、[blank]。"],
+      ["客", "2人です。"],
     ],
-    choices: ["うるさいんですが", "うるさくないです", "うるさいでした"],
-    answer: 0,
-    explanation: "困って相談するときは「んですが」を使うと自然です。",
+    choices: ["何名様ですか", "いくらですか", "何時ですか"],
+    answer: "何名様ですか",
+    explanation: "Di restoran, jumlah tamu ditanya dengan 何名様ですか。",
   },
   {
-    id: 160,
+    id: 50,
+    section: "Expression",
+    category: "注文",
+    canDo: "food",
+    scenario: "Pelanggan bertanya rekomendasi makanan.",
+    pattern: "おすすめは何ですか",
+    meaning: "apa rekomendasinya",
+    dialogue: [
+      ["客", "すみません。おすすめは [blank]。"],
+      ["店員", "てんぷら定食です。"],
+    ],
+    choices: ["何ですか", "どこですか", "いつですか"],
+    answer: "何ですか",
+    explanation: "Menanyakan isi rekomendasi memakai 何ですか。",
+  },
+  {
+    id: 51,
     section: "Grammar",
-    category: "住まい",
-    canDo: "housing",
-    scenario: "Teman memberi saran agar menghubungi pengelola gedung.",
-    pattern: "管理人に連絡したほうがいいです",
-    meaning: "lebih baik menghubungi pengelola",
+    category: "感想",
+    canDo: "food",
+    scenario: "Pelanggan melihat menu dan berkata makanan tampak enak.",
+    pattern: "おいしそうです",
+    meaning: "kelihatannya enak",
     dialogue: [
-      ["住人", "エアコンが壊れています。"],
-      ["友人", "管理人に連絡 [blank]。"],
+      ["客", "このてんぷら定食、[blank]。"],
+      ["友人", "じゃ、これにしましょう。"],
     ],
-    choices: ["したほうがいいです", "しないほうがいいです", "してはいけません"],
-    answer: 0,
-    explanation: "助言するときは「た形 + ほうがいいです」を使います。",
+    choices: ["おいしそうです", "おいしいでした", "おいしくないですか"],
+    answer: "おいしそうです",
+    explanation: "Kesan dari tampilan memakai そうです: おいしそうです。",
   },
   {
-    id: 161,
+    id: 52,
+    section: "Expression",
+    category: "注文",
+    canDo: "food",
+    scenario: "Pelanggan memesan makanan dari menu.",
+    pattern: "これをください",
+    meaning: "tolong beri yang ini",
+    dialogue: [
+      ["客", "じゃ、これを [blank]。"],
+      ["店員", "かしこまりました。"],
+    ],
+    choices: ["ください", "あります", "います"],
+    answer: "ください",
+    explanation: "Memesan benda atau makanan bisa memakai これをください。",
+  },
+  {
+    id: 53,
+    section: "Vocabulary",
+    category: "注文",
+    canDo: "food",
+    scenario: "Pelanggan ingin membawa makanan pulang.",
+    pattern: "持ち帰りにします",
+    meaning: "untuk dibawa pulang",
+    dialogue: [
+      ["店員", "店内でお召し上がりですか。"],
+      ["客", "いいえ、[blank] にします。"],
+    ],
+    choices: ["持ち帰り", "予約", "支払い"],
+    answer: "持ち帰り",
+    explanation: "Bawa pulang disebut 持ち帰り。",
+  },
+  {
+    id: 54,
+    section: "Expression",
+    category: "注文",
+    canDo: "food",
+    scenario: "Pelanggan meminta menu terlebih dahulu.",
+    pattern: "メニューを見せてください",
+    meaning: "tolong perlihatkan menu",
+    dialogue: [
+      ["客", "すみません。メニューを [blank]。"],
+      ["店員", "はい、どうぞ。"],
+    ],
+    choices: ["見せてください", "見ます", "見ないでください"],
+    answer: "見せてください",
+    explanation: "Meminta diperlihatkan sesuatu memakai 見せてください。",
+  },
+  {
+    id: 55,
+    section: "Expression",
+    category: "食事挨拶",
+    canDo: "food",
+    scenario: "Seseorang mengucapkan salam sebelum mulai makan.",
+    pattern: "いただきます",
+    meaning: "ucapan sebelum makan",
+    dialogue: [
+      ["友人", "料理が来ましたね。"],
+      ["客", "[blank]。"],
+    ],
+    choices: ["いただきます", "ごちそうさまでした", "お疲れさまでした"],
+    answer: "いただきます",
+    explanation: "Sebelum makan ucapkan いただきます。",
+  },
+  {
+    id: 56,
+    section: "Expression",
+    category: "食事挨拶",
+    canDo: "food",
+    scenario: "Setelah makan di rumah teman.",
+    pattern: "ごちそうさまでした",
+    meaning: "terima kasih atas makanannya",
+    dialogue: [
+      ["A", "今日はたくさん食べましたね。"],
+      ["B", "はい、とてもおいしかったです。[blank]。"],
+    ],
+    choices: ["ごちそうさまでした", "ごめんください", "お大事に"],
+    answer: "ごちそうさまでした",
+    explanation: "Setelah makan, ucapkan ごちそうさまでした。",
+  },
+  {
+    id: 57,
     section: "Expression",
     category: "予約",
     canDo: "reservation",
-    scenario: "Pelanggan ingin membuat reservasi restoran.",
-    pattern: "予約したいです",
-    meaning: "ingin reservasi",
+    scenario: "Pelanggan ingin membuat reservasi pada hari Jumat.",
+    pattern: "金曜日に予約したいです",
+    meaning: "ingin reservasi hari Jumat",
     dialogue: [
-      ["客", "すみません。金曜日に予約 [blank]。"],
+      ["客", "金曜日に予約 [blank]。"],
       ["店員", "何時がよろしいですか。"],
     ],
     choices: ["したいです", "しています", "しました"],
-    answer: 0,
-    explanation: "希望を言うときは「ます形 + たいです」を使います。",
+    answer: "したいです",
+    explanation: "Keinginan memakai ます形 + たいです。",
   },
   {
-    id: 162,
+    id: 58,
     section: "Expression",
-    category: "予約",
+    category: "時間",
     canDo: "reservation",
-    scenario: "Pelanggan ingin mengubah jam reservasi.",
-    pattern: "時間を変更できますか",
-    meaning: "bisakah mengubah jam",
+    scenario: "Petugas menanyakan jam reservasi yang diinginkan.",
+    pattern: "何時がよろしいですか",
+    meaning: "jam berapa yang baik",
     dialogue: [
-      ["客", "予約の時間を [blank]。"],
-      ["店員", "はい、大丈夫です。"],
+      ["店員", "[blank] がよろしいですか。"],
+      ["客", "午後7時でお願いします。"],
     ],
-    choices: ["変更できますか", "変更しましたか", "変更しています"],
-    answer: 0,
-    explanation: "可能かどうか聞くときは「できますか」を使います。",
+    choices: ["何時", "何人", "何枚"],
+    answer: "何時",
+    explanation: "Untuk jam, gunakan 何時。",
   },
   {
-    id: 163,
+    id: 59,
     section: "Expression",
-    category: "予約",
+    category: "名前",
+    canDo: "reservation",
+    scenario: "Pelanggan menyebut nama untuk reservasi.",
+    pattern: "田中で予約しています",
+    meaning: "reservasi atas nama Tanaka",
+    dialogue: [
+      ["店員", "お名前をお願いします。"],
+      ["客", "田中 [blank] 予約しています。"],
+    ],
+    choices: ["で", "に", "を"],
+    answer: "で",
+    explanation: "Nama yang dipakai untuk reservasi dinyatakan dengan で。",
+  },
+  {
+    id: 60,
+    section: "Expression",
+    category: "連絡先",
+    canDo: "reservation",
+    scenario: "Petugas meminta nomor telepon.",
+    pattern: "電話番号を教えてください",
+    meaning: "tolong beri tahu nomor telepon",
+    dialogue: [
+      ["店員", "電話番号を [blank]。"],
+      ["客", "はい、090...です。"],
+    ],
+    choices: ["教えてください", "覚えてください", "読んでください"],
+    answer: "教えてください",
+    explanation: "Meminta informasi memakai 教えてください。",
+  },
+  {
+    id: 61,
+    section: "Expression",
+    category: "キャンセル",
     canDo: "reservation",
     scenario: "Pelanggan ingin membatalkan reservasi.",
     pattern: "予約をキャンセルしたいです",
@@ -2563,1997 +1030,877 @@ const questionBank = [
       ["店員", "かしこまりました。"],
     ],
     choices: ["キャンセルしたいです", "キャンセルしています", "キャンセルでした"],
-    answer: 0,
-    explanation: "キャンセルしたい希望を伝えるので「したいです」が合います。",
+    answer: "キャンセルしたいです",
+    explanation: "Keinginan membatalkan memakai したいです。",
   },
   {
-    id: 164,
+    id: 62,
     section: "Expression",
-    category: "予約",
+    category: "変更",
     canDo: "reservation",
-    scenario: "Pelanggan mengonfirmasi reservasi atas nama Tanaka.",
-    pattern: "田中で予約しています",
-    meaning: "reservasi atas nama Tanaka",
+    scenario: "Pelanggan ingin mengubah tanggal reservasi.",
+    pattern: "日にちを変えたいです",
+    meaning: "ingin mengubah tanggal",
     dialogue: [
-      ["店員", "お名前をお願いします。"],
-      ["客", "田中 [blank] 予約しています。"],
+      ["客", "予約の日にちを [blank]。"],
+      ["店員", "いつに変更しますか。"],
     ],
-    choices: ["で", "に", "を"],
-    answer: 0,
-    explanation: "予約名を言うときは「田中で予約しています」と言います。",
+    choices: ["変えたいです", "変えません", "変えましたか"],
+    answer: "変えたいです",
+    explanation: "Keinginan dinyatakan dengan たいです。",
   },
   {
-    id: 165,
-    section: "Grammar",
-    category: "買い物",
-    canDo: "shopping",
-    scenario: "Pelanggan membandingkan harga dua kemeja.",
-    pattern: "Nより + 形容詞",
-    meaning: "lebih ... daripada ...",
-    dialogue: [
-      ["客", "このシャツはあのシャツ [blank] 安いですか。"],
-      ["店員", "はい、500円安いです。"],
-    ],
-    choices: ["より", "まで", "から"],
-    answer: 0,
-    explanation: "「より」は比較に使います。 / Untuk membandingkan dua benda, gunakan より.",
-  },
-  {
-    id: 166,
+    id: 63,
     section: "Expression",
-    category: "買い物",
-    canDo: "shopping",
-    scenario: "Pelanggan ingin mencoba sepatu sebelum membeli.",
-    pattern: "試着してもいいですか",
-    meaning: "bolehkah mencoba pakaian atau sepatu",
-    dialogue: [
-      ["客", "すみません。この靴を [blank]。"],
-      ["店員", "はい、どうぞ。"],
-    ],
-    choices: ["払ってもいいですか", "予約してもいいですか", "試着してもいいですか"],
-    answer: 2,
-    explanation: "店で試してよいか聞くときは「試着してもいいですか」を使います。 / Untuk meminta izin mencoba barang di toko, gunakan 試着してもいいですか.",
-  },
-  {
-    id: 167,
-    section: "Vocabulary",
-    category: "買い物",
-    canDo: "shopping",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 割引",
-    meaning: "diskon",
-    dialogue: [["問題", "「割引」の意味は何ですか。"]],
-    choices: ["pembayaran", "diskon", "loket"],
-    answer: 1,
-    explanation: "「割引」は値段が安くなることです。 / 割引 berarti harga dikurangi atau diskon.",
-  },
-  {
-    id: 168,
-    section: "Reading",
-    category: "読解掲示",
-    canDo: "shopping",
-    scenario: "Baca pengumuman toko dan pilih jawaban yang tepat.",
-    pattern: "掲示: セール",
-    meaning: "mencari barang yang sedang diskon",
-    dialogue: [
-      ["お知らせ", "週末セール\n6月8日・9日\nくつ 20%引き\nかばん 10%引き"],
-      ["質問", "20%安くなるものは何ですか。"],
-    ],
-    choices: ["かばん", "シャツ", "くつ"],
-    answer: 2,
-    explanation: "掲示に「くつ 20%引き」とあります。 / Pada pengumuman tertulis bahwa sepatu diskon 20%.",
-  },
-  {
-    id: 169,
-    section: "Grammar",
-    category: "交通",
-    canDo: "transport",
-    scenario: "Seseorang menjelaskan cara pergi ke stasiun.",
-    pattern: "Nで + 行きます",
-    meaning: "pergi dengan alat transportasi",
-    dialogue: [
-      ["A", "駅までどうやって行きますか。"],
-      ["B", "バス [blank] 行きます。"],
-    ],
-    choices: ["に", "で", "を"],
-    answer: 1,
-    explanation: "交通手段は「で」で表します。 / Alat transportasi untuk pergi dinyatakan dengan で.",
-  },
-  {
-    id: 170,
-    section: "Expression",
-    category: "交通",
-    canDo: "transport",
-    scenario: "Penumpang membeli tiket pulang-pergi di stasiun.",
-    pattern: "往復でお願いします",
-    meaning: "tolong tiket pulang-pergi",
-    dialogue: [
-      ["駅員", "片道ですか、往復ですか。"],
-      ["客", "[blank]。"],
-    ],
-    choices: ["現金でお願いします", "予約でお願いします", "往復でお願いします"],
-    answer: 2,
-    explanation: "行き帰りの切符は「往復でお願いします」と言います。 / Untuk tiket pergi dan pulang, gunakan 往復でお願いします.",
-  },
-  {
-    id: 171,
-    section: "Vocabulary",
-    category: "交通",
-    canDo: "transport",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 乗り換え",
-    meaning: "ganti kendaraan atau jalur",
-    dialogue: [["問題", "「乗り換え」の意味は何ですか。"]],
-    choices: ["ganti kendaraan", "biaya sewa", "resep obat"],
-    answer: 0,
-    explanation: "「乗り換え」は別の電車やバスなどに移ることです。 / 乗り換え berarti pindah kendaraan atau jalur.",
-  },
-  {
-    id: 172,
-    section: "Reading",
-    category: "読解情報検索",
-    canDo: "transport",
-    scenario: "Baca informasi kereta dan pilih jawaban yang tepat.",
-    pattern: "情報検索: 遅れ",
-    meaning: "mencari lama keterlambatan",
-    dialogue: [
-      ["案内", "電車の遅れ\n事故のため、中央線は10分遅れています。"],
-      ["質問", "中央線はどのくらい遅れていますか。"],
-    ],
-    choices: ["5分", "10分", "30分"],
-    answer: 1,
-    explanation: "案内に「10分遅れています」とあります。 / Pada informasi tertulis terlambat 10 menit.",
-  },
-  {
-    id: 173,
-    section: "Grammar",
-    category: "病院",
-    canDo: "hospital",
-    scenario: "Dokter menjelaskan urutan minum obat dan tidur.",
-    pattern: "Vて + から",
-    meaning: "setelah melakukan sesuatu",
-    dialogue: [
-      ["医者", "この薬を [blank]、寝てください。"],
-      ["患者", "はい、わかりました。"],
-    ],
-    choices: ["飲む前に", "飲みながら", "飲んでから"],
-    answer: 2,
-    explanation: "順番を言うときは「Vてから」を使います。 / Untuk menyatakan urutan setelah melakukan sesuatu, gunakan Vてから.",
-  },
-  {
-    id: 174,
-    section: "Expression",
-    category: "病院",
-    canDo: "hospital",
-    scenario: "Pasien baru datang ke klinik untuk pertama kali.",
-    pattern: "初めてです",
-    meaning: "ini pertama kali",
-    dialogue: [
-      ["受付", "この病院は初めてですか。"],
-      ["患者", "はい、[blank]。"],
-    ],
-    choices: ["初めてです", "久しぶりです", "お大事に"],
-    answer: 0,
-    explanation: "初めて来た場合は「初めてです」と答えます。 / Jika datang untuk pertama kali, jawab 初めてです.",
-  },
-  {
-    id: 175,
-    section: "Vocabulary",
-    category: "病院",
-    canDo: "hospital",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 問診票",
-    meaning: "formulir gejala/kesehatan",
-    dialogue: [["問題", "「問診票」は何ですか。"]],
-    choices: ["tiket kereta", "formulir kesehatan", "struk belanja"],
-    answer: 1,
-    explanation: "「問診票」は診察前に症状を書く用紙です。 / 問診票 adalah formulir untuk menulis gejala sebelum pemeriksaan.",
-  },
-  {
-    id: 176,
-    section: "Reading",
-    category: "読解掲示",
-    canDo: "hospital",
-    scenario: "Baca jadwal klinik dan pilih jawaban yang tepat.",
-    pattern: "掲示: 受付時間",
-    meaning: "mencari waktu pendaftaran klinik",
-    dialogue: [
-      ["掲示", "みどりクリニック\n午前受付 9:00-12:00\n午後受付 14:00-17:30\n日曜日は休み"],
-      ["質問", "午後の受付は何時からですか。"],
-    ],
-    choices: ["9:00", "12:00", "14:00"],
-    answer: 2,
-    explanation: "掲示に「午後受付 14:00-17:30」とあります。 / Pada jadwal tertulis pendaftaran sore mulai pukul 14:00.",
-  },
-  {
-    id: 177,
-    section: "Grammar",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Petugas meminta warga menyalin dokumen sebelum menyerahkannya.",
-    pattern: "Vて + から",
-    meaning: "setelah melakukan sesuatu",
-    dialogue: [
-      ["職員", "この書類はコピー [blank]、出してください。"],
-      ["住民", "はい。"],
-    ],
-    choices: ["してから", "すると", "しないで"],
-    answer: 0,
-    explanation: "「コピーしてから」はコピーした後で、という意味です。 / してから berarti setelah menyalin lalu melakukan langkah berikutnya.",
-  },
-  {
-    id: 178,
-    section: "Expression",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Warga datang ke kantor pemerintah karena alamatnya berubah.",
-    pattern: "住所が変わったんですが",
-    meaning: "alamat saya berubah, ingin berkonsultasi",
-    dialogue: [
-      ["住民", "すみません。住所が [blank]。"],
-      ["職員", "住所変更ですね。こちらへどうぞ。"],
-    ],
-    choices: ["変わりますか", "変わったんですが", "変わらないでください"],
-    answer: 1,
-    explanation: "相談を始めるときは「んですが」を使うと自然です。 / Saat membuka konsultasi dengan sopan, gunakan んですが.",
-  },
-  {
-    id: 179,
-    section: "Vocabulary",
-    category: "役所",
-    canDo: "cityhall",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 印鑑",
-    meaning: "cap/stempel pribadi",
-    dialogue: [["問題", "「印鑑」は何ですか。"]],
-    choices: ["kartu asuransi", "nomor antrean", "stempel pribadi"],
-    answer: 2,
-    explanation: "「印鑑」は書類に使う個人のはんこです。 / 印鑑 adalah stempel pribadi untuk dokumen.",
-  },
-  {
-    id: 180,
-    section: "Reading",
-    category: "読解情報検索",
-    canDo: "cityhall",
-    scenario: "Baca informasi loket dan pilih jawaban yang tepat.",
-    pattern: "情報検索: 窓口",
-    meaning: "mencari loket yang tepat",
-    dialogue: [
-      ["案内", "市役所 窓口案内\n1番: 住民票\n2番: 国民健康保険\n3番: 在留カードの相談"],
-      ["質問", "在留カードについて相談するとき、どこへ行きますか。"],
-    ],
-    choices: ["3番", "2番", "1番"],
-    answer: 0,
-    explanation: "案内に「3番: 在留カードの相談」とあります。 / Pada informasi tertulis konsultasi kartu izin tinggal di loket nomor 3.",
-  },
-  {
-    id: 181,
-    section: "Grammar",
-    category: "住まい",
-    canDo: "housing",
-    scenario: "Seseorang menjelaskan apartemen yang dekat dari stasiun.",
-    pattern: "イ形容詞い -> くて",
-    meaning: "menghubungkan dua sifat",
-    dialogue: [
-      ["客", "このアパートはどうですか。"],
-      ["店員", "駅に [blank]、便利です。"],
-    ],
-    choices: ["近いで", "近くて", "近いと"],
-    answer: 1,
-    explanation: "イ形容詞をつなぐとき、「近い」は「近くて」になります。 / Untuk menghubungkan i-keiyoushi, 近い berubah menjadi 近くて.",
-  },
-  {
-    id: 182,
-    section: "Expression",
-    category: "住まい",
-    canDo: "housing",
-    scenario: "Calon penyewa ingin melihat kamar.",
-    pattern: "部屋を見てもいいですか",
-    meaning: "bolehkah melihat kamar",
-    dialogue: [
-      ["客", "この部屋を [blank]。"],
-      ["店員", "はい、ご案内します。"],
-    ],
-    choices: ["借りましたか", "住んでいますか", "見てもいいですか"],
-    answer: 2,
-    explanation: "部屋を見る許可を聞くときは「見てもいいですか」を使います。 / Untuk meminta izin melihat kamar, gunakan 見てもいいですか.",
-  },
-  {
-    id: 183,
-    section: "Vocabulary",
-    category: "住まい",
-    canDo: "housing",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 敷金",
-    meaning: "uang jaminan sewa",
-    dialogue: [["問題", "「敷金」は何ですか。"]],
-    choices: ["uang jaminan sewa", "biaya listrik", "alamat baru"],
-    answer: 0,
-    explanation: "「敷金」は部屋を借りるときの保証金です。 / 敷金 adalah uang jaminan saat menyewa kamar atau apartemen.",
-  },
-  {
-    id: 184,
-    section: "Reading",
-    category: "読解掲示",
-    canDo: "housing",
-    scenario: "Baca pengumuman sampah di apartemen.",
-    pattern: "掲示: ごみ出し",
-    meaning: "mencari hari membuang sampah",
-    dialogue: [
-      ["掲示", "ごみ出しのお知らせ\n燃えるごみ: 月曜日・木曜日 朝8時まで\nびん・缶: 水曜日"],
-      ["質問", "燃えるごみはいつ出しますか。"],
-    ],
-    choices: ["水曜日", "月曜日と木曜日", "毎日"],
-    answer: 1,
-    explanation: "掲示に「燃えるごみ: 月曜日・木曜日」とあります。 / Pada pengumuman tertulis sampah terbakar dibuang Senin dan Kamis.",
-  },
-  {
-    id: 185,
-    section: "Grammar",
-    category: "食事",
-    canDo: "food",
-    scenario: "Pelanggan memilih menu karena suka ikan.",
-    pattern: "文 + ので",
-    meaning: "karena / sebab",
-    dialogue: [
-      ["店員", "ご注文は何になさいますか。"],
-      ["客", "魚が好き [blank]、刺身定食にします。"],
-    ],
-    choices: ["でも", "からに", "なので"],
-    answer: 2,
-    explanation: "理由を自然に言うときは「なので」を使えます。 / Untuk menyatakan alasan secara natural, gunakan なので.",
-  },
-  {
-    id: 186,
-    section: "Expression",
-    category: "食事",
-    canDo: "food",
-    scenario: "Pelanggan meminta makanan tidak dibuat pedas.",
-    pattern: "辛くしないでください",
-    meaning: "tolong jangan dibuat pedas",
-    dialogue: [
-      ["客", "すみません。あまり辛く [blank]。"],
-      ["店員", "はい、わかりました。"],
-    ],
-    choices: ["しないでください", "してもいいですか", "したいです"],
-    answer: 0,
-    explanation: "しないようにお願いするときは「しないでください」を使います。 / Untuk meminta agar sesuatu tidak dilakukan, gunakan しないでください.",
-  },
-  {
-    id: 187,
-    section: "Vocabulary",
-    category: "食事",
-    canDo: "food",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 大盛り",
-    meaning: "porsi besar",
-    dialogue: [["問題", "「大盛り」の意味は何ですか。"]],
-    choices: ["tanpa es", "porsi besar", "dibawa pulang"],
-    answer: 1,
-    explanation: "「大盛り」は普通より量が多いことです。 / 大盛り berarti porsi lebih besar dari biasa.",
-  },
-  {
-    id: 188,
-    section: "Reading",
-    category: "読解情報検索",
-    canDo: "food",
-    scenario: "Baca menu restoran dan pilih jawaban yang tepat.",
-    pattern: "情報検索: セットメニュー",
-    meaning: "mencari isi menu set",
-    dialogue: [
-      ["メニュー", "昼の定食\nからあげ定食 850円\nごはん・みそ汁つき\nごはん大盛り無料"],
-      ["質問", "からあげ定食についているものは何ですか。"],
-    ],
-    choices: ["コーヒー", "ケーキ", "ごはんとみそ汁"],
-    answer: 2,
-    explanation: "メニューに「ごはん・みそ汁つき」とあります。 / Pada menu tertulis termasuk nasi dan sup miso.",
-  },
-  {
-    id: 189,
-    section: "Grammar",
-    category: "予約",
+    category: "空席",
     canDo: "reservation",
-    scenario: "Pelanggan membuat reservasi untuk tiga orang.",
-    pattern: "人数 + で予約します",
-    meaning: "reservasi untuk sejumlah orang",
+    scenario: "Pelanggan bertanya apakah masih ada tempat kosong.",
+    pattern: "空いていますか",
+    meaning: "apakah tersedia atau kosong",
     dialogue: [
-      ["客", "土曜日、3人 [blank] 予約したいです。"],
-      ["店員", "はい、何時がよろしいですか。"],
+      ["客", "今夜、2人ですが、席は [blank]。"],
+      ["店員", "少々お待ちください。"],
     ],
-    choices: ["で", "に", "を"],
-    answer: 0,
-    explanation: "予約の人数は「3人で」のように言います。 / Jumlah orang untuk reservasi dapat dinyatakan dengan 3人で.",
+    choices: ["空いていますか", "開けていますか", "空きましたか"],
+    answer: "空いていますか",
+    explanation: "Ketersediaan tempat sekarang: 空いていますか。",
   },
   {
-    id: 190,
-    section: "Expression",
-    category: "予約",
-    canDo: "reservation",
-    scenario: "Pelanggan ingin memastikan reservasinya lewat telepon.",
-    pattern: "予約を確認したいんですが",
-    meaning: "ingin mengecek reservasi",
-    dialogue: [
-      ["客", "すみません。予約を [blank]。"],
-      ["店員", "お名前をお願いします。"],
-    ],
-    choices: ["キャンセルしました", "確認したいんですが", "食事しました"],
-    answer: 1,
-    explanation: "予約を確認したいときは「確認したいんですが」が自然です。 / Untuk mengecek reservasi dengan sopan, gunakan 確認したいんですが.",
-  },
-  {
-    id: 191,
+    id: 64,
     section: "Vocabulary",
-    category: "予約",
+    category: "空席",
     canDo: "reservation",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 満席",
-    meaning: "semua kursi penuh",
-    dialogue: [["問題", "「満席」の意味は何ですか。"]],
-    choices: ["masih kosong", "sedang libur", "semua kursi penuh"],
-    answer: 2,
-    explanation: "「満席」は席が全部うまっていることです。 / 満席 berarti semua kursi sudah penuh.",
-  },
-  {
-    id: 192,
-    section: "Reading",
-    category: "読解情報検索",
-    canDo: "reservation",
-    scenario: "Baca informasi reservasi hotel dan pilih jawaban yang tepat.",
-    pattern: "情報検索: ホテル予約",
-    meaning: "mencari waktu check-in",
+    scenario: "Petugas mengatakan restoran penuh.",
+    pattern: "満席です",
+    meaning: "penuh",
     dialogue: [
-      ["予約案内", "さくらホテル\nチェックイン 15:00から\nチェックアウト 10:00まで\n朝食 7:00-9:00"],
-      ["質問", "チェックインは何時からですか。"],
+      ["店員", "申し訳ありません。ただいま [blank]。"],
+      ["客", "そうですか。"],
     ],
-    choices: ["15:00", "10:00", "7:00"],
-    answer: 0,
-    explanation: "案内に「チェックイン 15:00から」とあります。 / Pada informasi tertulis check-in mulai pukul 15:00.",
+    choices: ["満席です", "無料です", "便利です"],
+    answer: "満席です",
+    explanation: "Tempat penuh disebut 満席。",
   },
   {
-    id: 193,
-    section: "Grammar",
-    category: "道案内",
+    id: 65,
+    section: "Expression",
+    category: "場所",
     canDo: "directions",
-    scenario: "Petugas memberi arahan setelah keluar dari stasiun.",
-    pattern: "Vて、Vてください",
-    meaning: "lakukan langkah pertama lalu langkah berikutnya",
+    scenario: "Seseorang bertanya lokasi stasiun.",
+    pattern: "駅はどこですか",
+    meaning: "di mana stasiun",
     dialogue: [
-      ["A", "市役所はどこですか。"],
-      ["B", "駅を [blank]、左に曲がってください。"],
+      ["人", "すみません。駅は [blank]。"],
+      ["係員", "この道をまっすぐ行ってください。"],
     ],
-    choices: ["出ます", "出て", "出たら"],
-    answer: 1,
-    explanation: "続けて指示するときは「て形」を使います。 / Untuk menghubungkan instruksi berurutan, gunakan bentuk て.",
+    choices: ["どこですか", "何時ですか", "いくらですか"],
+    answer: "どこですか",
+    explanation: "Lokasi ditanyakan dengan どこですか。",
   },
   {
-    id: 194,
+    id: 66,
     section: "Expression",
-    category: "道案内",
+    category: "方向",
     canDo: "directions",
-    scenario: "Seseorang bertanya apakah ada ATM di dekat sini.",
+    scenario: "Petugas memberi instruksi jalan lurus.",
+    pattern: "まっすぐ行ってください",
+    meaning: "silakan jalan lurus",
+    dialogue: [
+      ["係員", "この道を [blank] 行ってください。"],
+      ["人", "ありがとうございます。"],
+    ],
+    choices: ["まっすぐ", "右に", "左に"],
+    answer: "まっすぐ",
+    explanation: "Jalan lurus adalah まっすぐ。",
+  },
+  {
+    id: 67,
+    section: "Expression",
+    category: "方向",
+    canDo: "directions",
+    scenario: "Petugas meminta orang belok kanan.",
+    pattern: "右に曲がってください",
+    meaning: "belok kanan",
+    dialogue: [
+      ["係員", "信号で [blank] 曲がってください。"],
+      ["人", "はい。"],
+    ],
+    choices: ["右に", "上に", "前に"],
+    answer: "右に",
+    explanation: "Belok kanan adalah 右に曲がります。",
+  },
+  {
+    id: 68,
+    section: "Vocabulary",
+    category: "道",
+    canDo: "directions",
+    scenario: "Seseorang diberi arahan untuk menyeberangi persimpangan.",
+    pattern: "交差点を渡る",
+    meaning: "menyeberangi persimpangan",
+    dialogue: [
+      ["係員", "この交差点を [blank]。"],
+      ["人", "わかりました。"],
+    ],
+    choices: ["渡ってください", "待ってください", "曲がってください"],
+    answer: "渡ってください",
+    explanation: "Menyeberang jalan atau persimpangan adalah 渡ります。",
+  },
+  {
+    id: 69,
+    section: "Expression",
+    category: "所要時間",
+    canDo: "directions",
+    scenario: "Seseorang bertanya lama berjalan ke kantor pos.",
+    pattern: "どのくらいかかりますか",
+    meaning: "berapa lama",
+    dialogue: [
+      ["人", "ここから郵便局まで [blank] かかりますか。"],
+      ["係員", "歩いて15分ぐらいです。"],
+    ],
+    choices: ["どのくらい", "どんな", "どちら"],
+    answer: "どのくらい",
+    explanation: "Lama waktu ditanyakan dengan どのくらい。",
+  },
+  {
+    id: 70,
+    section: "Grammar",
+    category: "失敗",
+    canDo: "directions",
+    scenario: "Seseorang tersesat walaupun melihat peta.",
+    pattern: "道を間違えてしまいました",
+    meaning: "terlanjur salah jalan",
+    dialogue: [
+      ["人", "地図を見ながら行きましたが、道を [blank]。"],
+      ["友人", "大変でしたね。"],
+    ],
+    choices: ["間違えてしまいました", "間違えます", "間違えたいです"],
+    answer: "間違えてしまいました",
+    explanation: "Untuk kesalahan yang disesalkan, pola てしまいました cocok。",
+  },
+  {
+    id: 71,
+    section: "Vocabulary",
+    category: "駅",
+    canDo: "directions",
+    scenario: "Petugas menjelaskan pintu keluar stasiun.",
+    pattern: "東口を出る",
+    meaning: "keluar dari pintu timur",
+    dialogue: [
+      ["係員", "駅の [blank] を出てください。"],
+      ["人", "東口ですね。ありがとうございます。"],
+    ],
+    choices: ["東口", "会議室", "診察室"],
+    answer: "東口",
+    explanation: "Pintu keluar timur stasiun adalah 東口。",
+  },
+  {
+    id: 72,
+    section: "Expression",
+    category: "店を探す",
+    canDo: "directions",
+    scenario: "Seseorang bertanya apakah ada minimarket di dekat sini.",
     pattern: "この近くにありますか",
     meaning: "apakah ada di dekat sini",
     dialogue: [
-      ["A", "すみません。この近くにATMは [blank]。"],
-      ["B", "はい、コンビニの中にあります。"],
+      ["人", "この近くにコンビニは [blank]。"],
+      ["係員", "はい、角を右に曲がるとあります。"],
     ],
-    choices: ["行きますか", "できますか", "ありますか"],
-    answer: 2,
-    explanation: "場所や物があるか聞くときは「ありますか」を使います。 / Untuk menanyakan keberadaan tempat atau benda, gunakan ありますか.",
-  },
-  {
-    id: 195,
-    section: "Vocabulary",
-    category: "道案内",
-    canDo: "directions",
-    scenario: "Pilih arti kata Jepang yang paling tepat.",
-    pattern: "語彙: 交差点",
-    meaning: "persimpangan jalan",
-    dialogue: [["問題", "「交差点」の意味は何ですか。"]],
-    choices: ["persimpangan jalan", "pintu masuk", "halte bus"],
-    answer: 0,
-    explanation: "「交差点」は道が交わる場所です。 / 交差点 berarti persimpangan jalan.",
-  },
-  {
-    id: 196,
-    section: "Reading",
-    category: "読解短文",
-    canDo: "directions",
-    scenario: "Baca petunjuk jalan pendek dan pilih jawaban yang tepat.",
-    pattern: "短文: 道順",
-    meaning: "memahami urutan arah",
-    dialogue: [
-      ["本文", "駅を出て、右に曲がります。二つ目の角を左に曲がると、銀行があります。銀行のとなりが郵便局です。"],
-      ["質問", "郵便局はどこにありますか。"],
-    ],
-    choices: ["駅の中", "銀行の前", "銀行のとなり"],
-    answer: 2,
-    explanation: "本文に「銀行のとなりが郵便局です」とあります。 / Dalam teks tertulis bahwa kantor pos ada di sebelah bank.",
+    choices: ["ありますか", "いますか", "買いますか"],
+    answer: "ありますか",
+    explanation: "Toko atau benda memakai あります。",
   },
 ];
 
-const CAN_DO_AREAS = [
-  {
-    id: "shopping",
-    labelJa: "買い物",
-    labelId: "Belanja",
-    description: "Harga, ukuran, pembayaran, struk, kantong, dan percakapan di toko.",
-    keywords: ["買い物", "買", "店", "シャツ", "サイズ", "レシート", "袋", "現金", "支払い", "商品", "売り場", "安い"],
-  },
-  {
-    id: "transport",
-    labelJa: "交通",
-    labelId: "Transportasi",
-    description: "Tiket, stasiun, bus, kereta, waktu tempuh, dan perpindahan kendaraan.",
-    keywords: ["交通", "電車", "バス", "切符", "乗", "駅員", "タクシー", "野球試合", "中止"],
-  },
-  {
-    id: "hospital",
-    labelJa: "病院",
-    labelId: "Rumah sakit",
-    description: "Gejala, obat, larangan, saran dokter, dan percakapan dengan petugas.",
-    keywords: ["病院", "医者", "患者", "薬", "風邪", "熱", "頭", "痛", "診察", "保険証", "お大事"],
-  },
-  {
-    id: "cityhall",
-    labelJa: "役所",
-    labelId: "Kantor pemerintah",
-    description: "Formulir, kartu izin tinggal, alamat, loket, antrean, dan dokumen.",
-    keywords: ["役所", "市役所", "住民", "職員", "書類", "申請", "在留", "住所", "窓口", "番号札", "用紙"],
-  },
-  {
-    id: "workplace",
-    labelJa: "職場",
-    labelId: "Tempat kerja",
-    description: "Salam kerja, alat kantor, rapat, laporan, izin, dan komunikasi kerja.",
-    keywords: ["職場", "仕事", "会社", "社員", "同僚", "上司", "会議", "コピー", "機械", "レポート", "お疲れ", "失礼します"],
-  },
-  {
-    id: "housing",
-    labelJa: "住まい",
-    labelId: "Tempat tinggal",
-    description: "Kamar, apartemen, sewa, fasilitas rusak, sampah, dan pindahan.",
-    keywords: ["住まい", "部屋", "アパート", "家賃", "エアコン", "台所", "ごみ", "引っ越", "田舎", "町", "家族と住"],
-  },
-  {
-    id: "food",
-    labelJa: "食事",
-    labelId: "Makan",
-    description: "Restoran, menu, pesanan, rekomendasi, rasa, dan ucapan makan.",
-    keywords: ["食事", "食", "料理", "メニュー", "定食", "天ぷら", "レストラン", "注文", "会計", "おすすめ", "いただきます", "ごちそう"],
-  },
-  {
-    id: "reservation",
-    labelJa: "予約",
-    labelId: "Reservasi",
-    description: "Membuat, mengubah, membatalkan, dan mengonfirmasi reservasi.",
-    keywords: ["予約", "キャンセル", "変更", "空いて", "満席", "席", "名前", "電話番号", "ホテル", "泊"],
-  },
-  {
-    id: "directions",
-    labelJa: "道案内",
-    labelId: "Petunjuk jalan",
-    description: "Arah, lokasi, rute, pintu keluar, dan lama perjalanan.",
-    keywords: ["道案内", "道", "まっすぐ", "曲が", "右", "左", "交差点", "地図", "近く", "郵便局", "東口", "駅はどこ"],
-  },
-];
-
-const canDoById = Object.fromEntries(CAN_DO_AREAS.map((area) => [area.id, area]));
-
-function questionTextForCanDo(question) {
-  return [
-    question.category,
-    question.scenario,
-    question.pattern,
-    question.meaning,
-    question.explanation,
-    question.choices.join(" "),
-    question.dialogue.map((line) => line.join(" ")).join(" "),
-  ].join(" ");
-}
-
-function inferCanDo(question) {
-  const text = questionTextForCanDo(question);
-  const categoryMap = {
-    職場: "workplace",
-    食事: "food",
-    予約: "reservation",
-    接客: "food",
-    会計: "food",
-    注文: "food",
-    道案内: "directions",
-    買い物: "shopping",
-    病院: "hospital",
-    健康: "hospital",
-    案内: "directions",
-  };
-
-  if (categoryMap[question.category]) return categoryMap[question.category];
-
-  let bestArea = CAN_DO_AREAS[0];
-  let bestScore = -1;
-  CAN_DO_AREAS.forEach((area) => {
-    const score = area.keywords.reduce((total, keyword) => total + (text.includes(keyword) ? 1 : 0), 0);
-    if (score > bestScore) {
-      bestScore = score;
-      bestArea = area;
-    }
-  });
-
-  if (bestScore > 0) return bestArea.id;
-  if (question.section === "Reading") return "directions";
-  if (question.section === "Vocabulary") return "workplace";
-  return "workplace";
-}
-
-questionBank.forEach((question) => {
-  question.canDo = question.canDo || inferCanDo(question);
-});
-
-function canDoAreaFor(question) {
-  return canDoById[question.canDo] || canDoById.workplace;
-}
-
-const STORAGE_KEY = "jft-basic-a2-progress-v1";
-const TEST_CONFIGS = {
-  test: {
-    title: "Tes 20",
-    size: 20,
-    usesFilter: true,
-    durationMs: 0,
-    lockedText: "Jawab 20 soal dulu",
-  },
-  mock: {
-    title: "Simulasi 50",
-    size: 50,
-    usesFilter: false,
-    durationMs: 60 * 60 * 1000,
-    lockedText: "60 menit, tanpa petunjuk",
-  },
-};
-
-function ensureCanDoMarkup() {
-  const styleId = "can-do-dynamic-styles";
-  if (!document.querySelector(`#${styleId}`)) {
-    const style = document.createElement("style");
-    style.id = styleId;
-    style.textContent = `
-      .can-do-view,
-      .analysis-view { display: none; }
-      .can-do-view.is-visible,
-      .analysis-view.is-visible { display: block; }
-      .can-do-intro,
-      .can-do-card,
-      .analysis-intro,
-      .analysis-card,
-      .analysis-panel {
-        border: 1px solid var(--line, #d9d5ca);
-        border-radius: 8px;
-        background: var(--surface, #fffdf7);
-      }
-      .can-do-intro,
-      .analysis-intro {
-        margin-bottom: 16px;
-        padding: 20px;
-      }
-      .can-do-intro h3,
-      .can-do-intro p,
-      .can-do-card h3,
-      .can-do-card p,
-      .analysis-intro h3,
-      .analysis-intro p,
-      .analysis-card h3,
-      .analysis-card p,
-      .analysis-panel h3,
-      .analysis-panel p {
-        margin: 0;
-      }
-      .can-do-intro p,
-      .can-do-card p,
-      .analysis-intro p,
-      .analysis-card p,
-      .analysis-panel p {
-        color: var(--muted, #667078);
-        line-height: 1.5;
-      }
-      .can-do-grid,
-      .analysis-summary-grid,
-      .analysis-area-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 14px;
-      }
-      .can-do-card,
-      .analysis-card {
-        display: grid;
-        gap: 12px;
-        padding: 18px;
-      }
-      .can-do-card header,
-      .analysis-card header,
-      .analysis-panel header,
-      .analysis-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-      }
-      .can-do-count {
-        align-self: start;
-        white-space: nowrap;
-        padding: 4px 9px;
-        border-radius: 999px;
-        background: var(--green-soft, #dff2ea);
-        color: #0c4f3f;
-        font-weight: 850;
-      }
-      .analysis-card strong {
-        font-size: 28px;
-        line-height: 1;
-      }
-      .analysis-panel {
-        display: grid;
-        gap: 14px;
-        margin-top: 16px;
-        padding: 18px;
-      }
-      .analysis-columns {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-      .analysis-row {
-        padding: 12px 0;
-        border-top: 1px solid var(--line, #d9d5ca);
-      }
-      .analysis-row:first-child {
-        border-top: 0;
-        padding-top: 0;
-      }
-      .analysis-row > div:first-child {
-        flex: 1;
-        min-width: 0;
-      }
-      .analysis-row > div:last-child {
-        display: grid;
-        gap: 6px;
-        justify-items: end;
-      }
-      .analysis-row h4 {
-        margin: 0 0 4px;
-        font-size: 16px;
-      }
-      .analysis-score {
-        min-width: 68px;
-        text-align: right;
-        font-weight: 900;
-        color: var(--green, #1f8a70);
-      }
-      .analysis-score.is-low {
-        color: var(--wrong, #b3261e);
-      }
-      .analysis-score.is-empty {
-        color: var(--muted, #667078);
-      }
-      .analysis-bar {
-        overflow: hidden;
-        width: 100%;
-        height: 10px;
-        border-radius: 999px;
-        background: #ece7dc;
-      }
-      .analysis-bar span {
-        display: block;
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, var(--green, #1f8a70), var(--gold, #c28a10));
-      }
-      .analysis-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .can-do-card button,
-      .analysis-actions button {
-        justify-self: start;
-        min-height: 38px;
-        padding: 0 12px;
-        border: 1px solid var(--line, #d9d5ca);
-        border-radius: 8px;
-        background: var(--surface-strong, #fff);
-        font-weight: 850;
-      }
-      .analysis-empty {
-        padding: 16px;
-        border: 1px dashed var(--line, #d9d5ca);
-        border-radius: 8px;
-        color: var(--muted, #667078);
-      }
-      @media (max-width: 900px) {
-        .analysis-columns {
-          grid-template-columns: 1fr;
-        }
-      }
-    `;
-    document.head.append(style);
-  }
-
-  const categoryFilter = document.querySelector("#categoryFilter");
-  if (categoryFilter && !document.querySelector("#canDoFilter")) {
-    const block = document.createElement("div");
-    block.className = "control-block";
-    block.innerHTML = `
-      <label for="canDoFilter">Can-do</label>
-      <select id="canDoFilter"></select>
-    `;
-    const categoryBlock = categoryFilter.closest(".control-block");
-    if (categoryBlock) categoryBlock.after(block);
-  }
-
-  const modeTabs = document.querySelector(".mode-tabs");
-  if (modeTabs && !document.querySelector('[data-view="cando"]')) {
-    const button = document.createElement("button");
-    button.className = "mode-tab";
-    button.dataset.view = "cando";
-    button.type = "button";
-    button.setAttribute("role", "tab");
-    button.setAttribute("aria-selected", "false");
-    button.innerHTML = '<span aria-hidden="true">▣</span> Can-do別';
-    const testTab = modeTabs.querySelector('[data-view="test"]');
-    if (testTab) modeTabs.insertBefore(button, testTab);
-    else modeTabs.append(button);
-  }
-
-  if (modeTabs && !document.querySelector('[data-view="analysis"]')) {
-    const button = document.createElement("button");
-    button.className = "mode-tab";
-    button.dataset.view = "analysis";
-    button.type = "button";
-    button.setAttribute("role", "tab");
-    button.setAttribute("aria-selected", "false");
-    button.innerHTML = '<span aria-hidden="true">◎</span> Analisis';
-    const reviewTab = modeTabs.querySelector('[data-view="review"]');
-    if (reviewTab) modeTabs.insertBefore(button, reviewTab);
-    else modeTabs.append(button);
-  }
-
-  const workspace = document.querySelector(".workspace") || document.querySelector("main");
-  if (workspace && !document.querySelector("#canDoView")) {
-    const view = document.createElement("section");
-    view.className = "view can-do-view";
-    view.id = "canDoView";
-    view.innerHTML = `
-      <div class="can-do-intro">
-        <h3>Can-do別学習</h3>
-        <p>JFT Basic A2は生活場面ベースです。文法順だけでなく、買い物・交通・病院・役所・職場・住まい・食事・予約・道案内から練習できます。</p>
-      </div>
-      <div class="can-do-grid" id="canDoGrid"></div>
-    `;
-    workspace.append(view);
-  }
-
-  if (workspace && !document.querySelector("#analysisView")) {
-    const view = document.createElement("section");
-    view.className = "view analysis-view";
-    view.id = "analysisView";
-    view.innerHTML = `
-      <div class="analysis-intro">
-        <h3>弱点分析 / Analisis kelemahan</h3>
-        <p>Can-do、セクション、カテゴリごとに正答率とミスを見ます。Bagian yang lemah akan lebih mudah dipilih untuk latihan ulang.</p>
-      </div>
-      <div class="analysis-summary-grid" id="analysisSummary"></div>
-      <section class="analysis-panel">
-        <header>
-          <div>
-            <h3>Can-do別の強み・弱み</h3>
-            <p>Akurasi berdasarkan situasi kehidupan.</p>
-          </div>
-        </header>
-        <div class="analysis-area-list" id="analysisCanDoList"></div>
-      </section>
-      <div class="analysis-columns">
-        <section class="analysis-panel">
-          <header>
-            <div>
-              <h3>セクション別</h3>
-              <p>Grammar, Expression, Vocabulary, Reading.</p>
-            </div>
-          </header>
-          <div id="analysisSectionList"></div>
-        </section>
-        <section class="analysis-panel">
-          <header>
-            <div>
-              <h3>弱いカテゴリ</h3>
-              <p>Kategori dengan prioritas latihan tertinggi.</p>
-            </div>
-          </header>
-          <div id="analysisCategoryList"></div>
-        </section>
-      </div>
-      <section class="analysis-panel">
-        <header>
-          <div>
-            <h3>優先レビュー問題</h3>
-            <p>Kesalahan terbanyak ditampilkan paling atas.</p>
-          </div>
-        </header>
-        <div class="question-list" id="analysisQuestionList"></div>
-      </section>
-    `;
-    workspace.append(view);
-  }
-}
-
-ensureCanDoMarkup();
+const STORAGE_KEY = "jft-basic-a2-cando-progress-v1";
+const canDoById = Object.fromEntries(canDoAreas.map((area) => [area.id, area]));
 
 const els = {
-  metricAnswered: document.querySelector("#metricAnswered"),
-  metricAccuracy: document.querySelector("#metricAccuracy"),
-  metricStreak: document.querySelector("#metricStreak"),
-  metricReview: document.querySelector("#metricReview"),
-  sectionFilter: document.querySelector("#sectionFilter"),
-  categoryFilter: document.querySelector("#categoryFilter"),
-  canDoFilter: document.querySelector("#canDoFilter"),
-  modeTabs: [...document.querySelectorAll(".mode-tab")],
-  shuffleBtn: document.querySelector("#shuffleBtn"),
-  resetBtn: document.querySelector("#resetBtn"),
-  sidebarResetBtn: document.querySelector("#sidebarResetBtn"),
-  toolbarMeta: document.querySelector("#toolbarMeta"),
-  viewTitle: document.querySelector("#viewTitle"),
+  metricAnswered: document.getElementById("metricAnswered"),
+  metricAccuracy: document.getElementById("metricAccuracy"),
+  metricStreak: document.getElementById("metricStreak"),
+  metricReview: document.getElementById("metricReview"),
+  sectionFilter: document.getElementById("sectionFilter"),
+  categoryFilter: document.getElementById("categoryFilter"),
+  canDoFilter: document.getElementById("canDoFilter"),
+  modeTabs: Array.from(document.querySelectorAll(".mode-tab")),
+  sidebarResetBtn: document.getElementById("sidebarResetBtn"),
+  toolbarMeta: document.getElementById("toolbarMeta"),
+  viewTitle: document.getElementById("viewTitle"),
+  shuffleBtn: document.getElementById("shuffleBtn"),
+  resetBtn: document.getElementById("resetBtn"),
   views: {
-    practice: document.querySelector("#practiceView"),
-    cando: document.querySelector("#canDoView"),
-    analysis: document.querySelector("#analysisView"),
-    test: document.querySelector("#practiceView"),
-    mock: document.querySelector("#practiceView"),
-    bank: document.querySelector("#bankView"),
-    review: document.querySelector("#reviewView"),
+    practice: document.getElementById("practiceView"),
+    cando: document.getElementById("candoView"),
+    test: document.getElementById("practiceView"),
+    mock: document.getElementById("practiceView"),
+    bank: document.getElementById("bankView"),
+    review: document.getElementById("reviewView"),
   },
-  questionSection: document.querySelector("#questionSection"),
-  questionCategory: document.querySelector("#questionCategory"),
-  questionNumber: document.querySelector("#questionNumber"),
-  questionPanel: document.querySelector(".question-panel"),
-  scenarioText: document.querySelector("#scenarioText"),
-  dialogueBox: document.querySelector("#dialogueBox"),
-  choicesBox: document.querySelector("#choicesBox"),
-  feedbackBox: document.querySelector("#feedbackBox"),
-  prevBtn: document.querySelector("#prevBtn"),
-  nextBtn: document.querySelector("#nextBtn"),
-  topPrevBtn: document.querySelector("#topPrevBtn"),
-  topNextBtn: document.querySelector("#topNextBtn"),
-  patternLabel: document.querySelector("#patternLabel"),
-  patternText: document.querySelector("#patternText"),
-  meaningLabel: document.querySelector("#meaningLabel"),
-  meaningText: document.querySelector("#meaningText"),
-  progressFill: document.querySelector("#progressFill"),
-  progressText: document.querySelector("#progressText"),
-  testProgressPanel: document.querySelector("#testProgressPanel"),
-  testProgressTitle: document.querySelector("#testProgressTitle"),
-  testAnsweredCount: document.querySelector("#testAnsweredCount"),
-  testCorrectCount: document.querySelector("#testCorrectCount"),
-  testAccuracy: document.querySelector("#testAccuracy"),
-  testAnswerProgressFill: document.querySelector("#testAnswerProgressFill"),
-  searchInput: document.querySelector("#searchInput"),
-  questionList: document.querySelector("#questionList"),
-  reviewSummary: document.querySelector("#reviewSummary"),
-  reviewList: document.querySelector("#reviewList"),
-  canDoGrid: document.querySelector("#canDoGrid"),
-  analysisSummary: document.querySelector("#analysisSummary"),
-  analysisCanDoList: document.querySelector("#analysisCanDoList"),
-  analysisSectionList: document.querySelector("#analysisSectionList"),
-  analysisCategoryList: document.querySelector("#analysisCategoryList"),
-  analysisQuestionList: document.querySelector("#analysisQuestionList"),
+  questionSection: document.getElementById("questionSection"),
+  questionCategory: document.getElementById("questionCategory"),
+  questionCanDo: document.getElementById("questionCanDo"),
+  questionNumber: document.getElementById("questionNumber"),
+  scenarioText: document.getElementById("scenarioText"),
+  dialogueBox: document.getElementById("dialogueBox"),
+  choicesBox: document.getElementById("choicesBox"),
+  feedbackBox: document.getElementById("feedbackBox"),
+  prevBtn: document.getElementById("prevBtn"),
+  nextBtn: document.getElementById("nextBtn"),
+  patternLabel: document.getElementById("patternLabel"),
+  patternText: document.getElementById("patternText"),
+  meaningLabel: document.getElementById("meaningLabel"),
+  meaningText: document.getElementById("meaningText"),
+  progressFill: document.getElementById("progressFill"),
+  progressText: document.getElementById("progressText"),
+  canDoGrid: document.getElementById("canDoGrid"),
+  searchInput: document.getElementById("searchInput"),
+  questionList: document.getElementById("questionList"),
+  reviewSummary: document.getElementById("reviewSummary"),
+  reviewList: document.getElementById("reviewList"),
 };
 
 const state = {
   view: "practice",
   index: 0,
-  selected: null,
+  practiceAnswers: {},
+  practiceOrder: [],
+  session: null,
   search: "",
-  testQuestionIds: [],
-  testAnswers: {},
-  choiceOrders: {},
-  testFinished: false,
-  testStartedAt: 0,
-  testDurationMs: 0,
   progress: loadProgress(),
 };
 
 function loadProgress() {
+  const fallback = {
+    totalAnswered: 0,
+    totalCorrect: 0,
+    streak: 0,
+    answeredByQuestion: {},
+    review: {},
+  };
+
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return normalizeProgress(JSON.parse(raw));
+    return raw ? { ...fallback, ...JSON.parse(raw) } : fallback;
   } catch {
-    // localStorage can be unavailable in some preview contexts.
+    return fallback;
   }
-  return normalizeProgress();
-}
-
-function normalizeProgress(progress = {}) {
-  return {
-    answered: progress.answered || 0,
-    correct: progress.correct || 0,
-    streak: progress.streak || 0,
-    attempts: progress.attempts || {},
-    mistakes: progress.mistakes || {},
-  };
 }
 
 function saveProgress() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
-  } catch {
-    // Progress is optional; the app still works without persistence.
-  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
 }
 
 function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
-function renderTextWithBlank(text) {
-  return escapeHtml(text).replaceAll("[blank]", '<span class="blank">[&ensp;&ensp;]</span>');
-}
-
-function isTestMode(view = state.view) {
-  return Boolean(TEST_CONFIGS[view]);
-}
-
-function shouldRevealAnswer() {
-  return state.selected !== null || state.testFinished;
-}
-
-function choiceOrderFor(question) {
-  if (isTestMode() && state.choiceOrders[question.id]) return state.choiceOrders[question.id];
-  return question.choices.map((_, index) => index);
-}
-
-function currentQuestions() {
-  if (isTestMode() && state.testQuestionIds.length) {
-    return state.testQuestionIds
-      .map((id) => questionBank.find((question) => question.id === id))
-      .filter(Boolean);
-  }
-
-  const section = els.sectionFilter.value;
-  const category = els.categoryFilter.value;
-  const canDo = els.canDoFilter?.value || "all";
-  return questionBank.filter((question) => {
-    const matchesSection = section === "all" || question.section === section;
-    const matchesCategory = category === "all" || question.category === category;
-    const matchesCanDo = canDo === "all" || question.canDo === canDo;
-    return matchesSection && matchesCategory && matchesCanDo;
-  });
-}
-
-function filteredQuestionPool() {
-  const section = els.sectionFilter.value;
-  const category = els.categoryFilter.value;
-  const canDo = els.canDoFilter?.value || "all";
-  return questionBank.filter((question) => {
-    const matchesSection = section === "all" || question.section === section;
-    const matchesCategory = category === "all" || question.category === category;
-    const matchesCanDo = canDo === "all" || question.canDo === canDo;
-    return matchesSection && matchesCategory && matchesCanDo;
-  });
-}
-
-function mockQuestionPool() {
-  const selected = [];
-  const selectedIds = new Set();
-  const take = (pool, count) => {
-    shuffled(pool)
-      .filter((question) => !selectedIds.has(question.id))
-      .slice(0, count)
-      .forEach((question) => {
-        selected.push(question);
-        selectedIds.add(question.id);
-      });
-  };
-
-  take(
-    questionBank.filter((question) => question.section === "Vocabulary"),
-    15,
+function blankify(text) {
+  return escapeHtml(text).replaceAll(
+    "[blank]",
+    '<span class="blank" aria-label="blank">[]</span>',
   );
-  take(
-    questionBank.filter((question) => question.section === "Grammar" || question.section === "Expression"),
-    25,
-  );
-  take(
-    questionBank.filter((question) => question.section === "Reading"),
-    10,
-  );
-  take(questionBank, TEST_CONFIGS.mock.size - selected.length);
-  return shuffled(selected);
 }
 
-function shuffled(items) {
+function shuffle(items) {
   const copy = [...items];
-  for (let index = copy.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
 }
 
-function startTest(view = state.view) {
-  const config = TEST_CONFIGS[view] || TEST_CONFIGS.test;
-  const pool = config.usesFilter ? filteredQuestionPool() : mockQuestionPool();
-  const selectedQuestions = shuffled(pool).slice(0, config.size);
-  state.testQuestionIds = selectedQuestions.map((question) => question.id);
-  state.testAnswers = {};
-  state.choiceOrders = Object.fromEntries(
-    selectedQuestions.map((question) => [
-      question.id,
-      shuffled(question.choices.map((_, choiceIndex) => choiceIndex)),
-    ]),
+function uniqueSorted(items) {
+  return [...new Set(items)].sort((a, b) => a.localeCompare(b, "ja"));
+}
+
+function activeFilters() {
+  return {
+    section: els.sectionFilter.value,
+    category: els.categoryFilter.value,
+    canDo: els.canDoFilter.value,
+  };
+}
+
+function questionMatchesFilters(question) {
+  const filters = activeFilters();
+  return (
+    (filters.section === "all" || question.section === filters.section) &&
+    (filters.category === "all" || question.category === filters.category) &&
+    (filters.canDo === "all" || question.canDo === filters.canDo)
   );
-  state.testFinished = false;
-  state.testStartedAt = Date.now();
-  state.testDurationMs = config.durationMs;
-  state.index = 0;
-  state.selected = null;
 }
 
-function syncSelectedFromTest() {
-  if (!isTestMode()) return;
-  const question = currentQuestions()[state.index];
-  state.selected = question ? (state.testAnswers[question.id] ?? null) : null;
+function filteredQuestions() {
+  return questionBank.filter(questionMatchesFilters);
 }
 
-function remainingMs() {
-  if (!state.testDurationMs || !state.testStartedAt) return null;
-  return Math.max(0, state.testDurationMs - (Date.now() - state.testStartedAt));
+function currentPool() {
+  if (state.session && (state.view === "test" || state.view === "mock")) {
+    return state.session.ids.map((id) => questionBank.find((question) => question.id === id));
+  }
+
+  const filtered = filteredQuestions();
+  if (!state.practiceOrder.length) return filtered;
+
+  const filteredIds = new Set(filtered.map((question) => question.id));
+  const ordered = state.practiceOrder
+    .filter((id) => filteredIds.has(id))
+    .map((id) => questionBank.find((question) => question.id === id));
+  const orderedIds = new Set(ordered.map((question) => question.id));
+  const missing = filtered.filter((question) => !orderedIds.has(question.id));
+  return [...ordered, ...missing];
 }
 
-function formatTime(ms) {
-  if (ms === null) return "";
-  const totalSeconds = Math.ceil(ms / 1000);
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+function currentQuestion() {
+  const pool = currentPool();
+  return pool.length ? pool[Math.min(state.index, pool.length - 1)] : null;
 }
 
-function finishTestIfExpired() {
-  const left = remainingMs();
-  if (isTestMode() && left === 0 && !state.testFinished) state.testFinished = true;
+function currentAnswer(question) {
+  if (!question) return null;
+  if (state.session && (state.view === "test" || state.view === "mock")) {
+    return state.session.answers[question.id] || null;
+  }
+  return state.practiceAnswers[question.id] || null;
 }
 
-function renderCategoryOptions() {
-  const section = els.sectionFilter.value;
-  const canDo = els.canDoFilter?.value || "all";
-  const current = els.categoryFilter.value || "all";
-  const categories = [
-    ...new Set(
-      questionBank
-        .filter(
-          (question) =>
-            (section === "all" || question.section === section) &&
-            (canDo === "all" || question.canDo === canDo),
-        )
-        .map((question) => question.category),
-    ),
-  ].sort((a, b) => a.localeCompare(b, "ja"));
+function isSessionView() {
+  return state.view === "test" || state.view === "mock";
+}
+
+function choiceOrder(question) {
+  if (!question) return [];
+  if (isSessionView() && state.session?.choiceOrders[question.id]) {
+    return state.session.choiceOrders[question.id];
+  }
+  return question.choices.map((_, index) => index);
+}
+
+function renderFilterOptions() {
+  const selectedCategory = els.categoryFilter.value || "all";
+  const categories = uniqueSorted(
+    questionBank
+      .filter((question) => {
+        const selectedSection = els.sectionFilter.value;
+        return selectedSection === "all" || question.section === selectedSection;
+      })
+      .map((question) => question.category),
+  );
 
   els.categoryFilter.innerHTML = [
     '<option value="all">Semua kategori</option>',
     ...categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`),
   ].join("");
-  els.categoryFilter.value = categories.includes(current) ? current : "all";
-}
+  els.categoryFilter.value = categories.includes(selectedCategory) ? selectedCategory : "all";
 
-function renderCanDoOptions() {
-  if (!els.canDoFilter) return;
-  const current = els.canDoFilter.value || "all";
+  const selectedCanDo = els.canDoFilter.value || "all";
   els.canDoFilter.innerHTML = [
     '<option value="all">Semua Can-do</option>',
-    ...CAN_DO_AREAS.map((area) => {
-      const count = questionBank.filter((question) => question.canDo === area.id).length;
-      return `<option value="${area.id}">${escapeHtml(area.labelJa)} / ${escapeHtml(area.labelId)} (${count})</option>`;
-    }),
+    ...canDoAreas.map(
+      (area) =>
+        `<option value="${area.id}">${escapeHtml(area.labelJa)} / ${escapeHtml(area.labelId)}</option>`,
+    ),
   ].join("");
-  els.canDoFilter.value = CAN_DO_AREAS.some((area) => area.id === current) ? current : "all";
+  els.canDoFilter.value = canDoAreas.some((area) => area.id === selectedCanDo)
+    ? selectedCanDo
+    : "all";
 }
 
 function renderStats() {
-  const { answered, correct, streak, mistakes } = state.progress;
-  const reviewCount = Object.values(mistakes).filter((count) => count > 0).length;
-  const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
-
-  els.metricAnswered.textContent = answered;
+  const { totalAnswered, totalCorrect, streak, review } = state.progress;
+  const accuracy = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+  els.metricAnswered.textContent = String(totalAnswered);
   els.metricAccuracy.textContent = `${accuracy}%`;
-  els.metricStreak.textContent = streak;
-  els.metricReview.textContent = reviewCount;
+  els.metricStreak.textContent = String(streak);
+  els.metricReview.textContent = String(Object.keys(review).length);
 }
 
-function renderTestProgress(questions) {
-  if (!els.testProgressPanel) return;
-
-  const visible = isTestMode();
-  els.testProgressPanel.hidden = !visible;
-  if (!visible) return;
-
-  const answered = questions.filter((question) => state.testAnswers[question.id] !== undefined).length;
-  const correct = questions.filter((question) => state.testAnswers[question.id] === question.answer).length;
-  const accuracy = answered ? Math.round((correct / answered) * 100) : 0;
-  const progress = questions.length ? (answered / questions.length) * 100 : 0;
-
-  els.testProgressTitle.textContent = TEST_CONFIGS[state.view].title;
-  els.testAnsweredCount.textContent = `${answered} / ${questions.length}`;
-  els.testCorrectCount.textContent = `${correct}`;
-  els.testAccuracy.textContent = `${accuracy}%`;
-  els.testAnswerProgressFill.style.width = `${progress}%`;
+function renderTabs() {
+  els.modeTabs.forEach((tab) => {
+    const isActive = tab.dataset.view === state.view;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
+  });
 }
 
-function renderPractice() {
-  finishTestIfExpired();
-  const questions = currentQuestions();
-  renderTestProgress(questions);
-  if (!questions.length) {
-    els.scenarioText.textContent = "Tidak ada soal pada filter ini.";
+function renderViews() {
+  Object.values(els.views).forEach((view) => view.classList.remove("is-visible"));
+  if (state.view === "test" || state.view === "mock") {
+    els.views.practice.classList.add("is-visible");
+    return;
+  }
+  els.views[state.view].classList.add("is-visible");
+}
+
+function formatTime(ms) {
+  const safeMs = Math.max(0, ms);
+  const minutes = Math.floor(safeMs / 60000);
+  const seconds = Math.floor((safeMs % 60000) / 1000);
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function sessionScore() {
+  if (!state.session) return { answered: 0, correct: 0, total: 0 };
+  const questions = currentPool();
+  const answered = Object.keys(state.session.answers).length;
+  const correct = questions.filter((question) => state.session.answers[question.id] === question.answer).length;
+  return { answered, correct, total: questions.length };
+}
+
+function renderToolbar() {
+  const pool = currentPool();
+  const titles = {
+    practice: "Latihan",
+    cando: "Can-do別学習",
+    test: "Tes 20",
+    mock: "Simulasi 50",
+    bank: "Bank Soal",
+    review: "Review",
+  };
+  els.viewTitle.textContent = titles[state.view];
+
+  if (state.view === "mock" && state.session) {
+    const remaining = state.session.durationMs - (Date.now() - state.session.startedAt);
+    els.toolbarMeta.textContent = `${sessionScore().answered}/${state.session.ids.length} dijawab · Sisa ${formatTime(remaining)}`;
+  } else if (state.view === "test" && state.session) {
+    els.toolbarMeta.textContent = `${sessionScore().answered}/${state.session.ids.length} dijawab`;
+  } else if (state.view === "cando") {
+    els.toolbarMeta.textContent = `${canDoAreas.length} Can-do area`;
+  } else if (state.view === "bank") {
+    els.toolbarMeta.textContent = `${bankQuestions().length} soal ditampilkan`;
+  } else if (state.view === "review") {
+    els.toolbarMeta.textContent = `${Object.keys(state.progress.review).length} soal perlu review`;
+  } else {
+    els.toolbarMeta.textContent = `${pool.length} soal aktif dari ${questionBank.length} soal`;
+  }
+
+  els.shuffleBtn.textContent = state.view === "test" || state.view === "mock" ? "⤨ Tes baru" : "⤨ Acak";
+}
+
+function renderQuestion() {
+  const question = currentQuestion();
+  const pool = currentPool();
+
+  if (!question) {
+    els.questionSection.textContent = "-";
+    els.questionCategory.textContent = "-";
+    els.questionCanDo.textContent = "-";
+    els.questionNumber.textContent = "No. -";
+    els.scenarioText.textContent = "Tidak ada soal untuk filter ini.";
     els.dialogueBox.innerHTML = "";
     els.choicesBox.innerHTML = "";
     els.feedbackBox.hidden = true;
+    els.patternText.textContent = "Ubah filter";
+    els.meaningText.textContent = "Tidak ada soal";
+    els.progressFill.style.width = "0%";
+    els.progressText.textContent = "0 / 0";
     return;
   }
 
-  if (state.index >= questions.length) state.index = 0;
-  syncSelectedFromTest();
-  const question = questions[state.index];
-  const progress = ((state.index + 1) / questions.length) * 100;
-  const answered = state.selected !== null;
-  const revealAnswer = shouldRevealAnswer();
-  const showHints = revealAnswer;
-  const showTestReview = isTestMode() && state.testFinished;
+  const answer = currentAnswer(question);
+  const area = canDoById[question.canDo];
+  const answered = Boolean(answer);
+  const isCorrect = answer === question.answer;
 
   els.questionSection.textContent = question.section;
-  els.questionCategory.textContent = `${question.category} / ${canDoAreaFor(question).labelJa}`;
+  els.questionCategory.textContent = question.category;
+  els.questionCanDo.textContent = area.labelJa;
   els.questionNumber.textContent = `No. ${question.id}`;
   els.scenarioText.textContent = question.scenario;
-  if (showHints || showTestReview) {
-    els.patternLabel.textContent = "Pola";
-    els.meaningLabel.textContent = "Makna";
-    els.patternText.textContent = question.pattern;
-    els.meaningText.textContent = question.meaning;
-  } else if (isTestMode()) {
-    const config = TEST_CONFIGS[state.view];
-    els.patternLabel.textContent = config.title;
-    els.meaningLabel.textContent = state.testDurationMs ? "Sisa waktu" : "Petunjuk";
-    els.patternText.textContent = "Tidak ada petunjuk";
-    els.meaningText.textContent = state.testDurationMs ? formatTime(remainingMs()) : config.lockedText;
-  } else {
-    els.patternLabel.textContent = "Petunjuk";
-    els.meaningLabel.textContent = "Status";
-    els.patternText.textContent = "Terkunci";
-    els.meaningText.textContent = "Pilih jawaban dulu";
-  }
-  els.progressFill.style.width = `${progress}%`;
-  els.progressText.textContent = `${state.index + 1} / ${questions.length}`;
-
   els.dialogueBox.innerHTML = question.dialogue
     .map(
       ([speaker, text]) => `
         <div class="dialogue-line">
           <div class="speaker">${escapeHtml(speaker)}</div>
-          <div class="utterance">${renderTextWithBlank(text)}</div>
+          <div class="utterance">${blankify(text)}</div>
         </div>
       `,
     )
     .join("");
 
-  els.choicesBox.innerHTML = choiceOrderFor(question)
-    .map((originalChoiceIndex, displayIndex) => {
-      const choice = question.choices[originalChoiceIndex];
-      const isSelected = state.selected === originalChoiceIndex;
-      const isCorrect = answered && revealAnswer && originalChoiceIndex === question.answer;
-      const isWrong = answered && revealAnswer && isSelected && originalChoiceIndex !== question.answer;
-      const statusText = isCorrect ? "Benar" : isWrong ? "Salah" : "";
-      const className = [
-        "choice-button",
-        isSelected ? "is-selected" : "",
-        isCorrect ? "is-correct" : "",
-        isWrong ? "is-wrong" : "",
-      ]
-        .filter(Boolean)
-        .join(" ");
-
+  els.choicesBox.innerHTML = choiceOrder(question)
+    .map((choiceIndex, displayIndex) => {
+      const choice = question.choices[choiceIndex];
+      const selected = answer === choice;
+      const correct = choice === question.answer;
+      const showStatus = answered || state.session?.finished;
+      const classes = ["choice-button"];
+      if (selected) classes.push("is-selected");
+      if (showStatus && correct) classes.push("is-correct");
+      if (showStatus && selected && !correct) classes.push("is-wrong");
+      const status =
+        showStatus && correct
+          ? '<span class="choice-status">Benar</span>'
+          : showStatus && selected
+            ? '<span class="choice-status">Salah</span>'
+            : "";
       return `
-        <button class="${className}" type="button" data-choice="${originalChoiceIndex}">
+        <button class="${classes.join(" ")}" type="button" data-choice="${escapeHtml(choice)}">
           <span class="choice-index">${displayIndex + 1}</span>
           <span class="choice-text">${escapeHtml(choice)}</span>
-          ${statusText ? `<span class="choice-status">${statusText}</span>` : ""}
+          ${status}
         </button>
       `;
     })
     .join("");
 
-  els.choicesBox.querySelectorAll("[data-choice]").forEach((button) => {
-    button.addEventListener("click", () => chooseAnswer(Number(button.dataset.choice)));
-  });
-
-  renderFeedback(question);
-  renderQuestionActions(questions.length);
-}
-
-const INDONESIAN_EXPLANATION_MARKERS =
-  /\b(agar|akan|atau|bentuk|berarti|dalam|dan|dengan|dari|di|gunakan|jawaban|jika|kalau|karena|kata|ketika|makna|menanyakan|menyatakan|pola|saat|sebagai|tidak|untuk|yang)\b/i;
-
-function explanationLanguage(text) {
-  const value = String(text ?? "").trim();
-  if (!value) return "unknown";
-
-  const japaneseChars = (value.match(/[ぁ-んァ-ン一-龯]/g) || []).length;
-  const latinChars = (value.match(/[A-Za-zÀ-ÿ]/g) || []).length;
-  if (INDONESIAN_EXPLANATION_MARKERS.test(value) || latinChars > japaneseChars) return "id";
-  if (japaneseChars) return "ja";
-  return "id";
-}
-
-function explanationJaFor(question) {
-  if (explanationLanguage(question.explanation) === "ja") return question.explanation;
-
-  const answer = question.choices[question.answer];
-  const pattern = question.pattern ? `この問題では「${question.pattern}」の形を使います。` : "";
-  return `正解は「${answer}」です。${pattern}`;
-}
-
-function explanationIdFor(question) {
-  if (explanationLanguage(question.explanation) === "id") return question.explanation;
-
-  const answer = question.choices[question.answer];
-  const pattern = question.pattern ? `Pola yang dipakai adalah ${question.pattern}.` : "";
-  const meaning = question.meaning ? `Makna/fungsinya: ${question.meaning}.` : "";
-  return [`Jawaban yang benar adalah 「${answer}」.`, pattern, meaning].filter(Boolean).join(" ");
-}
-
-function renderBilingualExplanation(question) {
-  return `
-    <span><strong>日本語:</strong> ${escapeHtml(explanationJaFor(question))}</span>
-    <span><strong>Bahasa Indonesia:</strong> ${escapeHtml(explanationIdFor(question))}</span>
-  `;
-}
-
-function renderFeedback(question) {
-  if (isTestMode() && state.testFinished) {
-    const questions = currentQuestions();
-    const correct = questions.filter((item) => state.testAnswers[item.id] === item.answer).length;
+  if (answered) {
     els.feedbackBox.hidden = false;
-    els.feedbackBox.className = "feedback correct";
+    els.feedbackBox.className = `feedback ${isCorrect ? "correct" : "wrong"}`;
     els.feedbackBox.innerHTML = `
-      <strong>Hasil tes: ${correct} / ${questions.length}</strong>
-      <span><strong>日本語:</strong> 正解は緑色で表示されます。もう一度受けると、新しい問題セットで練習できます。</span>
-      <span><strong>Bahasa Indonesia:</strong> Jawaban benar ditandai hijau. Tekan Acak soal atau buka mode tes lagi untuk mulai paket baru.</span>
+      <strong>${isCorrect ? "Benar" : "Salah"}</strong>
+      Jawaban: <span class="list-answer">${escapeHtml(question.answer)}</span><br>
+      ${escapeHtml(question.explanation)}
     `;
-    return;
-  }
-
-  if (state.selected === null) {
-    els.feedbackBox.hidden = true;
+  } else if (state.session?.finished) {
+    els.feedbackBox.hidden = false;
     els.feedbackBox.className = "feedback";
-    els.feedbackBox.innerHTML = "";
-    return;
-  }
-
-  const isCorrect = state.selected === question.answer;
-  els.feedbackBox.hidden = false;
-  els.feedbackBox.className = `feedback ${isCorrect ? "correct" : "wrong"}`;
-  els.feedbackBox.innerHTML = `
-    <strong>${isCorrect ? "Benar!" : `Salah. Jawaban benar: ${escapeHtml(question.choices[question.answer])}`}</strong>
-    ${renderBilingualExplanation(question)}
-  `;
-}
-
-function renderQuestionActions(total) {
-  const isLast = state.index === total - 1;
-  const prevButtons = [els.prevBtn, els.topPrevBtn].filter(Boolean);
-  const nextButtons = [els.nextBtn, els.topNextBtn].filter(Boolean);
-  prevButtons.forEach((button) => {
-    button.style.visibility = isTestMode() && state.index === 0 ? "hidden" : "visible";
-  });
-
-  if (isTestMode()) {
-    const nextLabel =
-      isLast && state.selected !== null && !state.testFinished
-        ? 'Selesai <span aria-hidden="true">✓</span>'
-        : 'Berikutnya <span aria-hidden="true">›</span>';
-    nextButtons.forEach((button) => {
-      button.innerHTML = nextLabel;
-    });
-    return;
-  }
-
-  nextButtons.forEach((button) => {
-    button.innerHTML = 'Berikutnya <span aria-hidden="true">›</span>';
-  });
-}
-
-function chooseAnswer(choiceIndex) {
-  if (state.selected !== null) return;
-
-  const question = currentQuestions()[state.index];
-  state.selected = choiceIndex;
-  if (isTestMode()) state.testAnswers[question.id] = choiceIndex;
-  state.progress.answered += 1;
-  state.progress.attempts[question.id] = (state.progress.attempts[question.id] || 0) + 1;
-
-  if (choiceIndex === question.answer) {
-    state.progress.correct += 1;
-    state.progress.streak += 1;
+    els.feedbackBox.innerHTML = `
+      <strong>Belum dijawab</strong>
+      Jawaban: <span class="list-answer">${escapeHtml(question.answer)}</span><br>
+      ${escapeHtml(question.explanation)}
+    `;
   } else {
-    state.progress.streak = 0;
-    state.progress.mistakes[question.id] = (state.progress.mistakes[question.id] || 0) + 1;
+    els.feedbackBox.hidden = true;
+    els.feedbackBox.innerHTML = "";
   }
 
-  saveProgress();
-  renderAll();
+  const canRevealHint = answered || state.session?.finished;
+  els.patternLabel.textContent = canRevealHint ? "Pola" : "Petunjuk";
+  els.patternText.textContent = canRevealHint ? question.pattern : "Pilih jawaban dulu";
+  els.meaningLabel.textContent = canRevealHint ? "Makna" : "Status";
+  els.meaningText.textContent = canRevealHint ? question.meaning : "Jawaban belum dibuka";
+
+  const progressWidth = pool.length ? ((state.index + 1) / pool.length) * 100 : 0;
+  els.progressFill.style.width = `${progressWidth}%`;
+  els.progressText.textContent = `${state.index + 1} / ${pool.length}`;
+  els.prevBtn.disabled = state.index === 0;
+  els.nextBtn.textContent =
+    isSessionView() && state.index === pool.length - 1 && !state.session?.finished
+      ? "Selesai ›"
+      : "Berikutnya ›";
 }
 
-function moveQuestion(delta) {
-  const questions = currentQuestions();
-  if (!questions.length) return;
+function renderCanDoGrid() {
+  els.canDoGrid.innerHTML = canDoAreas
+    .map((area) => {
+      const count = questionBank.filter((question) => question.canDo === area.id).length;
+      const categoryList = uniqueSorted(
+        questionBank
+          .filter((question) => question.canDo === area.id)
+          .map((question) => question.category),
+      )
+        .slice(0, 4)
+        .join(" / ");
 
-  if (isTestMode() && delta > 0 && state.index === questions.length - 1 && state.selected !== null) {
-    state.testFinished = true;
-    renderAll();
-    return;
-  }
-
-  state.index = (state.index + delta + questions.length) % questions.length;
-  state.selected = null;
-  syncSelectedFromTest();
-  renderAll();
-}
-
-function shuffleQuestion() {
-  if (isTestMode()) {
-    startTest(state.view);
-    renderAll();
-    return;
-  }
-
-  const questions = currentQuestions();
-  if (!questions.length) return;
-  state.index = Math.floor(Math.random() * questions.length);
-  state.selected = null;
-  renderAll();
-}
-
-function setView(view) {
-  if (isTestMode(view)) startTest(view);
-  state.view = view;
-  state.selected = view === "practice" ? state.selected : null;
-  els.modeTabs.forEach((tab) => {
-    const isActive = tab.dataset.view === view;
-    tab.classList.toggle("is-active", isActive);
-    tab.setAttribute("aria-selected", String(isActive));
-  });
-  const visibleView = isTestMode(view) ? els.views.practice : els.views[view];
-  [...new Set(Object.values(els.views))].filter(Boolean).forEach((element) => {
-    element.classList.toggle("is-visible", element === visibleView);
-  });
-  els.viewTitle.textContent =
-    view === "practice"
-      ? "Latihan"
-      : isTestMode(view)
-        ? TEST_CONFIGS[view].title
-        : view === "cando"
-          ? "Can-do別学習"
-          : view === "analysis"
-            ? "弱点分析"
-            : view === "bank"
-              ? "Bank Soal"
-              : "Review";
-  renderAll();
-}
-
-function renderCanDoView() {
-  if (!els.canDoGrid) return;
-  els.canDoGrid.innerHTML = CAN_DO_AREAS.map((area) => {
-    const questions = questionBank.filter((question) => question.canDo === area.id);
-    const categories = [...new Set(questions.map((question) => question.category))]
-      .slice(0, 4)
-      .join(" / ");
-    return `
-      <article class="can-do-card">
-        <header>
-          <div>
-            <h3>${escapeHtml(area.labelJa)}</h3>
-            <p>${escapeHtml(area.labelId)}</p>
-          </div>
-          <span class="can-do-count">${questions.length} soal</span>
-        </header>
-        <p>${escapeHtml(area.description)}</p>
-        <p><strong>Topik:</strong> ${escapeHtml(categories || "-")}</p>
-        <button type="button" data-cando-jump="${area.id}">Latih area ini</button>
-      </article>
-    `;
-  }).join("");
-
-  els.canDoGrid.querySelectorAll("[data-cando-jump]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (els.canDoFilter) els.canDoFilter.value = button.dataset.candoJump;
-      els.sectionFilter.value = "all";
-      renderCategoryOptions();
-      els.categoryFilter.value = "all";
-      state.index = 0;
-      state.selected = null;
-      setView("practice");
-    });
-  });
-}
-
-function questionStats(questions) {
-  const attempts = questions.reduce((total, question) => total + (state.progress.attempts[question.id] || 0), 0);
-  const mistakes = questions.reduce((total, question) => total + (state.progress.mistakes[question.id] || 0), 0);
-  const answeredQuestions = questions.filter((question) => (state.progress.attempts[question.id] || 0) > 0).length;
-  const correct = Math.max(0, attempts - mistakes);
-  return {
-    attempts,
-    mistakes,
-    correct,
-    answeredQuestions,
-    totalQuestions: questions.length,
-    accuracy: attempts ? Math.round((correct / attempts) * 100) : null,
-  };
-}
-
-function accuracyText(stats) {
-  return stats.accuracy === null ? "Belum ada" : `${stats.accuracy}%`;
-}
-
-function accuracyClass(stats) {
-  if (stats.accuracy === null) return "is-empty";
-  return stats.accuracy < 70 ? "is-low" : "";
-}
-
-function sortWeakGroups(a, b) {
-  if (a.stats.attempts === 0 && b.stats.attempts > 0) return 1;
-  if (a.stats.attempts > 0 && b.stats.attempts === 0) return -1;
-  if (a.stats.accuracy !== b.stats.accuracy) return (a.stats.accuracy ?? 101) - (b.stats.accuracy ?? 101);
-  return b.stats.mistakes - a.stats.mistakes;
-}
-
-function renderAnalysisSummary() {
-  const overall = questionStats(questionBank);
-  const weakAreas = CAN_DO_AREAS.map((area) => ({
-    area,
-    stats: questionStats(questionBank.filter((question) => question.canDo === area.id)),
-  }))
-    .filter((item) => item.stats.attempts > 0)
-    .sort(sortWeakGroups);
-  const weakest = weakAreas[0];
-  const untouched = questionBank.filter((question) => (state.progress.attempts[question.id] || 0) === 0).length;
-  const reviewCount = Object.values(state.progress.mistakes).filter((count) => count > 0).length;
-
-  els.analysisSummary.innerHTML = [
-    {
-      label: "全体正答率 / Akurasi",
-      value: accuracyText(overall),
-      detail: `${overall.correct} benar dari ${overall.attempts} jawaban`,
-    },
-    {
-      label: "最優先 / Prioritas",
-      value: weakest ? weakest.area.labelJa : "-",
-      detail: weakest ? `${weakest.area.labelId}・${accuracyText(weakest.stats)}` : "Jawab beberapa soal dulu",
-    },
-    {
-      label: "未挑戦 / Belum dicoba",
-      value: untouched,
-      detail: `${questionBank.length - untouched} dari ${questionBank.length} soal sudah dicoba`,
-    },
-    {
-      label: "Review",
-      value: reviewCount,
-      detail: "soal dengan riwayat salah",
-    },
-  ]
-    .map(
-      (item) => `
-        <article class="analysis-card">
-          <p>${escapeHtml(item.label)}</p>
-          <strong>${escapeHtml(item.value)}</strong>
-          <p>${escapeHtml(item.detail)}</p>
+      return `
+        <article class="cando-card">
+          <header>
+            <div>
+              <h4>${escapeHtml(area.labelJa)}</h4>
+              <p>${escapeHtml(area.labelId)}</p>
+            </div>
+            <span class="cando-count">${count} soal</span>
+          </header>
+          <p>${escapeHtml(area.description)}</p>
+          <p><strong>Topik:</strong> ${escapeHtml(categoryList)}</p>
+          <button class="small-button" type="button" data-cando="${area.id}">Latih area ini</button>
         </article>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
-function renderAnalysisRow({ title, subtitle, stats, buttonText, buttonAttrs }) {
-  const width = stats.accuracy ?? 0;
-  return `
-    <article class="analysis-row">
-      <div>
-        <h4>${escapeHtml(title)}</h4>
-        <p>${escapeHtml(subtitle)}</p>
-        <div class="analysis-bar" aria-hidden="true"><span style="width: ${width}%"></span></div>
-      </div>
-      <div>
-        <div class="analysis-score ${accuracyClass(stats)}">${escapeHtml(accuracyText(stats))}</div>
-        <p>${stats.answeredQuestions}/${stats.totalQuestions} soal・${stats.mistakes} salah</p>
-        ${
-          buttonAttrs
-            ? `<div class="analysis-actions"><button type="button" ${buttonAttrs}>${escapeHtml(buttonText)}</button></div>`
-            : ""
-        }
-      </div>
-    </article>
-  `;
-}
-
-function renderCanDoAnalysis() {
-  els.analysisCanDoList.innerHTML = CAN_DO_AREAS.map((area) => {
-    const questions = questionBank.filter((question) => question.canDo === area.id);
-    const stats = questionStats(questions);
-    const width = stats.accuracy ?? 0;
-    return `
-      <article class="analysis-card">
-        <header>
-          <div>
-            <h3>${escapeHtml(area.labelJa)}</h3>
-            <p>${escapeHtml(area.labelId)}</p>
-          </div>
-          <span class="analysis-score ${accuracyClass(stats)}">${escapeHtml(accuracyText(stats))}</span>
-        </header>
-        <div class="analysis-bar" aria-hidden="true"><span style="width: ${width}%"></span></div>
-        <p>${stats.answeredQuestions}/${stats.totalQuestions} soal dicoba・${stats.mistakes} salah</p>
-        <div class="analysis-actions">
-          <button type="button" data-analysis-cando="${area.id}">Latih area ini</button>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-function sectionAnalysisItems() {
-  return ["Grammar", "Expression", "Vocabulary", "Reading"].map((section) => {
-    const questions = questionBank.filter((question) => question.section === section);
-    return {
-      section,
-      stats: questionStats(questions),
-      total: questions.length,
-    };
-  });
-}
-
-function categoryAnalysisItems() {
-  const groups = new Map();
-  questionBank.forEach((question) => {
-    const key = `${question.section}::${question.category}`;
-    if (!groups.has(key)) groups.set(key, { section: question.section, category: question.category, questions: [] });
-    groups.get(key).questions.push(question);
-  });
-
-  return [...groups.values()]
-    .map((group) => ({
-      ...group,
-      stats: questionStats(group.questions),
-    }))
-    .filter((group) => group.stats.attempts > 0 || group.stats.mistakes > 0)
-    .sort(sortWeakGroups)
-    .slice(0, 8);
-}
-
-function attachAnalysisButtons() {
-  els.analysisCanDoList?.querySelectorAll("[data-analysis-cando]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (els.canDoFilter) els.canDoFilter.value = button.dataset.analysisCando;
-      els.sectionFilter.value = "all";
-      renderCategoryOptions();
-      els.categoryFilter.value = "all";
-      state.index = 0;
-      state.selected = null;
-      setView("practice");
-    });
-  });
-
-  els.analysisSectionList?.querySelectorAll("[data-analysis-section]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (els.canDoFilter) els.canDoFilter.value = "all";
-      els.sectionFilter.value = button.dataset.analysisSection;
-      renderCategoryOptions();
-      els.categoryFilter.value = "all";
-      state.index = 0;
-      state.selected = null;
-      setView("practice");
-    });
-  });
-
-  els.analysisCategoryList?.querySelectorAll("[data-analysis-category]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (els.canDoFilter) els.canDoFilter.value = "all";
-      els.sectionFilter.value = button.dataset.analysisSection;
-      renderCategoryOptions();
-      els.categoryFilter.value = button.dataset.analysisCategory;
-      state.index = 0;
-      state.selected = null;
-      setView("practice");
-    });
-  });
-}
-
-function renderAnalysis() {
-  if (!els.analysisSummary) return;
-
-  renderAnalysisSummary();
-  renderCanDoAnalysis();
-
-  els.analysisSectionList.innerHTML = sectionAnalysisItems()
-    .map((item) =>
-      renderAnalysisRow({
-        title: item.section,
-        subtitle: `${item.total} soal`,
-        stats: item.stats,
-        buttonText: "Latih bagian ini",
-        buttonAttrs: `data-analysis-section="${escapeHtml(item.section)}"`,
-      }),
-    )
-    .join("");
-
-  const categoryItems = categoryAnalysisItems();
-  els.analysisCategoryList.innerHTML = categoryItems.length
-    ? categoryItems
-        .map((item) =>
-          renderAnalysisRow({
-            title: item.category,
-            subtitle: `${item.section}・${item.questions.length} soal`,
-            stats: item.stats,
-            buttonText: "Latih kategori ini",
-            buttonAttrs: `data-analysis-section="${escapeHtml(item.section)}" data-analysis-category="${escapeHtml(item.category)}"`,
-          }),
-        )
-        .join("")
-    : '<div class="analysis-empty">Belum ada data kategori. Jawab beberapa soal dulu agar kelemahan terlihat.</div>';
-
-  const reviewQuestions = questionBank
-    .filter((question) => (state.progress.mistakes[question.id] || 0) > 0)
-    .sort((a, b) => (state.progress.mistakes[b.id] || 0) - (state.progress.mistakes[a.id] || 0))
-    .slice(0, 6);
-
-  els.analysisQuestionList.innerHTML = reviewQuestions.length
-    ? reviewQuestions.map(renderListItem).join("")
-    : '<div class="analysis-empty">Belum ada soal yang salah. Jika nanti ada kesalahan, prioritas review akan muncul di sini.</div>';
-  attachAnalysisButtons();
-  attachListButtons(els.analysisQuestionList);
-}
-
-function renderBank() {
-  const term = state.search.trim().toLowerCase();
-  const questions = currentQuestions().filter((question) => {
-    const area = canDoAreaFor(question);
-    const haystack = [
+function bankQuestions() {
+  const query = state.search.trim().toLowerCase();
+  return filteredQuestions().filter((question) => {
+    if (!query) return true;
+    const area = canDoById[question.canDo];
+    return [
       question.id,
       question.section,
       question.category,
       area.labelJa,
       area.labelId,
+      question.scenario,
       question.pattern,
       question.meaning,
-      question.scenario,
+      question.answer,
       question.explanation,
-      question.choices.join(" "),
-      question.dialogue.map((line) => line.join(" ")).join(" "),
+      question.dialogue.flat().join(" "),
     ]
       .join(" ")
-      .toLowerCase();
-    return !term || haystack.includes(term);
+      .toLowerCase()
+      .includes(query);
   });
+}
 
-  els.questionList.innerHTML = questions.map(renderListItem).join("");
-  attachListButtons(els.questionList);
+function renderBank() {
+  const questions = bankQuestions();
+  els.questionList.innerHTML = questions.length
+    ? questions
+        .map((question) => {
+          const area = canDoById[question.canDo];
+          return `
+            <article class="list-item">
+              <header>
+                <strong>No. ${question.id}</strong>
+                <span class="tag tag-can-do">${escapeHtml(area.labelJa)}</span>
+              </header>
+              <p>${escapeHtml(question.scenario)}</p>
+              <p><strong>${escapeHtml(question.section)}</strong> / ${escapeHtml(question.category)}</p>
+              <p class="list-answer">${escapeHtml(question.answer)}</p>
+              <p>${escapeHtml(question.explanation)}</p>
+              <button class="small-button" type="button" data-open-question="${question.id}">Latih soal ini</button>
+            </article>
+          `;
+        })
+        .join("")
+    : '<article class="list-item"><p>Tidak ada soal yang cocok.</p></article>';
 }
 
 function renderReview() {
-  const reviewQuestions = questionBank
-    .filter((question) => (state.progress.mistakes[question.id] || 0) > 0)
-    .sort((a, b) => (state.progress.mistakes[b.id] || 0) - (state.progress.mistakes[a.id] || 0));
-
-  if (!reviewQuestions.length) {
-    els.reviewSummary.innerHTML = `
-      <h3>Belum ada soal review</h3>
-      <p>Soal yang salah akan muncul di sini setelah latihan.</p>
-    `;
-    els.reviewList.innerHTML = "";
-    return;
-  }
-
+  const reviewIds = Object.keys(state.progress.review).map(Number);
   els.reviewSummary.innerHTML = `
-    <h3>${reviewQuestions.length} soal perlu diulang</h3>
-    <p>Prioritas tertinggi ditampilkan berdasarkan jumlah kesalahan.</p>
+    <strong>${reviewIds.length} soal perlu review</strong>
+    <p>Soal yang salah akan masuk ke sini. Jawab benar pada mode latihan untuk mengurangi daftar review.</p>
   `;
-  els.reviewList.innerHTML = reviewQuestions.map(renderListItem).join("");
-  attachListButtons(els.reviewList);
-}
 
-function renderListItem(question) {
-  const mistakeCount = state.progress.mistakes[question.id] || 0;
-  const area = canDoAreaFor(question);
-  return `
-    <article class="list-item">
-      <header>
-        <h3>No. ${question.id}</h3>
-        <span class="tag">${escapeHtml(question.section)}</span>
-      </header>
-      <p>${escapeHtml(question.category)} / ${escapeHtml(area.labelJa)} - ${escapeHtml(question.meaning)}</p>
-      <div class="list-answer">${escapeHtml(question.choices[question.answer])}</div>
-      <p>${escapeHtml(question.pattern)}${mistakeCount ? ` / salah ${mistakeCount}x` : ""}</p>
-      <button class="small-button" type="button" data-jump="${question.id}">Latih soal ini</button>
-    </article>
-  `;
-}
-
-function attachListButtons(container) {
-  container.querySelectorAll("[data-jump]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const id = Number(button.dataset.jump);
-      const questions = currentQuestions();
-      const filteredIndex = questions.findIndex((question) => question.id === id);
-      if (filteredIndex === -1) {
-        els.sectionFilter.value = "all";
-        if (els.canDoFilter) els.canDoFilter.value = "all";
-        renderCategoryOptions();
-        els.categoryFilter.value = "all";
-        state.index = questionBank.findIndex((question) => question.id === id);
-      } else {
-        state.index = filteredIndex;
-      }
-      state.selected = null;
-      setView("practice");
-    });
-  });
-}
-
-function resetProgress() {
-  const confirmed = window.confirm("Reset progres latihan?");
-  if (!confirmed) return;
-  state.progress = {
-    answered: 0,
-    correct: 0,
-    streak: 0,
-    attempts: {},
-    mistakes: {},
-  };
-  state.selected = null;
-  saveProgress();
-  renderAll();
+  els.reviewList.innerHTML = reviewIds.length
+    ? reviewIds
+        .map((id) => questionBank.find((question) => question.id === id))
+        .filter(Boolean)
+        .map((question) => {
+          const area = canDoById[question.canDo];
+          return `
+            <article class="list-item">
+              <header>
+                <strong>No. ${question.id}</strong>
+                <span class="tag tag-can-do">${escapeHtml(area.labelJa)}</span>
+              </header>
+              <p>${escapeHtml(question.scenario)}</p>
+              <p class="list-answer">${escapeHtml(question.answer)}</p>
+              <p>${escapeHtml(question.explanation)}</p>
+              <button class="small-button" type="button" data-open-question="${question.id}">Latih ulang</button>
+            </article>
+          `;
+        })
+        .join("")
+    : '<article class="list-item"><p>Belum ada soal review.</p></article>';
 }
 
 function renderAll() {
-  finishTestIfExpired();
-  const count = currentQuestions().length;
-  els.toolbarMeta.textContent =
-    state.view === "cando"
-      ? `${CAN_DO_AREAS.length} Can-do area dari ${questionBank.length} soal`
-      : state.view === "analysis"
-        ? `${state.progress.answered} jawaban dianalisis`
-      : isTestMode()
-      ? `${count} soal acak dari ${questionBank.length} soal${state.testDurationMs ? ` | ${formatTime(remainingMs())}` : ""}`
-      : `${count} soal aktif dari ${questionBank.length} soal`;
+  if (state.session?.finished === false && state.view === "mock") {
+    const remaining = state.session.durationMs - (Date.now() - state.session.startedAt);
+    if (remaining <= 0) {
+      state.session.finished = true;
+    }
+  }
+
+  renderFilterOptions();
   renderStats();
-  renderPractice();
-  if (state.view === "cando") renderCanDoView();
-  if (state.view === "analysis") renderAnalysis();
-  if (state.view === "bank") renderBank();
-  if (state.view === "review") renderReview();
+  renderTabs();
+  renderViews();
+  renderToolbar();
+  renderQuestion();
+  renderCanDoGrid();
+  renderBank();
+  renderReview();
 }
 
-function bindSwipeNavigation() {
-  if (!els.questionPanel) return;
+function setView(view) {
+  state.view = view;
+  state.index = 0;
+  if (view === "test" || view === "mock") {
+    startSession(view);
+  } else {
+    state.session = null;
+  }
+  renderAll();
+}
 
-  const interactiveSelector = "button, a, input, select, textarea, [role='button']";
-  const swipe = {
-    startX: 0,
-    startY: 0,
-    startedAt: 0,
-    active: false,
+function startSession(mode) {
+  const size = mode === "mock" ? 50 : 20;
+  const source = mode === "test" ? filteredQuestions() : questionBank;
+  const picked = shuffle(source).slice(0, Math.min(size, source.length));
+  state.session = {
+    mode,
+    ids: picked.map((question) => question.id),
+    answers: {},
+    choiceOrders: Object.fromEntries(
+      picked.map((question) => [
+        question.id,
+        shuffle(question.choices.map((_, choiceIndex) => choiceIndex)),
+      ]),
+    ),
+    startedAt: Date.now(),
+    durationMs: mode === "mock" ? 60 * 60 * 1000 : 0,
+    finished: false,
   };
+}
 
-  els.questionPanel.addEventListener(
-    "touchstart",
-    (event) => {
-      const startedOnControl =
-        event.target instanceof Element && Boolean(event.target.closest(interactiveSelector));
-      if (event.touches.length !== 1 || startedOnControl) {
-        swipe.active = false;
-        return;
-      }
+function recordAnswer(question, answer) {
+  const correct = answer === question.answer;
+  state.progress.totalAnswered += 1;
+  state.progress.totalCorrect += correct ? 1 : 0;
+  state.progress.streak = correct ? state.progress.streak + 1 : 0;
+  const previous = state.progress.answeredByQuestion[question.id] || { attempts: 0 };
+  state.progress.answeredByQuestion[question.id] = {
+    attempts: previous.attempts + 1,
+    correct,
+    lastAnswer: answer,
+    updatedAt: new Date().toISOString(),
+  };
+  if (correct) {
+    delete state.progress.review[question.id];
+  } else {
+    state.progress.review[question.id] = true;
+  }
+  saveProgress();
+}
 
-      const touch = event.touches[0];
-      swipe.startX = touch.clientX;
-      swipe.startY = touch.clientY;
-      swipe.startedAt = Date.now();
-      swipe.active = true;
-    },
-    { passive: true },
-  );
+function chooseAnswer(answer) {
+  const question = currentQuestion();
+  if (!question) return;
+  if (currentAnswer(question)) return;
 
-  els.questionPanel.addEventListener(
-    "touchend",
-    (event) => {
-      if (!swipe.active || !event.changedTouches.length) return;
-      swipe.active = false;
+  if (isSessionView()) {
+    state.session.answers[question.id] = answer;
+  } else {
+    state.practiceAnswers[question.id] = answer;
+  }
+  recordAnswer(question, answer);
+  renderAll();
+}
 
-      const touch = event.changedTouches[0];
-      const deltaX = touch.clientX - swipe.startX;
-      const deltaY = touch.clientY - swipe.startY;
-      const elapsed = Date.now() - swipe.startedAt;
-      const isHorizontalFlick =
-        Math.abs(deltaX) >= 64 &&
-        Math.abs(deltaX) > Math.abs(deltaY) * 1.35 &&
-        elapsed <= 1000;
+function moveQuestion(direction) {
+  const pool = currentPool();
+  if (!pool.length) return;
 
-      if (!isHorizontalFlick) return;
-      if (isTestMode() && deltaX > 0 && state.index === 0) return;
-      moveQuestion(deltaX < 0 ? 1 : -1);
-    },
-    { passive: true },
-  );
+  if (direction > 0 && isSessionView() && state.index === pool.length - 1) {
+    if (!currentAnswer(pool[state.index]) && !state.session.finished) {
+      flashFeedback("Pilih salah satu jawaban dulu.");
+      return;
+    }
+    state.session.finished = true;
+    renderAll();
+    return;
+  }
 
-  els.questionPanel.addEventListener(
-    "touchcancel",
-    () => {
-      swipe.active = false;
-    },
-    { passive: true },
-  );
+  state.index = Math.max(0, Math.min(pool.length - 1, state.index + direction));
+  renderAll();
+}
+
+function flashFeedback(message) {
+  els.feedbackBox.hidden = false;
+  els.feedbackBox.className = "feedback wrong";
+  els.feedbackBox.innerHTML = `<strong>Belum dijawab</strong>${escapeHtml(message)}`;
+}
+
+function shuffleCurrentMode() {
+  if (state.view === "test" || state.view === "mock") {
+    startSession(state.view);
+    state.index = 0;
+  } else if (state.view === "practice") {
+    state.practiceOrder = shuffle(filteredQuestions().map((question) => question.id));
+    state.index = 0;
+  }
+  renderAll();
+}
+
+function resetProgress() {
+  const confirmed = window.confirm("Reset semua progres belajar?");
+  if (!confirmed) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state.progress = loadProgress();
+  state.practiceAnswers = {};
+  if (state.session) startSession(state.view);
+  renderAll();
+}
+
+function applyFiltersChanged() {
+  state.index = 0;
+  state.practiceOrder = [];
+  if (state.view === "test") startSession("test");
+  renderAll();
+}
+
+function openQuestion(id) {
+  const question = questionBank.find((item) => item.id === id);
+  if (!question) return;
+  els.sectionFilter.value = "all";
+  els.categoryFilter.value = "all";
+  els.canDoFilter.value = question.canDo;
+  state.view = "practice";
+  state.session = null;
+  state.practiceOrder = questionBank
+    .filter((item) => item.canDo === question.canDo)
+    .map((item) => item.id);
+  state.index = state.practiceOrder.indexOf(id);
+  renderAll();
 }
 
 function bindEvents() {
-  els.sectionFilter.addEventListener("change", () => {
-    renderCategoryOptions();
-    state.index = 0;
-    state.selected = null;
-    if (isTestMode()) startTest(state.view);
-    renderAll();
-  });
-
-  els.categoryFilter.addEventListener("change", () => {
-    state.index = 0;
-    state.selected = null;
-    if (isTestMode()) startTest(state.view);
-    renderAll();
-  });
-
-  els.canDoFilter?.addEventListener("change", () => {
-    renderCategoryOptions();
-    state.index = 0;
-    state.selected = null;
-    if (isTestMode()) startTest(state.view);
-    renderAll();
-  });
-
   els.modeTabs.forEach((tab) => {
     tab.addEventListener("click", () => setView(tab.dataset.view));
   });
 
-  [els.prevBtn, els.topPrevBtn].filter(Boolean).forEach((button) => {
-    button.addEventListener("click", () => moveQuestion(-1));
+  els.sectionFilter.addEventListener("change", applyFiltersChanged);
+  els.categoryFilter.addEventListener("change", applyFiltersChanged);
+  els.canDoFilter.addEventListener("change", applyFiltersChanged);
+
+  els.choicesBox.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-choice]");
+    if (!button) return;
+    chooseAnswer(button.dataset.choice);
   });
-  [els.nextBtn, els.topNextBtn].filter(Boolean).forEach((button) => {
-    button.addEventListener("click", () => moveQuestion(1));
-  });
-  els.shuffleBtn.addEventListener("click", shuffleQuestion);
-  [els.resetBtn, els.sidebarResetBtn].filter(Boolean).forEach((button) => {
-    button.addEventListener("click", resetProgress);
-  });
+
+  els.prevBtn.addEventListener("click", () => moveQuestion(-1));
+  els.nextBtn.addEventListener("click", () => moveQuestion(1));
+  els.shuffleBtn.addEventListener("click", shuffleCurrentMode);
+  els.resetBtn.addEventListener("click", resetProgress);
+  els.sidebarResetBtn.addEventListener("click", resetProgress);
+
   els.searchInput.addEventListener("input", (event) => {
     state.search = event.target.value;
-    renderBank();
+    renderAll();
   });
-  bindSwipeNavigation();
+
+  els.canDoGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-cando]");
+    if (!button) return;
+    els.canDoFilter.value = button.dataset.cando;
+    state.view = "practice";
+    state.session = null;
+    state.index = 0;
+    state.practiceOrder = [];
+    renderAll();
+  });
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-open-question]");
+    if (!button) return;
+    openQuestion(Number(button.dataset.openQuestion));
+  });
 }
 
-renderCanDoOptions();
-renderCategoryOptions();
+renderFilterOptions();
 bindEvents();
 renderAll();
 
-setInterval(() => {
-  if (state.view === "mock" && state.testQuestionIds.length && !state.testFinished) renderAll();
+window.setInterval(() => {
+  if (state.view === "mock" && state.session && !state.session.finished) {
+    renderToolbar();
+    const remaining = state.session.durationMs - (Date.now() - state.session.startedAt);
+    if (remaining <= 0) {
+      state.session.finished = true;
+      renderAll();
+    }
+  }
 }, 1000);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JFT Basic A2 Trainer</title>
+    <title>JFT Basic A2 Can-do Trainer</title>
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
   </head>
@@ -11,9 +11,7 @@
     <div class="app-shell">
       <aside class="sidebar" aria-label="Panel belajar">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">
-            <span>日</span>
-          </div>
+          <div class="brand-mark" aria-hidden="true">日</div>
           <div>
             <p class="eyebrow">JFT Basic A2</p>
             <h1>Latihan Bahasa Jepang</h1>
@@ -55,25 +53,34 @@
           <select id="categoryFilter"></select>
         </div>
 
+        <div class="control-block">
+          <label for="canDoFilter">Can-do</label>
+          <select id="canDoFilter"></select>
+        </div>
+
         <div class="mode-tabs" role="tablist" aria-label="Mode">
           <button class="mode-tab is-active" data-view="practice" role="tab" aria-selected="true">
-            <span class="icon" aria-hidden="true">▶</span>
+            <span aria-hidden="true">▶</span>
             Latihan
           </button>
+          <button class="mode-tab" data-view="cando" role="tab" aria-selected="false">
+            <span aria-hidden="true">▣</span>
+            Can-do別
+          </button>
           <button class="mode-tab" data-view="test" role="tab" aria-selected="false">
-            <span class="icon" aria-hidden="true">✓</span>
+            <span aria-hidden="true">✓</span>
             Tes 20
           </button>
           <button class="mode-tab" data-view="mock" role="tab" aria-selected="false">
-            <span class="icon" aria-hidden="true">◴</span>
+            <span aria-hidden="true">◴</span>
             Simulasi 50
           </button>
           <button class="mode-tab" data-view="bank" role="tab" aria-selected="false">
-            <span class="icon" aria-hidden="true">▦</span>
+            <span aria-hidden="true">▦</span>
             Bank Soal
           </button>
           <button class="mode-tab" data-view="review" role="tab" aria-selected="false">
-            <span class="icon" aria-hidden="true">↻</span>
+            <span aria-hidden="true">↻</span>
             Review
           </button>
         </div>
@@ -87,17 +94,12 @@
       <main class="workspace">
         <header class="toolbar">
           <div class="toolbar-title">
-            <p id="toolbarMeta">140 soal latihan</p>
+            <p id="toolbarMeta">Soal latihan</p>
             <h2 id="viewTitle">Latihan</h2>
           </div>
           <div class="toolbar-actions">
-            <button class="icon-button" id="shuffleBtn" type="button" title="Acak soal" aria-label="Acak soal">
-              <span aria-hidden="true">⤨</span>
-            </button>
-            <button class="toolbar-button reset-action" id="resetBtn" type="button" title="Reset progres" aria-label="Reset progres">
-              <span aria-hidden="true">↺</span>
-              Reset
-            </button>
+            <button class="toolbar-button" id="shuffleBtn" type="button">⤨ Acak</button>
+            <button class="toolbar-button reset-action" id="resetBtn" type="button">↺ Reset</button>
           </div>
         </header>
 
@@ -108,90 +110,55 @@
                 <div>
                   <span class="tag" id="questionSection">Grammar</span>
                   <span class="tag tag-muted" id="questionCategory">て形</span>
+                  <span class="tag tag-can-do" id="questionCanDo">食事</span>
                 </div>
                 <strong id="questionNumber">No. 1</strong>
-              </div>
-              <div class="question-actions question-actions-top" aria-label="Navigasi soal bagian atas">
-                <button class="secondary-button" id="topPrevBtn" type="button">
-                  <span aria-hidden="true">‹</span>
-                  Sebelumnya
-                </button>
-                <button class="primary-button" id="topNextBtn" type="button">
-                  Berikutnya
-                  <span aria-hidden="true">›</span>
-                </button>
               </div>
               <p class="scenario" id="scenarioText"></p>
               <div class="dialogue" id="dialogueBox"></div>
               <div class="choices" id="choicesBox"></div>
               <div class="feedback" id="feedbackBox" hidden></div>
               <div class="question-actions">
-                <button class="secondary-button" id="prevBtn" type="button">
-                  <span aria-hidden="true">‹</span>
-                  Sebelumnya
-                </button>
-                <button class="primary-button" id="nextBtn" type="button">
-                  Berikutnya
-                  <span aria-hidden="true">›</span>
-                </button>
+                <button class="secondary-button" id="prevBtn" type="button">‹ Sebelumnya</button>
+                <button class="primary-button" id="nextBtn" type="button">Berikutnya ›</button>
               </div>
             </article>
 
-            <div class="learning-rail">
-              <aside class="learning-panel" aria-label="Ringkasan soal">
-                <div class="mini-visual" aria-hidden="true">
-                  <div class="flash-card card-a">JFT</div>
-                  <div class="flash-card card-b">A2</div>
-                  <div class="pencil"></div>
-                </div>
-                <div class="pattern-box">
-                  <span id="patternLabel">Petunjuk</span>
-                  <strong id="patternText">Vて + います</strong>
-                </div>
-                <div class="pattern-box">
-                  <span id="meaningLabel">Status</span>
-                  <strong id="meaningText">sedang / keadaan</strong>
-                </div>
-                <div class="mini-progress">
-                  <div class="progress-bar">
-                    <span id="progressFill"></span>
-                  </div>
-                  <p id="progressText">1 / 35</p>
-                </div>
-              </aside>
-
-              <section class="test-progress-panel" id="testProgressPanel" aria-live="polite" hidden>
-                <div class="test-progress-head">
-                  <span>進捗</span>
-                  <strong id="testProgressTitle">Tes 20</strong>
-                </div>
-                <div class="test-progress-metrics">
-                  <div class="test-progress-metric">
-                    <span>解答済み / Dijawab</span>
-                    <strong id="testAnsweredCount">0 / 20</strong>
-                  </div>
-                  <div class="test-progress-metric">
-                    <span>正解 / Benar</span>
-                    <strong id="testCorrectCount">0</strong>
-                  </div>
-                  <div class="test-progress-metric test-progress-metric-wide">
-                    <span>正答率 / Akurasi</span>
-                    <strong id="testAccuracy">0%</strong>
-                  </div>
-                </div>
-                <div class="test-answer-progress" aria-hidden="true">
-                  <span id="testAnswerProgressFill"></span>
-                </div>
-              </section>
-            </div>
+            <aside class="learning-panel" aria-label="Ringkasan soal">
+              <div class="mini-visual" aria-hidden="true">
+                <div class="flash-card card-a">JFT</div>
+                <div class="flash-card card-b">A2</div>
+                <div class="pencil"></div>
+              </div>
+              <div class="pattern-box">
+                <span id="patternLabel">Petunjuk</span>
+                <strong id="patternText">Terkunci</strong>
+              </div>
+              <div class="pattern-box">
+                <span id="meaningLabel">Status</span>
+                <strong id="meaningText">Pilih jawaban dulu</strong>
+              </div>
+              <div class="mini-progress">
+                <div class="progress-bar"><span id="progressFill"></span></div>
+                <p id="progressText">1 / 1</p>
+              </div>
+            </aside>
           </div>
+        </section>
+
+        <section class="cando-view view" id="candoView">
+          <div class="section-intro">
+            <h3>Can-do別学習</h3>
+            <p>JFT Basic A2は生活場面ベースです。文法順だけでなく、買い物・交通・病院・役所などの場面から練習できます。</p>
+          </div>
+          <div class="cando-grid" id="canDoGrid"></div>
         </section>
 
         <section class="bank-view view" id="bankView">
           <div class="bank-toolbar">
             <label class="search-field" for="searchInput">
               <span aria-hidden="true">⌕</span>
-              <input id="searchInput" type="search" placeholder="Cari pola, arti, atau kalimat Jepang" />
+              <input id="searchInput" type="search" placeholder="Cari pola, arti, Can-do, atau kalimat Jepang" />
             </label>
           </div>
           <div class="question-list" id="questionList"></div>
