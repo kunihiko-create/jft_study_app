@@ -551,6 +551,130 @@ select {
   font-weight: 900;
 }
 
+
+
+.poster-figure {
+  margin: 0;
+  padding: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface-strong);
+  box-shadow: 6px 6px 0 rgba(30, 36, 40, 0.16);
+  text-align: center;
+}
+
+.poster-image {
+  max-width: 100%;
+  max-height: 62vh;
+  border-radius: 6px;
+  cursor: zoom-in;
+  transition: max-height 200ms ease;
+}
+
+.poster-image.is-zoomed {
+  max-height: none;
+  cursor: zoom-out;
+}
+
+.poster-caption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.poster {
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  background: var(--surface-strong);
+  box-shadow: 6px 6px 0 rgba(30, 36, 40, 0.16);
+}
+
+.poster-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 2px dashed var(--line);
+  background: var(--gold-soft);
+}
+
+.poster-head-icon {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.poster-head h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.poster-body {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 16px 18px;
+  list-style: none;
+}
+
+.poster-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fdfbf3;
+}
+
+.poster-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  font-size: 20px;
+}
+
+.poster-text {
+  font-family: "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 21px;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.poster-note {
+  margin: 0;
+  padding: 12px 18px 16px;
+  color: #6c4b04;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  .poster-head h3 {
+    font-size: 19px;
+  }
+
+  .poster-text {
+    font-size: 18px;
+  }
+
+  .poster-row {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .poster-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+  }
+}
+
 .choices {
   display: grid;
   gap: 10px;
@@ -1101,7 +1225,7 @@ select {
         </label>
         <button class="gate-button" id="gateBtn" type="button">Masuk</button>
         <p class="gate-error" id="gateError" hidden>Kata sandi salah. / パスワードが違います。</p>
-        <p class="gate-version" id="gateVersion">versi 2026-08-12d · 336 soal</p>
+        <p class="gate-version" id="gateVersion">versi 2026-08-22c · 336 soal</p>
       </div>
     </div>
     <div class="app-shell" id="appShell" hidden>
@@ -3946,6 +4070,7 @@ const questionBank = [
       "「毎週火曜日は休みです」とあります。 / Tertulis tutup setiap hari Selasa.",
     setId: "R01",
     canDo: "shopping",
+    posterImage: "images/r01.webp",
   },
   {
     id: 154,
@@ -3964,6 +4089,7 @@ const questionBank = [
       "「9月から、日曜日だけ朝8時に開きます」とあります。 / Mulai September, hari Minggu buka pukul 8 pagi.",
     setId: "R01",
     canDo: "shopping",
+    posterImage: "images/r01.webp",
   },
   {
     id: 155,
@@ -3982,6 +4108,7 @@ const questionBank = [
       "ラストオーダーは最後に注文できる時間です。 / ラストオーダー adalah waktu pemesanan terakhir.",
     setId: "R02",
     canDo: "food",
+    posterImage: "images/r02.webp",
   },
   {
     id: 156,
@@ -4000,6 +4127,7 @@ const questionBank = [
       "「土曜日と日曜日は予約ができません」とあります。 / Pada hari Sabtu dan Minggu tidak bisa reservasi.",
     setId: "R02",
     canDo: "food",
+    posterImage: "images/r02.webp",
   },
   {
     id: 157,
@@ -4018,6 +4146,7 @@ const questionBank = [
       "「駅の東口で18時に」とあります。 / Tertulis bertemu di pintu timur stasiun.",
     setId: "R03",
     canDo: "social",
+    posterImage: "images/r03.webp",
   },
   {
     id: 158,
@@ -4036,6 +4165,7 @@ const questionBank = [
       "「会ったあとで、駅の近くの店で晩ごはんを食べませんか」と誘っています。 / Ia mengajak makan malam setelah bertemu.",
     setId: "R03",
     canDo: "social",
+    posterImage: "images/r03.webp",
   },
   {
     id: 159,
@@ -4054,6 +4184,8 @@ const questionBank = [
       "持ち物は「エプロンとタオル」です。 / Yang dibawa adalah celemek dan handuk.",
     setId: "R04",
     canDo: "food",
+    poster: {"title":"料理教室のお知らせ","icon":"🍳","items":[{"icon":"🕙","text":"明日の 料理教室は 10時からです。"},{"icon":"👕","text":"エプロンと タオルを 持ってきて ください。"},{"icon":"🥬","text":"材料は こちらで 用意します。"},{"icon":"🍱","text":"作った 料理は 持って 帰れます。"},{"icon":"📦","text":"入れ物が あると いいですよ。"}],"note":"おいしく 作って 持って 帰ろう！"},
+    posterImage: "images/r04.webp",
   },
   {
     id: 160,
@@ -4072,6 +4204,8 @@ const questionBank = [
       "「作った料理は持って帰れます」とあります。 / Masakan yang dibuat boleh dibawa pulang.",
     setId: "R04",
     canDo: "food",
+    poster: {"title":"料理教室のお知らせ","icon":"🍳","items":[{"icon":"🕙","text":"明日の 料理教室は 10時からです。"},{"icon":"👕","text":"エプロンと タオルを 持ってきて ください。"},{"icon":"🥬","text":"材料は こちらで 用意します。"},{"icon":"🍱","text":"作った 料理は 持って 帰れます。"},{"icon":"📦","text":"入れ物が あると いいですよ。"}],"note":"おいしく 作って 持って 帰ろう！"},
+    posterImage: "images/r04.webp",
   },
   {
     id: 161,
@@ -4162,6 +4296,7 @@ const questionBank = [
       "「会話クラス: 1階 102教室」とあります。 / Kelas percakapan ada di ruang 102 lantai 1.",
     setId: "R07",
     canDo: "study",
+    posterImage: "images/r07.webp",
   },
   {
     id: 166,
@@ -4180,6 +4315,7 @@ const questionBank = [
       "「会話クラスは火曜日だけです」とあります。 / Kelas percakapan hanya hari Selasa.",
     setId: "R07",
     canDo: "study",
+    posterImage: "images/r07.webp",
   },
   {
     id: 167,
@@ -4198,6 +4334,7 @@ const questionBank = [
       "8時30分の後で一番早い時刻は8:40です。 / Bus paling cepat setelah pukul 8:30 adalah 8:40.",
     setId: "R08",
     canDo: "transport",
+    posterImage: "images/r08.webp",
   },
   {
     id: 168,
@@ -4216,6 +4353,7 @@ const questionBank = [
       "日曜日は8:40のバスがないので、次は9:10です。 / Hari Minggu tidak ada bus 8:40, jadi berikutnya 9:10.",
     setId: "R08",
     canDo: "transport",
+    posterImage: "images/r08.webp",
   },
   {
     id: 169,
@@ -4234,6 +4372,8 @@ const questionBank = [
       "「水が使えません」とあります。 / Tertulis air tidak bisa dipakai.",
     setId: "R09",
     canDo: "housing",
+    poster: {"title":"水道工事の お知らせ","icon":"🚰","items":[{"icon":"📅","text":"6月10日（水） 9:00〜12:00"},{"icon":"🚱","text":"この 時間は 水が 使えません。"},{"icon":"🥛","text":"前の 日に、水を コップや なべに 入れて おいて ください。"}],"note":"ご協力 お願いします。"},
+    posterImage: "images/r09.webp",
   },
   {
     id: 170,
@@ -4252,6 +4392,8 @@ const questionBank = [
       "「前の日に、水をコップやなべに入れておいてください」とあります。 / Sehari sebelumnya, siapkan air di gelas atau panci.",
     setId: "R09",
     canDo: "housing",
+    poster: {"title":"水道工事の お知らせ","icon":"🚰","items":[{"icon":"📅","text":"6月10日（水） 9:00〜12:00"},{"icon":"🚱","text":"この 時間は 水が 使えません。"},{"icon":"🥛","text":"前の 日に、水を コップや なべに 入れて おいて ください。"}],"note":"ご協力 お願いします。"},
+    posterImage: "images/r09.webp",
   },
   {
     id: 171,
@@ -4270,6 +4412,7 @@ const questionBank = [
       "「食べ物を食べないでください」とあります。 / Tertulis dilarang makan di dalam ruangan.",
     setId: "R10",
     canDo: "study",
+    posterImage: "images/r10.webp",
   },
   {
     id: 172,
@@ -4288,6 +4431,7 @@ const questionBank = [
       "「一度に5さつまで」とあります。 / Maksimal 5 buku sekali pinjam.",
     setId: "R10",
     canDo: "study",
+    posterImage: "images/r10.webp",
   },
   {
     id: 173,
@@ -4306,6 +4450,7 @@ const questionBank = [
       "依頼は「資料を10部コピーしてください」です。 / Permintaannya adalah menyalin dokumen 10 rangkap.",
     setId: "R11",
     canDo: "workplace",
+    posterImage: "images/r11.webp",
   },
   {
     id: 174,
@@ -4324,6 +4469,7 @@ const questionBank = [
       "「会議室のつくえに置いておいてください」とあります。 / Diletakkan di meja ruang rapat.",
     setId: "R11",
     canDo: "workplace",
+    posterImage: "images/r11.webp",
   },
   {
     id: 175,
@@ -4378,6 +4524,7 @@ const questionBank = [
       "「日本語で簡単な会話ができる人」とあります。 / Syaratnya bisa percakapan sederhana dalam bahasa Jepang.",
     setId: "R13",
     canDo: "workplace",
+    posterImage: "images/r13.webp",
   },
   {
     id: 178,
@@ -4396,6 +4543,7 @@ const questionBank = [
       "「食事は無料です」とあります。 / Makan di tempat kerja gratis.",
     setId: "R13",
     canDo: "workplace",
+    posterImage: "images/r13.webp",
   },
   {
     id: 179,
@@ -4414,6 +4562,8 @@ const questionBank = [
       "「ラーメン 680円」とあります。 / Tertulis ramen 680 yen.",
     setId: "R14",
     canDo: "food",
+    poster: {"title":"メニュー","icon":"🍽️","items":[{"icon":"🍛","text":"カレー　　　　750円"},{"icon":"🍜","text":"ラーメン　　　680円"},{"icon":"🍤","text":"てんぷら定食　980円"},{"icon":"☕","text":"コーヒー　　　300円"}],"note":"※ 食事を 注文した 人は、コーヒーが 100円に なります。"},
+    posterImage: "images/r14.webp",
   },
   {
     id: 180,
@@ -4432,6 +4582,8 @@ const questionBank = [
       "食事を注文するとコーヒーは100円なので、750+100=850円です。 / Karena memesan makanan, kopi jadi 100 yen: 750+100=850.",
     setId: "R14",
     canDo: "food",
+    poster: {"title":"メニュー","icon":"🍽️","items":[{"icon":"🍛","text":"カレー　　　　750円"},{"icon":"🍜","text":"ラーメン　　　680円"},{"icon":"🍤","text":"てんぷら定食　980円"},{"icon":"☕","text":"コーヒー　　　300円"}],"note":"※ 食事を 注文した 人は、コーヒーが 100円に なります。"},
+    posterImage: "images/r14.webp",
   },
   {
     id: 181,
@@ -4450,6 +4602,8 @@ const questionBank = [
       "「18:30-20:30」とあるので、始まりは18:30です。 / Acara dimulai pukul 18:30.",
     setId: "R15",
     canDo: "social",
+    poster: {"title":"国際交流パーティー","icon":"🎉","items":[{"icon":"📅","text":"7月5日（土） 18:30〜20:30"},{"icon":"📍","text":"市民センター 2階"},{"icon":"💴","text":"参加費 500円"},{"icon":"🍲","text":"自分の 国の 料理を 一つ 持ってきて ください。"}],"note":"みなさんの 参加を お待ちして います。"},
+    posterImage: "images/r15.webp",
   },
   {
     id: 182,
@@ -4468,6 +4622,8 @@ const questionBank = [
       "「自分の国の料理を一つ持ってきてください」とあります。 / Peserta membawa satu masakan dari negaranya.",
     setId: "R15",
     canDo: "social",
+    poster: {"title":"国際交流パーティー","icon":"🎉","items":[{"icon":"📅","text":"7月5日（土） 18:30〜20:30"},{"icon":"📍","text":"市民センター 2階"},{"icon":"💴","text":"参加費 500円"},{"icon":"🍲","text":"自分の 国の 料理を 一つ 持ってきて ください。"}],"note":"みなさんの 参加を お待ちして います。"},
+    posterImage: "images/r15.webp",
   },
   {
     id: 183,
@@ -4522,6 +4678,7 @@ const questionBank = [
       "「20時からになりました」とあります。 / Tertulis dimulai pukul 20:00.",
     setId: "R17",
     canDo: "study",
+    posterImage: "images/r17.webp",
   },
   {
     id: 186,
@@ -4540,6 +4697,7 @@ const questionBank = [
       "「おくれる人は、私にメッセージを送ってください」とあります。 / Yang terlambat mengirim pesan.",
     setId: "R17",
     canDo: "study",
+    posterImage: "images/r17.webp",
   },
   {
     id: 187,
@@ -4558,6 +4716,8 @@ const questionBank = [
       "「夜23時から朝6時までは入れません」とあります。 / Tidak bisa masuk pukul 23:00 sampai 6:00.",
     setId: "R18",
     canDo: "transport",
+    poster: {"title":"自転車置き場","icon":"🚲","items":[{"icon":"🕕","text":"利用時間　6:00〜23:00"},{"icon":"🚫","text":"夜23時から 朝6時までは 入れません。"},{"icon":"💴","text":"1日 100円　／　1か月 2,000円"},{"icon":"🏷️","text":"自転車には 名前を 書いて ください。"}],"note":""},
+    posterImage: "images/r18.webp",
   },
   {
     id: 188,
@@ -4576,6 +4736,8 @@ const questionBank = [
       "「1か月2,000円」とあります。 / Biaya satu bulan 2.000 yen.",
     setId: "R18",
     canDo: "transport",
+    poster: {"title":"自転車置き場","icon":"🚲","items":[{"icon":"🕕","text":"利用時間　6:00〜23:00"},{"icon":"🚫","text":"夜23時から 朝6時までは 入れません。"},{"icon":"💴","text":"1日 100円　／　1か月 2,000円"},{"icon":"🏷️","text":"自転車には 名前を 書いて ください。"}],"note":""},
+    posterImage: "images/r18.webp",
   },
   {
     id: 189,
@@ -4594,6 +4756,7 @@ const questionBank = [
       "「水: 漢字」とあります。 / Tertulis Rabu belajar kanji.",
     setId: "R19",
     canDo: "study",
+    posterImage: "images/r19.webp",
   },
   {
     id: 190,
@@ -4612,6 +4775,7 @@ const questionBank = [
       "「金曜日だけ3階の教室に変わります」とあります。 / Khusus Jumat pindah ke ruang di lantai 3.",
     setId: "R19",
     canDo: "study",
+    posterImage: "images/r19.webp",
   },
   {
     id: 191,
@@ -5124,6 +5288,7 @@ const questionBank = [
     explanation:
       "「くつ 20%引き」とあります。 / Tertulis sepatu diskon 20%.",
     setId: "R21",
+    posterImage: "images/r21.webp",
   },
   {
     id: 221,
@@ -5142,6 +5307,7 @@ const questionBank = [
     explanation:
       "「3,000円以上買った人は、袋が無料です」とあります。 / Yang belanja 3.000 yen ke atas mendapat kantong gratis.",
     setId: "R21",
+    posterImage: "images/r21.webp",
   },
   {
     id: 222,
@@ -5210,6 +5376,7 @@ const questionBank = [
     explanation:
       "「10分遅れています」とあります。 / Tertulis terlambat 10 menit.",
     setId: "R22",
+    posterImage: "images/r22.webp",
   },
   {
     id: 226,
@@ -5228,6 +5395,7 @@ const questionBank = [
     explanation:
       "「お急ぎの方は山手線をご利用ください」とあります。 / Yang terburu-buru disarankan naik jalur Yamanote.",
     setId: "R22",
+    posterImage: "images/r22.webp",
   },
   {
     id: 227,
@@ -5296,6 +5464,7 @@ const questionBank = [
     explanation:
       "「午後受付 14:00-17:30」とあります。 / Pendaftaran sore mulai pukul 14:00.",
     setId: "R23",
+    posterImage: "images/r23.webp",
   },
   {
     id: 231,
@@ -5314,6 +5483,7 @@ const questionBank = [
     explanation:
       "受付は17:30までで、初めての人はその30分前までです。 / Pendaftaran tutup 17:30, pasien baru 30 menit sebelumnya.",
     setId: "R23",
+    posterImage: "images/r23.webp",
   },
   {
     id: 232,
@@ -5382,6 +5552,7 @@ const questionBank = [
     explanation:
       "「3番: 在留カードの相談」とあります。 / Konsultasi kartu izin tinggal di loket 3.",
     setId: "R24",
+    posterImage: "images/r24.webp",
   },
   {
     id: 236,
@@ -5400,6 +5571,7 @@ const questionBank = [
     explanation:
       "「12時から13時までは、1番の窓口だけ開いています」とあります。 / Pukul 12:00-13:00 hanya loket 1 yang buka.",
     setId: "R24",
+    posterImage: "images/r24.webp",
   },
   {
     id: 237,
@@ -5468,6 +5640,8 @@ const questionBank = [
     explanation:
       "「燃えるごみ: 月曜日・木曜日」とあります。 / Sampah bakar dibuang Senin dan Kamis.",
     setId: "R25",
+    poster: {"title":"ごみ出しの お知らせ","icon":"🗑️","items":[{"icon":"🔥","text":"燃えるごみ … 月曜日・木曜日　朝8時まで"},{"icon":"🍶","text":"びん・缶 … 水曜日"},{"icon":"⚠️","text":"前の 日の 夜に 出さないで ください。"}],"note":"時間を 守りましょう。"},
+    posterImage: "images/r25.webp",
   },
   {
     id: 241,
@@ -5486,6 +5660,8 @@ const questionBank = [
     explanation:
       "「前の日の夜に出さないでください」とあります。 / Dilarang membuang sampah pada malam sebelumnya.",
     setId: "R25",
+    poster: {"title":"ごみ出しの お知らせ","icon":"🗑️","items":[{"icon":"🔥","text":"燃えるごみ … 月曜日・木曜日　朝8時まで"},{"icon":"🍶","text":"びん・缶 … 水曜日"},{"icon":"⚠️","text":"前の 日の 夜に 出さないで ください。"}],"note":"時間を 守りましょう。"},
+    posterImage: "images/r25.webp",
   },
   {
     id: 242,
@@ -5554,6 +5730,7 @@ const questionBank = [
     explanation:
       "「ごはん・みそ汁つき」とあります。 / Tertulis termasuk nasi dan sup miso.",
     setId: "R26",
+    posterImage: "images/r26.webp",
   },
   {
     id: 246,
@@ -5572,6 +5749,7 @@ const questionBank = [
     explanation:
       "「11時から14時までです」とあります。 / Set menu ini hanya sampai pukul 14:00.",
     setId: "R26",
+    posterImage: "images/r26.webp",
   },
   {
     id: 247,
@@ -5640,6 +5818,7 @@ const questionBank = [
     explanation:
       "「チェックイン 15:00から」とあります。 / Check-in mulai pukul 15:00.",
     setId: "R27",
+    posterImage: "images/r27.webp",
   },
   {
     id: 251,
@@ -5658,6 +5837,7 @@ const questionBank = [
     explanation:
       "「チェックインの前でもフロントであずかります」とあります。 / Sebelum check-in, barang bisa dititipkan di resepsionis.",
     setId: "R27",
+    posterImage: "images/r27.webp",
   },
   {
     id: 252,
@@ -6196,6 +6376,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「参加できる人は、水曜日までに私にメールしてください」とあります。 / Yang ikut harus mengirim surel paling lambat hari Rabu.",
+    posterImage: "images/r29.webp",
   },
   {
     id: 282,
@@ -6215,6 +6396,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「お金は会社が半分出します」とあります。 / Perusahaan menanggung setengah dari biayanya.",
+    posterImage: "images/r29.webp",
   },
   {
     id: 283,
@@ -6272,6 +6454,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「手伝ってもらえませんか」と頼んでいます。 / Ia meminta bantuan untuk pindahan.",
+    posterImage: "images/r31.webp",
   },
   {
     id: 286,
@@ -6291,6 +6474,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「お昼ごはんは私が用意します」とあります。 / Makan siang disiapkan oleh pengirim pesan.",
+    posterImage: "images/r31.webp",
   },
   {
     id: 287,
@@ -6298,7 +6482,7 @@ const questionBank = [
     category: "内容理解",
     canDo: "workplace",
     level: "A2",
-    scenario: "Baca memo di tempat kerja dan pilih jawaban yang tepat.",
+    scenario: "Baca surel dari atasan di tempat kerja dan pilih jawaban yang tepat.",
     pattern: "読解: 内容理解",
     meaning: "memahami isi teks",
     setId: "R32",
@@ -6310,6 +6494,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「その時間は、3番の機械を使ってください」とあります。 / Selama waktu itu memakai mesin nomor 3.",
+    posterImage: "images/r32.webp",
   },
   {
     id: 288,
@@ -6317,7 +6502,7 @@ const questionBank = [
     category: "内容理解",
     canDo: "workplace",
     level: "A2",
-    scenario: "Baca memo di tempat kerja dan pilih jawaban yang tepat.",
+    scenario: "Baca surel dari atasan di tempat kerja dan pilih jawaban yang tepat.",
     pattern: "読解: 内容理解",
     meaning: "memahami isi teks",
     setId: "R32",
@@ -6325,10 +6510,11 @@ const questionBank = [
       ["本文", "明日の 午前中、機械の 点検が あります。9時から 11時まで、2番の 機械は 使えません。／その 時間は、3番の 機械を 使って ください。点検が 終わったら、私が 知らせます。"],
       ["質問", "点検が 終わった ことは、どうやって 分かりますか。"],
     ],
-    choices: ["メモを 書いた人が 知らせて くれる", "自分で 機械を 見に 行く", "次の日に 分かる"],
+    choices: ["メールを 書いた人が 知らせて くれる", "自分で 機械を 見に 行く", "次の日に 分かる"],
     answer: 0,
     explanation:
-      "「点検が終わったら、私が知らせます」とあります。 / Penulis memo yang akan memberi tahu.",
+      "「点検が終わったら、私が知らせます」とあります。 / Penulis surel yang akan memberi tahu.",
+    posterImage: "images/r32.webp",
   },
   {
     id: 289,
@@ -6424,6 +6610,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「今日の仕事は、私がやっておきました」とあります。 / Ia mengerjakan pekerjaan Nia hari itu.",
+    posterImage: "images/r35.webp",
   },
   {
     id: 294,
@@ -6443,6 +6630,7 @@ const questionBank = [
     answer: 0,
     explanation:
       "「明日、来られるかどうか、夜に教えてください」とあります。 / Malamnya Nia mengabari apakah besok bisa masuk.",
+    posterImage: "images/r35.webp",
   },
   {
     id: 295,
@@ -8027,15 +8215,41 @@ function renderPractice() {
   els.progressText.textContent = `${state.index + 1} / ${questions.length}`;
 
   els.dialogueBox.innerHTML = question.dialogue
-    .map(
-      ([speaker, text]) => `
+    .map(([speaker, text], lineIndex) => {
+      if (lineIndex === 0 && (question.posterImage || question.poster)) {
+        return question.posterImage
+          ? posterImageHtml(question.posterImage, question.poster)
+          : posterHtml(question.poster);
+      }
+      return `
         <div class="dialogue-line">
           <div class="speaker">${escapeHtml(speaker)}</div>
           <div class="utterance">${renderTextWithBlank(text)}</div>
         </div>
-      `,
-    )
+      `;
+    })
     .join("");
+
+  // 画像が読み込めないときは文字のポスターに切り替える
+  const posterImg = els.dialogueBox.querySelector(".poster-image");
+  if (posterImg) {
+    posterImg.addEventListener(
+      "error",
+      () => {
+        const figure = posterImg.closest(".poster-figure");
+        if (!figure) return;
+        figure.outerHTML = question.poster
+          ? posterHtml(question.poster)
+          : `
+            <div class="dialogue-line">
+              <div class="speaker">本文</div>
+              <div class="utterance">${renderTextWithBlank(question.dialogue[0][1])}</div>
+            </div>
+          `;
+      },
+      { once: true },
+    );
+  }
 
   els.choicesBox.innerHTML = choiceOrderFor(question)
     .map((originalChoiceIndex, displayIndex) => {
@@ -8165,6 +8379,48 @@ function testSectionSummary(questions) {
     groups.set(label.ja, entry);
   });
   return [...groups.values()];
+}
+
+function posterImageHtml(source, poster) {
+  const alt = poster && poster.title ? poster.title : "掲示";
+  return `
+    <figure class="poster-figure">
+      <img
+        class="poster-image"
+        src="${escapeHtml(source)}"
+        alt="${escapeHtml(alt)}"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="poster-caption">Ketuk gambar untuk memperbesar. / 画像をタップすると大きくなります。</figcaption>
+    </figure>
+  `;
+}
+
+function posterHtml(poster) {
+  const rows = poster.items
+    .map(
+      (item) => `
+        <li class="poster-row">
+          <span class="poster-icon" aria-hidden="true">${escapeHtml(item.icon || "・")}</span>
+          <span class="poster-text">${escapeHtml(item.text)}</span>
+        </li>
+      `,
+    )
+    .join("");
+  const note = poster.note
+    ? `<p class="poster-note">${escapeHtml(poster.note)}</p>`
+    : "";
+  return `
+    <div class="poster">
+      <div class="poster-head">
+        <span class="poster-head-icon" aria-hidden="true">${escapeHtml(poster.icon || "📌")}</span>
+        <h3>${escapeHtml(poster.title)}</h3>
+      </div>
+      <ul class="poster-body">${rows}</ul>
+      ${note}
+    </div>
+  `;
 }
 
 function renderBilingualExplanation(question) {
@@ -8839,6 +9095,10 @@ function bindEvents() {
   });
   [els.nextBtn, els.topNextBtn].filter(Boolean).forEach((button) => {
     button.addEventListener("click", () => moveQuestion(1));
+  });
+  els.dialogueBox.addEventListener("click", (event) => {
+    const image = event.target.closest(".poster-image");
+    if (image) image.classList.toggle("is-zoomed");
   });
   els.flagBtn?.addEventListener("click", () => {
     const question = currentQuestions()[state.index];
