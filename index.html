@@ -1225,7 +1225,7 @@ select {
         </label>
         <button class="gate-button" id="gateBtn" type="button">Masuk</button>
         <p class="gate-error" id="gateError" hidden>Kata sandi salah. / パスワードが違います。</p>
-        <p class="gate-version" id="gateVersion">versi 2026-08-22c · 336 soal</p>
+        <p class="gate-version" id="gateVersion">versi 2026-09-01c · 353 soal</p>
       </div>
     </div>
     <div class="app-shell" id="appShell" hidden>
@@ -1478,7 +1478,7 @@ const questionBank = [
     pattern: "Nに + なりたいです",
     meaning: "ingin menjadi sesuatu",
     dialogue: [
-      ["A", "将来、何になりたいですか。"],
+      ["A", "将来の 夢は 何ですか。"],
       ["B", "子どもが好きですから、小学校の教師に [blank]。"],
     ],
     choices: ["したいです", "なりたいです", "します"],
@@ -1679,8 +1679,8 @@ const questionBank = [
     meaning: "katanya / saya dengar",
     dialogue: [
       ["A", "カリナさんはJFTに合格した [blank]。"],
-      ["B", "そうですか。よかったですね。"],
-      ["A", "いつも勉強していたので、合格できたそうです。"],
+      ["B", "本当ですか。よかったですね。"],
+      ["A", "いつも 勉強して いましたからね。"],
     ],
     choices: ["くれます", "のです", "そうです"],
     answer: 2,
@@ -2023,10 +2023,10 @@ const questionBank = [
       ["友だち", "いらっしゃい。どうぞ お上がりください。"],
       ["Hana", "[blank]"],
     ],
-    choices: ["おかげさまで", "ちょっと", "おじゃまします"],
-    answer: 2,
+    choices: ["おじゃまします", "ただいま", "いってらっしゃい"],
+    answer: 0,
     explanation:
-      "人の家に入るときは「おじゃまします」と言います。 / Saat masuk ke rumah orang lain, ucapkan おじゃまします.",
+      "人の家に入るときは「おじゃまします」。「ただいま」は自分の家に帰ったとき、「いってらっしゃい」は出かける人を送るときの言葉です。 / Masuk rumah orang: おじゃまします. ただいま untuk rumah sendiri, いってらっしゃい untuk mengantar orang pergi.",
     canDo: "social",
   },
   {
@@ -2606,13 +2606,13 @@ const questionBank = [
     pattern: "可能形",
     meaning: "bisa melakukan sesuatu",
     dialogue: [
-      ["A", "田中さんは漢字が読めますか。"],
-      ["B", "はい、少し [blank]。"],
+      ["A", "田中さんは この 漢字が 読めますか。"],
+      ["B", "いいえ、むずかしくて [blank]。"],
     ],
-    choices: ["読めます", "読みたいです", "読んでいます"],
+    choices: ["読めません", "読みません", "読んでいません"],
     answer: 0,
     explanation:
-      "「読めますか」と聞かれているので、可能形で「読めます」と答えます。 / Pertanyaan memakai bentuk potensial, jadi jawabnya 読めます.",
+      "できないことを言うときは可能形の「読めません」を使います。「読みません」は「読まない」という意味になります。 / Untuk menyatakan tidak mampu, gunakan bentuk potensial 読めません. 読みません berarti memilih tidak membaca.",
     canDo: "study",
   },
   {
@@ -2874,17 +2874,17 @@ const questionBank = [
     id: 82,
     section: "Expression",
     category: "職場",
-    scenario: "Siang hari, bertemu pegawai dari bagian lain di lorong kantor.",
+    scenario: "Siang hari di lorong kantor, berpapasan dengan rekan kerja dari bagian lain.",
     pattern: "お疲れさまです",
     meaning: "sapaan sopan di tempat kerja",
     dialogue: [
-      ["A", "[blank]。"],
-      ["B", "お疲れさまです。"],
+      ["社員A", "[blank]。"],
+      ["社員B", "あ、どうも。今日も 暑いですね。"],
     ],
     choices: ["お疲れさまです", "おはようございます", "おやすみなさい"],
     answer: 0,
     explanation:
-      "「お疲れさまです」は職場で一日中使えるあいさつです。朝いちばんは「おはようございます」を使います。 / お疲れさまです dipakai sepanjang hari di kantor; pagi hari gunakan おはようございます.",
+      "職場ですれちがったときのあいさつは「お疲れさまです」です。朝なら「おはようございます」も使います。 / Sapaan saat berpapasan di tempat kerja adalah お疲れさまです.",
     canDo: "workplace",
   },
   {
@@ -3332,7 +3332,7 @@ const questionBank = [
     dialogue: [
       ["問題", "電車にかばんを忘れました。駅の [blank] に聞きます。"],
     ],
-    choices: ["忘れ物センター", "台所", "教室"],
+    choices: ["忘れ物センター", "切符売り場", "駐車場"],
     answer: 0,
     explanation:
       "電車に忘れた物は「忘れ物センター」で聞きます。 / Barang yang tertinggal ditanyakan di 忘れ物センター.",
@@ -3348,7 +3348,7 @@ const questionBank = [
     dialogue: [
       ["問題", "病院で医者に体を見てもらいます。これは [blank] です。"],
     ],
-    choices: ["診察", "会計", "旅行"],
+    choices: ["診察", "会計", "受付"],
     answer: 0,
     explanation:
       "医者が体を見ることを「診察」と言います。 / Pemeriksaan oleh dokter disebut 診察.",
@@ -3364,7 +3364,7 @@ const questionBank = [
     dialogue: [
       ["問題", "申込書は金曜日までです。金曜日が [blank] です。"],
     ],
-    choices: ["締め切り", "入口", "売り場"],
+    choices: ["締め切り", "始まり", "休み"],
     answer: 0,
     explanation:
       "提出や申し込みの最終日を「締め切り」と言います。 / Batas akhir pengumpulan atau pendaftaran disebut 締め切り.",
@@ -3951,7 +3951,7 @@ const questionBank = [
     dialogue: [
       ["質問", "「使用中」は 何のことですか。"],
     ],
-    choices: ["今、だれかが使っていること", "こわれていること", "新しいこと"],
+    choices: ["今、だれかが使っていること", "まだ、だれも使っていないこと", "もう、使えなくなったこと"],
     answer: 0,
     explanation:
       "「使用中」は今使われているという意味です。 / 使用中 berarti sedang dipakai.",
@@ -3983,7 +3983,7 @@ const questionBank = [
     dialogue: [
       ["質問", "「受付時間」は 何のことですか。"],
     ],
-    choices: ["受け付けをしている時間", "電車が来る時間", "休む時間"],
+    choices: ["受け付けをしている時間", "店が休みになる時間", "電車が出発する時間"],
     answer: 0,
     explanation:
       "「受付時間」は手続きを受け付けている時間です。 / 受付時間 adalah jam pendaftaran dilayani.",
@@ -3999,7 +3999,7 @@ const questionBank = [
     dialogue: [
       ["質問", "「満車」は 何のことですか。"],
     ],
-    choices: ["車をとめる場所がないこと", "車が安いこと", "車が新しいこと"],
+    choices: ["車をとめる場所がないこと", "まだ車をとめられること", "車を修理していること"],
     answer: 0,
     explanation:
       "「満車」は駐車場がいっぱいという意味です。 / 満車 berarti tempat parkir penuh.",
@@ -5423,13 +5423,13 @@ const questionBank = [
     pattern: "初めてです",
     meaning: "ini pertama kali",
     dialogue: [
-      ["受付", "この病院は初めてですか。"],
-      ["患者", "はい、[blank]。"],
+      ["受付", "診察券は お持ちですか。"],
+      ["患者", "いいえ、[blank]。"],
     ],
-    choices: ["初めてです", "久しぶりです", "お大事に"],
+    choices: ["初めてです", "久しぶりです", "おかげさまです"],
     answer: 0,
     explanation:
-      "初めて来た場合は「初めてです」と答えます。 / Jika datang untuk pertama kali, jawab 初めてです.",
+      "診察券がないのは初めて来たからです。「初めてです」と答えます。 / Belum punya kartu berobat karena baru pertama kali datang, jadi jawab 初めてです.",
   },
   {
     id: 229,
@@ -7349,6 +7349,331 @@ const questionBank = [
     answer: 0,
     explanation:
       "「会計」は食事や買い物のお金を払うことです。 / 会計 berarti pembayaran di kasir.",
+  },
+  {
+    id: 337,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "housing",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih kata yang tepat. / 絵を見て、正しい言葉を選びましょう。",
+    pattern: "語の意味: しめる",
+    meaning: "gambar dan kata",
+    posterImage: "images/v01.webp",
+    dialogue: [
+      ["絵", "台所で、水が 出る ところを 手で 回して います。"],
+      ["質問", "じゃぐちを どう しますか。"],
+    ],
+    choices: ["しめる", "とめる", "けす"],
+    answer: 0,
+    explanation:
+      "水の出口である「蛇口」は「しめる」と言います。水そのものなら「水をとめる」、電気なら「電気をけす」です。 / Untuk keran air gunakan しめる. Air-nya sendiri: 水をとめる, lampu: 電気をけす.",
+  },
+  {
+    id: 338,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "social",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih kata yang tepat. / 絵を見て、正しい言葉を選びましょう。",
+    pattern: "語の意味: 結婚式",
+    meaning: "gambar dan kata",
+    posterImage: "images/v02.webp",
+    dialogue: [
+      ["絵", "白い ドレスの 女の人と、黒い スーツの 男の人が、みんなの 前で 指輪を つけて います。"],
+      ["質問", "これは 何ですか。"],
+    ],
+    choices: ["結婚式", "卒業式", "誕生日のパーティー"],
+    answer: 0,
+    explanation:
+      "指輪をつけて二人がいっしょに立っているので「結婚式」です。 / Karena bertukar cincin, ini adalah 結婚式 (upacara pernikahan).",
+  },
+  {
+    id: 339,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "housing",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih kata yang tepat. / 絵を見て、正しい言葉を選びましょう。",
+    pattern: "語の意味: 電気を 消して います",
+    meaning: "gambar dan kata",
+    posterImage: "images/v03.webp",
+    dialogue: [
+      ["絵", "明るい 部屋の スイッチを 押したら、部屋が 暗く なりました。"],
+      ["質問", "この人は 何を して いますか。"],
+    ],
+    choices: ["電気を 消して います", "電気を つけて います", "電気を 開けて います"],
+    answer: 0,
+    explanation:
+      "明かりが消えたので「電気を消しています」です。日本語では電気に「開ける」は使いません。 / Karena lampu menjadi mati, jawabannya 電気を消しています. 電気を開ける tidak dipakai dalam bahasa Jepang.",
+  },
+  {
+    id: 340,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "housing",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih kata yang tepat. / 絵を見て、正しい言葉を選びましょう。",
+    pattern: "語の意味: 窓を 開けて います",
+    meaning: "gambar dan kata",
+    posterImage: "images/v04.webp",
+    dialogue: [
+      ["絵", "男の人が 窓に 手を かけて 動かし、外から 風が 入って カーテンが ゆれて います。"],
+      ["質問", "この人は 何を して いますか。"],
+    ],
+    choices: ["窓を 開けて います", "窓を ふいて います", "カーテンを 閉めて います"],
+    answer: 0,
+    explanation:
+      "風が入ってカーテンがゆれているので「窓を開けています」です。 / Angin masuk dan gorden bergoyang, jadi jawabannya 窓を開けています.",
+  },
+  {
+    id: 341,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "housing",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih kata yang tepat. / 絵を見て、正しい言葉を選びましょう。",
+    pattern: "語の意味: 鍵を かけて います",
+    meaning: "gambar dan kata",
+    posterImage: "images/v05.webp",
+    dialogue: [
+      ["絵", "出かける 前に、げんかんの ドアの 鍵あなに 鍵を 入れて、回して います。"],
+      ["質問", "この人は 何を して いますか。"],
+    ],
+    choices: ["鍵を かけて います", "鍵を さがして います", "鍵を わたして います"],
+    answer: 0,
+    explanation:
+      "出かけるときにドアを閉めて回すことを「鍵をかける」と言います。 / Mengunci pintu saat pergi disebut 鍵をかける.",
+  },
+  {
+    id: 342,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "hospital",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: 病院",
+    meaning: "gambar dan kata",
+    posterImage: "images/v06.webp",
+    dialogue: [
+      ["絵", "「受付」と 書いて ある 所で、男の人が カードを 出して います。青い 十字の マークが 見えます。"],
+      ["質問", "ここは どこですか。"],
+    ],
+    choices: ["病院", "銀行", "郵便局"],
+    answer: 0,
+    explanation:
+      "十字のマークと「診察室」の案内があるので「病院」です。 / Tanda salib dan papan 診察室 menunjukkan bahwa ini rumah sakit.",
+  },
+  {
+    id: 343,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "transport",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: 切符",
+    meaning: "gambar dan kata",
+    posterImage: "images/v07.webp",
+    dialogue: [
+      ["絵", "「きっぷうりば」と 書いて ある まどぐちで、お金を 出して います。うしろに 電車が 見えます。"],
+      ["質問", "ここで 何を 買いますか。"],
+    ],
+    choices: ["切符", "切手", "薬"],
+    answer: 0,
+    explanation:
+      "「きっぷうりば」は電車の切符を買うところです。「切手」は郵便局で買います。 / きっぷうりば adalah loket tiket kereta. 切手 (perangko) dibeli di kantor pos.",
+  },
+  {
+    id: 344,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "shopping",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: レジ",
+    meaning: "gambar dan kata",
+    posterImage: "images/v08.webp",
+    dialogue: [
+      ["絵", "コンビニで、店員が 商品を 読み取り、客が カードで はらって います。"],
+      ["質問", "この人は どこで お金を はらって いますか。"],
+    ],
+    choices: ["レジ", "入口", "駐車場"],
+    answer: 0,
+    explanation:
+      "店でお金をはらうところを「レジ」と言います。 / Tempat membayar di toko disebut レジ (kasir).",
+  },
+  {
+    id: 345,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "hospital",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: 薬",
+    meaning: "gambar dan kata",
+    posterImage: "images/v09.webp",
+    dialogue: [
+      ["絵", "「薬局」で、白い 服の 人から 女の人が ふくろを 受け取って います。つくえの 上に 処方せんが あります。"],
+      ["質問", "この人は 何を 受け取って いますか。"],
+    ],
+    choices: ["薬", "切符", "荷物"],
+    answer: 0,
+    explanation:
+      "「薬局」は薬をもらうところです。 / 薬局 adalah apotek, tempat menerima obat.",
+  },
+  {
+    id: 346,
+    section: "Reading",
+    category: "情報検索",
+    canDo: "social",
+    level: "A2",
+    scenario: "Baca acara TV berikut, lalu pilih jawaban yang tepat.",
+    pattern: "読解: 情報検索",
+    meaning: "memahami isi teks",
+    setId: "R37",
+    posterImage: "images/r37.webp",
+    dialogue: [
+      ["本文", "テレビ番組表／18:00 日本のニュース／18:30 きょうは「カレー」の作り方／19:00 アニメ「青い空」／20:00 サッカー 日本 VS インドネシア／21:00 ドラマ「家族」"],
+      ["質問", "スポーツの 番組は 何時からですか。"],
+    ],
+    choices: ["20:00", "19:00", "21:00"],
+    answer: 0,
+    explanation:
+      "サッカーはスポーツです。20:00からです。 / Sepak bola adalah olahraga, mulai pukul 20:00.",
+  },
+  {
+    id: 347,
+    section: "Reading",
+    category: "情報検索",
+    canDo: "social",
+    level: "A2",
+    scenario: "Baca acara TV berikut, lalu pilih jawaban yang tepat.",
+    pattern: "読解: 情報検索",
+    meaning: "memahami isi teks",
+    setId: "R37",
+    posterImage: "images/r37.webp",
+    dialogue: [
+      ["本文", "テレビ番組表／18:00 日本のニュース／18:30 きょうは「カレー」の作り方／19:00 アニメ「青い空」／20:00 サッカー 日本 VS インドネシア／21:00 ドラマ「家族」"],
+      ["質問", "料理の 番組は 何時からですか。"],
+    ],
+    choices: ["18:30", "18:00", "21:00"],
+    answer: 0,
+    explanation:
+      "「カレーの作り方」が料理の番組です。18:30からです。 / Acara memasak adalah 「カレー」の作り方, mulai pukul 18:30.",
+  },
+  {
+    id: 348,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "social",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: たばこを 吸う こと",
+    meaning: "gambar dan kata",
+    posterImage: "images/v10.webp",
+    dialogue: [
+      ["絵", "白い ボードに、赤い まるの 中の たばこに ななめの 線が 引いて あります。"],
+      ["質問", "この 場所では、何を しては いけませんか。"],
+    ],
+    choices: ["たばこを 吸う こと", "写真を 撮る こと", "食事を する こと"],
+    answer: 0,
+    explanation:
+      "赤いまるとななめの線は「してはいけない」という意味です。たばこの絵なので「禁煙」です。 / Lingkaran merah dengan garis miring berarti larangan. Gambar rokok = dilarang merokok (禁煙).",
+  },
+  {
+    id: 349,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "workplace",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: ここに 入っては いけません",
+    meaning: "gambar dan kata",
+    posterImage: "images/v11.webp",
+    dialogue: [
+      ["絵", "工場の 通路の ゲートに、「立入禁止」と 書いた 赤い 表示が あります。"],
+      ["質問", "この 表示は どういう 意味ですか。"],
+    ],
+    choices: ["ここに 入っては いけません", "ここで 待って ください", "ここに 荷物を 置いて ください"],
+    answer: 0,
+    explanation:
+      "「立入禁止」は中に入ってはいけないという意味です。工場では危ない場所によくあります。 / 立入禁止 berarti dilarang masuk. Sering dipasang di tempat berbahaya dalam pabrik.",
+  },
+  {
+    id: 350,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "workplace",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: 足元",
+    meaning: "gambar dan kata",
+    posterImage: "images/v12.webp",
+    dialogue: [
+      ["絵", "入口の 前に 黄色い 立て札が あり、ゆかの 段差で つまずいて いる 人の 絵が かいて あります。"],
+      ["質問", "何に 気を つけますか。"],
+    ],
+    choices: ["足元", "頭の上", "車"],
+    answer: 0,
+    explanation:
+      "「段差注意」はゆかに高さの違いがあるという意味です。足元に気をつけます。 / 段差注意 berarti ada beda ketinggian di lantai. Hati-hati dengan langkah kaki (足元).",
+  },
+  {
+    id: 351,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "transport",
+    level: "A2",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: いいえ、工事を して いるので 通れません",
+    meaning: "gambar dan kata",
+    posterImage: "images/v13.webp",
+    dialogue: [
+      ["絵", "道に「工事中」と 書いた 大きな 看板が 立って います。コーンと バーが 置いて あって、作業員が 道を ほって います。"],
+      ["質問", "この 道は 今 通れますか。"],
+    ],
+    choices: ["いいえ、工事を して いるので 通れません", "はい、いつもと 同じように 通れます", "はい、車だけ 通れます"],
+    answer: 0,
+    explanation:
+      "「工事中」は今その場所で工事をしているという意味です。コーンとバーで止めてあるので通れません。 / 工事中 berarti sedang ada pekerjaan konstruksi. Jalan ditutup dengan kerucut dan palang, jadi tidak bisa lewat.",
+  },
+  {
+    id: 352,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "workplace",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: 火事や 地震の とき",
+    meaning: "gambar dan kata",
+    posterImage: "images/v14.webp",
+    dialogue: [
+      ["絵", "ろうかの ドアの 上に、緑色の 「非常口」の 表示が 光って います。走る 人と 矢印の 絵が あります。"],
+      ["質問", "この ドアは どんな ときに 使いますか。"],
+    ],
+    choices: ["火事や 地震の とき", "毎日 会社に 入る とき", "荷物を 運ぶ とき"],
+    answer: 0,
+    explanation:
+      "「非常口」は火事や地震など、危ないときに外へ逃げるための出口です。 / 非常口 adalah pintu darurat untuk keluar saat kebakaran atau gempa.",
+  },
+  {
+    id: 353,
+    section: "Vocabulary",
+    category: "語の意味",
+    canDo: "transport",
+    level: "A1",
+    scenario: "Lihat gambar, lalu pilih jawaban yang tepat. / 絵を見て、正しい答えを選びましょう。",
+    pattern: "語の意味: いいえ、使えません",
+    meaning: "gambar dan kata",
+    posterImage: "images/v15.webp",
+    dialogue: [
+      ["絵", "トイレの ドアに 「使用禁止」と 書いた 赤い 紙が はって あり、前に 赤白の テープが 張って あります。"],
+      ["質問", "この トイレは 使えますか。"],
+    ],
+    choices: ["いいえ、使えません", "はい、使えます", "そうじの あとで 使います"],
+    answer: 0,
+    explanation:
+      "「使用禁止」は使ってはいけないという意味です。テープも張ってあるので入れません。 / 使用禁止 berarti dilarang dipakai. Pintunya juga dipasangi pita, jadi tidak bisa masuk.",
   },
 ];
 
