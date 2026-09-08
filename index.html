@@ -768,6 +768,37 @@ select {
   line-height: 1.5;
 }
 
+.translation-block {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+
+.translation-block > strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.translation-row {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.translation-ja {
+  display: block;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.translation-id {
+  display: block;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
 .feedback span strong {
   display: inline;
   margin-bottom: 0;
@@ -1225,7 +1256,7 @@ select {
         </label>
         <button class="gate-button" id="gateBtn" type="button">Masuk</button>
         <p class="gate-error" id="gateError" hidden>Kata sandi salah. / パスワードが違います。</p>
-        <p class="gate-version" id="gateVersion">versi 2026-09-01c · 353 soal</p>
+        <p class="gate-version" id="gateVersion">versi 2026-09-02b · 353 soal</p>
       </div>
     </div>
     <div class="app-shell" id="appShell" hidden>
@@ -1452,6 +1483,10 @@ const questionBank = [
     explanation:
       "今の仕事や状態を言うときは「Vています」を使います。 / Untuk pekerjaan atau keadaan sekarang gunakan Vています.",
     canDo: "workplace",
+    translation: [
+      "Apa yang Anda lakukan di Jepang?",
+      "Saya menanam sayuran.",
+    ],
   },
   {
     id: 2,
@@ -1469,6 +1504,10 @@ const questionBank = [
     explanation:
       "動作を順番につなぐときは「て形」を使います。レストランでご飯を食べて、家に帰ります。 / Untuk menyambung urutan kegiatan, gunakan bentuk て.",
     canDo: "food",
+    translation: [
+      "Setelah pekerjaan selesai, Anda mau apa?",
+      "Saya makan di restoran, lalu pulang ke rumah.",
+    ],
   },
   {
     id: 3,
@@ -1486,6 +1525,10 @@ const questionBank = [
     explanation:
       "将来なりたい職業を言うときは「Nになりたいです」を使います。 / Untuk cita-cita atau profesi yang ingin dicapai, gunakan Nになりたいです.",
     canDo: "study",
+    translation: [
+      "Apa cita-cita Anda?",
+      "Karena suka anak-anak, saya ingin menjadi guru SD.",
+    ],
   },
   {
     id: 4,
@@ -1504,6 +1547,11 @@ const questionBank = [
     explanation:
       "写真を見て感じたことを言うので、様子を表す「そうです」を使います。 / Saat menilai dari tampilan gunakan おいしそうですね.",
     canDo: "food",
+    translation: [
+      "Permisi. Apa menu yang direkomendasikan?",
+      "Tempura teishoku populer, lho. Fotonya ada di sini.",
+      "Kelihatannya enak ya. Kalau begitu, saya pesan ini.",
+    ],
   },
   {
     id: 5,
@@ -1523,6 +1571,12 @@ const questionBank = [
     explanation:
       "「不便」と「静か」は反対の内容なので、逆接の「けど」でつなぎます。 / 不便 dan 静か berlawanan, jadi dihubungkan dengan けど.",
     canDo: "housing",
+    translation: [
+      "Antara desa dan kota, Anda suka yang mana?",
+      "Hmm. Saya pikir desa lebih baik.",
+      "Kenapa?",
+      "Desa memang sedikit kurang praktis dibanding kota, tapi tenang.",
+    ],
   },
   {
     id: 6,
@@ -1541,6 +1595,11 @@ const questionBank = [
     explanation:
       "出来事の原因は「で」で表します。「事故で電車が止まりました」。 / Untuk menyebut penyebab peristiwa, gunakan で: 事故で電車が止まりました.",
     canDo: "transport",
+    translation: [
+      "Maaf saya terlambat.",
+      "Ab-san, ada apa?",
+      "Tadi kereta berhenti karena kecelakaan.",
+    ],
   },
   {
     id: 7,
@@ -1559,6 +1618,11 @@ const questionBank = [
     explanation:
       "経験を言うときは「Vた形＋ことがあります」を使います。タワーには「登る」は使いません。 / Untuk pengalaman gunakan bentuk lampau biasa + ことがあります.",
     canDo: "social",
+    translation: [
+      "Pernah pergi ke Tokyo Skytree?",
+      "Belum pernah.",
+      "Ayo kita pergi bersama akhir pekan ini.",
+    ],
   },
   {
     id: 8,
@@ -1577,6 +1641,11 @@ const questionBank = [
     explanation:
       "切符を買うのは旅行の前なので「旅行の前に」を使います。 / Membeli tiket dilakukan sebelum perjalanan, jadi gunakan 旅行の前に.",
     canDo: "transport",
+    translation: [
+      "Pernah naik shinkansen?",
+      "Belum. Ayo kita pergi.",
+      "Kalau begitu, saya beli tiket sebelum perjalanan.",
+    ],
   },
   {
     id: 9,
@@ -1594,6 +1663,10 @@ const questionBank = [
     explanation:
       "やり方を言うときは「ます形（ますを取る）＋方」の形で「使い方」になります。 / Cara memakai sesuatu dinyatakan dengan bentuk ます tanpa ます + 方: 使い方.",
     canDo: "food",
+    translation: [
+      "Cara Anda memakai sumpit bagus sekali. Bisa ajari saya?",
+      "Boleh.",
+    ],
   },
   {
     id: 10,
@@ -1614,6 +1687,13 @@ const questionBank = [
     explanation:
       "動作の順番は「て形」でつなぎます。「ソースをかけて食べます」。 / Urutan cara makan memakai bentuk て: ソースをかけて食べます.",
     canDo: "food",
+    translation: [
+      "Masakan Indonesia bermacam-macam, lho.",
+      "Oh ya? Misalnya?",
+      "Gado-gado.",
+      "Bagaimana cara memakannya?",
+      "Sayuran rebus disiram saus kacang, lalu dimakan. Enak.",
+    ],
   },
   {
     id: 11,
@@ -1633,6 +1713,12 @@ const questionBank = [
     explanation:
       "ボタンを押すと必ずコピーが始まる、という自動的な関係なので「と」を使います。 / Untuk hubungan otomatis seperti tombol ditekan lalu mesin mulai, gunakan と.",
     canDo: "workplace",
+    translation: [
+      "Apakah Anda tahu cara memakai mesin fotokopi ini?",
+      "Kalau tombol start ini ditekan, fotokopi akan mulai.",
+      "Terima kasih.",
+      "Sama-sama.",
+    ],
   },
   {
     id: 12,
@@ -1651,6 +1737,11 @@ const questionBank = [
     explanation:
       "夜ふかしをしないように助言しています。丁寧な言い方は「起きないでください」です。 / Dokter memberi nasihat agar tidak begadang. Bentuk sopan yang tepat adalah 起きないでください.",
     canDo: "hospital",
+    translation: [
+      "Ada keluhan apa?",
+      "Kepala saya sakit dan hidung meler.",
+      "Anda flu. Malam ini jangan bergadang. Minum obat ini sebelum tidur.",
+    ],
   },
   {
     id: 13,
@@ -1669,6 +1760,11 @@ const questionBank = [
     explanation:
       "昨日ビールを飲みすぎたので頭が痛い、という意味です。 / Sakit kepala karena minum bir terlalu banyak tadi malam: 飲みすぎました.",
     canDo: "hospital",
+    translation: [
+      "Anda tidak apa-apa? Wajah Anda pucat.",
+      "Kepala saya sakit. Semalam saya minum bir terlalu banyak.",
+      "Wah, itu tidak baik. Sebaiknya Anda pulang lebih awal.",
+    ],
   },
   {
     id: 14,
@@ -1687,6 +1783,11 @@ const questionBank = [
     explanation:
       "聞いた話を伝える文です。普通形に「そうです」を付けます。 / Kalimat ini menyampaikan kabar yang didengar. Gunakan そうです setelah bentuk biasa.",
     canDo: "study",
+    translation: [
+      "Katanya Karina lulus JFT.",
+      "Benarkah? Syukurlah.",
+      "Soalnya dia selalu belajar.",
+    ],
   },
   {
     id: 15,
@@ -1709,6 +1810,15 @@ const questionBank = [
     explanation:
       "「一昨日来た」＝つい最近のことなので「来たばかりです」を使います。 / Karena baru saja tiba, gunakan 来たばかりです.",
     canDo: "workplace",
+    translation: [
+      "Perkenalkan, saya Karina. Saya datang dari Indonesia.",
+      "Perkenalkan, saya Tanaka. Mohon kerja samanya.",
+      "Saya juga, mohon kerja samanya.",
+      "Karina-san, kapan datang ke Jepang?",
+      "Saya baru saja datang ke Jepang kemarin lusa.",
+      "Dari Indonesia berapa lama perjalanannya?",
+      "Sekitar 7 jam naik pesawat.",
+    ],
   },
   {
     id: 16,
@@ -1729,6 +1839,13 @@ const questionBank = [
     explanation:
       "理由をいくつか並べるときは「し」を使います。 / Saat menyebut beberapa alasan, pakai し: かっこいいし、歌もダンスも上手です.",
     canDo: "social",
+    translation: [
+      "Apakah Anda kenal Suda-san?",
+      "Siapa itu?",
+      "Penyanyi yang menyanyikan lagu populer itu, lho.",
+      "Oh, penyanyi hebat itu ya.",
+      "Saya suka dia. Dia keren, dan pandai menyanyi maupun menari.",
+    ],
   },
   {
     id: 17,
@@ -1749,6 +1866,13 @@ const questionBank = [
     explanation:
       "「なら」は前に出た話題を取り上げます。「あの店なら」＝その店については、という意味です。 / なら mengangkat topik yang sudah disebut: kalau restoran itu, apa pun enak.",
     canDo: "food",
+    translation: [
+      "Apakah ada restoran yang direkomendasikan di dekat sini?",
+      "Hmm. Sakura Sushi.",
+      "Masakan apa yang paling enak?",
+      "Kalau restoran itu, apa pun yang dimakan enak.",
+      "Oh begitu ya.",
+    ],
   },
   {
     id: 18,
@@ -1766,6 +1890,10 @@ const questionBank = [
     explanation:
       "今の様子を見て「これから降る」と judge するときは「Vそうです」を使います。 / Saat menebak dari tanda yang terlihat, gunakan 降りそうです.",
     canDo: "study",
+    translation: [
+      "Siang ini saya mau ke perpustakaan, tapi langit jadi gelap ya. Sepertinya akan hujan.",
+      "Oh ya? Kalau begitu, sebaiknya bawa payung.",
+    ],
   },
   {
     id: 19,
@@ -1784,6 +1912,11 @@ const questionBank = [
     explanation:
       "自分の意志を言うので「Vつもりです」を使います。「ようです」「そうです」は他人のことを推測したり伝えたりするときの言い方です。 / Untuk menyatakan niat sendiri gunakan つもりです.",
     canDo: "study",
+    translation: [
+      "Rezal-san, kalau lulus mau bagaimana?",
+      "Saya berniat mempelajari keterampilan di Jepang.",
+      "Begitu ya. Semangat!",
+    ],
   },
   {
     id: 20,
@@ -1804,6 +1937,13 @@ const questionBank = [
     explanation:
       "雨が降った場合の結果を言うので「ふったら」を使います。 / 中止になる adalah akibat jika hujan turun. Gunakan ふったら.",
     canDo: "social",
+    translation: [
+      "Besok ada pertandingan bisbol ya. Ayo nonton bersama.",
+      "Ayo.",
+      "Tapi menurut ramalan cuaca, besok katanya akan hujan.",
+      "Kalau hujan turun, pertandingannya dibatalkan.",
+      "Iya. Mau bagaimana lagi.",
+    ],
   },
   {
     id: 21,
@@ -1824,6 +1964,13 @@ const questionBank = [
     explanation:
       "「話せる」のような能力が目的のときは「ように」を使います。 / Untuk tujuan berupa kemampuan, gunakan ように: 話せるように.",
     canDo: "study",
+    translation: [
+      "Rana-san, bagaimana kelas bahasa Jepangnya?",
+      "Awalnya sulit, tapi menarik.",
+      "Berlatihlah setiap hari supaya bisa berbicara bahasa Jepang.",
+      "Baik. Saya akan berlatih di rumah juga.",
+      "Semangat terus ya.",
+    ],
   },
   {
     id: 22,
@@ -1844,6 +1991,13 @@ const questionBank = [
     explanation:
       "失敗して残念な気持ちを表すときは「てしまいました」を使います。 / Untuk kesalahan yang disesali, gunakan てしまいました: まちがえてしまいました.",
     canDo: "directions",
+    translation: [
+      "Halo, Nina-san, kamu di mana?",
+      "Anu...",
+      "Saya sudah menunggu 30 menit, lho.",
+      "Saya jalan sambil melihat peta, tapi saya salah jalan. Maaf.",
+      "Begitu ya. Repot ya. Kalau begitu, hati-hati ya.",
+    ],
   },
   {
     id: 23,
@@ -1864,6 +2018,13 @@ const questionBank = [
     explanation:
       "動詞の前ではイ形容詞の「い」が「く」になります。 / Sebelum kata kerja, い pada i-keiyoushi berubah menjadi く.",
     canDo: "shopping",
+    translation: [
+      "Selamat datang. Hari ini mau bagaimana?",
+      "Potong rambut, tolong.",
+      "Potongnya mau seperti apa?",
+      "Tolong buat seperti foto ini. Tapi potong sedikit lebih pendek.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 24,
@@ -1885,6 +2046,14 @@ const questionBank = [
     explanation:
       "ふろしきは物を包むために使います。「V辞書形＋のに使います」の形です。 / Furoshiki dipakai untuk membungkus barang. Polanya V辞書形 + のに使います.",
     canDo: "social",
+    translation: [
+      "Ini apa?",
+      "Ini furoshiki.",
+      "Kain untuk membungkus hadiah ya.",
+      "Ya. Dipakai untuk membungkus barang.",
+      "Bagus ya. Di mana bisa dibeli?",
+      "Bisa dibeli di berbagai tempat.",
+    ],
   },
   {
     id: 25,
@@ -1902,6 +2071,10 @@ const questionBank = [
     explanation:
       "「とか」は例をやわらかく挙げるときに使います。 / とか memberi contoh dengan nuansa santai: すしとか.",
     canDo: "food",
+    translation: [
+      "Masakan Jepang apa yang Anda suka?",
+      "Kalau masakan Jepang, saya suka masakan ikan. Misalnya sushi.",
+    ],
   },
   {
     id: 26,
@@ -1921,6 +2094,12 @@ const questionBank = [
     explanation:
       "相手の思いちがいを直すときは「じゃなくて」を使います。 / Untuk membetulkan salah paham, gunakan じゃなくて: インドじゃなくて、インドネシアです.",
     canDo: "social",
+    translation: [
+      "Yuni-san datang dari mana?",
+      "Dari Jakarta, Indonesia.",
+      "Orang India ya. Negaranya seperti apa?",
+      "Bukan. Bukan India, tapi Indonesia.",
+    ],
   },
   {
     id: 27,
@@ -1940,6 +2119,12 @@ const questionBank = [
     explanation:
       "相手を丁寧に誘うときは「Vませんか」を使います。 / Untuk mengajak orang lain secara sopan, gunakan Vませんか.",
     canDo: "food",
+    translation: [
+      "Restoran baru sebentar lagi buka, lho.",
+      "Ada di mana?",
+      "Ada di depan stasiun. Mau pergi bersama?",
+      "Ya, setelah pekerjaan selesai, ayo kita pergi.",
+    ],
   },
   {
     id: 28,
@@ -1957,6 +2142,10 @@ const questionBank = [
     explanation:
       "かかる時間を聞くときは「どのぐらいかかりますか」を使います。 / Untuk menanyakan durasi, gunakan どのぐらいかかりますか.",
     canDo: "directions",
+    translation: [
+      "Dari sini sampai stasiun terdekat perlu waktu berapa lama?",
+      "10 menit jalan kaki.",
+    ],
   },
   {
     id: 29,
@@ -1974,6 +2163,10 @@ const questionBank = [
     explanation:
       "自分から手伝うと申し出るときは「Vましょうか」を使います。 / Untuk menawarkan bantuan sendiri, gunakan ましょうか.",
     canDo: "workplace",
+    translation: [
+      "Cara memakai mesin ini sulit sekali.",
+      "Mari saya bantu.",
+    ],
   },
   {
     id: 30,
@@ -1991,6 +2184,10 @@ const questionBank = [
     explanation:
       "二つを比べるときは「NよりNのほうが＋形容詞です」の形を使います。 / Perbandingan pilihan memakai Nより Nのほうが + 形容詞です.",
     canDo: "transport",
+    translation: [
+      "Untuk pergi ke kantor, menurut Anda apa yang praktis?",
+      "Sepeda lebih praktis daripada mobil.",
+    ],
   },
   {
     id: 31,
@@ -2010,6 +2207,12 @@ const questionBank = [
     explanation:
       "前の文が理由で、後ろの文がその結果のときは「それで」を使います。 / それで menunjukkan hasil dari alasan yang disebut sebelumnya.",
     canDo: "food",
+    translation: [
+      "Pesta ulang tahunnya mau diadakan di mana?",
+      "Bagaimana kalau Sakura Restaurant?",
+      "Bagus.",
+      "Masakannya enak, tempatnya juga luas. Karena itu, restoran itu populer.",
+    ],
   },
   {
     id: 32,
@@ -2028,6 +2231,11 @@ const questionBank = [
     explanation:
       "人の家に入るときは「おじゃまします」。「ただいま」は自分の家に帰ったとき、「いってらっしゃい」は出かける人を送るときの言葉です。 / Masuk rumah orang: おじゃまします. ただいま untuk rumah sendiri, いってらっしゃい untuk mengantar orang pergi.",
     canDo: "social",
+    translation: [
+      "Permisi.",
+      "Selamat datang. Silakan masuk.",
+      "Permisi, saya masuk.",
+    ],
   },
   {
     id: 33,
@@ -2048,6 +2256,13 @@ const questionBank = [
     explanation:
       "店で人数を聞く丁寧な言い方は「何名様ですか」です。 / Dalam layanan restoran, bentuk sopan untuk jumlah orang adalah 何名様ですか.",
     canDo: "food",
+    translation: [
+      "Selamat datang. Berapa orang?",
+      "2 orang.",
+      "2 orang ya. Saya antar ke meja.",
+      "Ya, tolong.",
+      "Silakan ke sini.",
+    ],
   },
   {
     id: 34,
@@ -2067,6 +2282,12 @@ const questionBank = [
     explanation:
       "どうするといいか相談するときは「どうしたらいいですか」を使います。 / Saat meminta saran tentang cara bertindak, gunakan どうしたらいいですか.",
     canDo: "social",
+    translation: [
+      "Liburan musim panas mau ke mana?",
+      "Belum kupikirkan. Kamu?",
+      "Saya ingin pergi ke Himawari no Sato, sebaiknya bagaimana?",
+      "Hmm. Sebaiknya pergi naik kereta. Bawa uang agak banyak, dan sebaiknya bawa jaket juga.",
+    ],
   },
   {
     id: 35,
@@ -2087,6 +2308,13 @@ const questionBank = [
     explanation:
       "「しか」は必ず否定の形といっしょに使います。 / しか selalu dipakai dengan bentuk negatif: 日曜日しか休めません.",
     canDo: "social",
+    translation: [
+      "Halo, apakah Ratna-san ada?",
+      "Ya, ini Ratna. Deka-san, ada apa?",
+      "Pernah mendaki Gunung Fuji? Akhir pekan ini mau pergi bersama?",
+      "Akhir pekan agak susah. Karena saya hanya libur hari Minggu, saya jarang bisa pergi berwisata.",
+      "Sayang sekali ya.",
+    ],
   },
   {
     id: 36,
@@ -2104,6 +2332,10 @@ const questionBank = [
     explanation:
       "行く先は「に」か「へ」で表します。 / Tujuan pergi ditandai dengan に atau へ. Jadi スーパーに行きます.",
     canDo: "shopping",
+    translation: [
+      "Setelah kelas selesai, Anda mau ke mana?",
+      "Saya mau ke supermarket. Saya akan membeli bahan untuk makan malam.",
+    ],
   },
   {
     id: 37,
@@ -2121,6 +2353,10 @@ const questionBank = [
     explanation:
       "何かをした後の順番は「Vてから」で表します。 / Untuk urutan setelah melakukan sesuatu, gunakan Vてから: 食べてから飲みます.",
     canDo: "hospital",
+    translation: [
+      "Obat ini diminum setelah makan nasi.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 38,
@@ -2138,6 +2374,10 @@ const questionBank = [
     explanation:
       "二つのことを同時にするときは「ながら」を使います。 / Dua kegiatan yang dilakukan bersamaan memakai ながら: 聞きながら覚えます.",
     canDo: "study",
+    translation: [
+      "Kapan Anda belajar bahasa Jepang?",
+      "Saya menghafal kosakata sambil mendengarkan musik di kereta.",
+    ],
   },
   {
     id: 39,
@@ -2155,6 +2395,10 @@ const questionBank = [
     explanation:
       "しなければならないことは「Vないといけません」で表します。 / Kewajiban dinyatakan dengan Vないといけません: 来ないといけません.",
     canDo: "workplace",
+    translation: [
+      "Besok saya harus datang jam berapa?",
+      "Karena ada rapat, Anda harus datang sebelum jam 8.",
+    ],
   },
   {
     id: 40,
@@ -2172,6 +2416,10 @@ const questionBank = [
     explanation:
       "助言するときは「Vた形＋ほうがいいです」を使います。 / Nasihat memakai Vた形 + ほうがいいです: コートを着たほうがいいです.",
     canDo: "social",
+    translation: [
+      "Hari ini dingin sekali ya.",
+      "Iya. Sebaiknya Anda memakai mantel.",
+    ],
   },
   {
     id: 41,
@@ -2189,6 +2437,10 @@ const questionBank = [
     explanation:
       "いくつかの例を挙げるときは「Vたり、Vたりします」を使います。 / Untuk menyebut beberapa contoh kegiatan, gunakan Vたり、Vたりします.",
     canDo: "social",
+    translation: [
+      "Akhir pekan Anda melakukan apa?",
+      "Saya menonton film, berbelanja, dan lain-lain.",
+    ],
   },
   {
     id: 42,
@@ -2206,6 +2458,10 @@ const questionBank = [
     explanation:
       "意見を言うときは「と思います」を使います。 / Untuk menyatakan pendapat, gunakan と思います: 便利だと思います.",
     canDo: "housing",
+    translation: [
+      "Bagaimana kehidupan di Jepang?",
+      "Saya pikir praktis. Tapi harga barang mahal.",
+    ],
   },
   {
     id: 43,
@@ -2223,6 +2479,10 @@ const questionBank = [
     explanation:
       "はっきりしない可能性は「かもしれません」で表します。 / Kemungkinan yang belum pasti dinyatakan dengan かもしれません.",
     canDo: "study",
+    translation: [
+      "Rina-san belum datang ya.",
+      "Mungkin hari ini dia sakit.",
+    ],
   },
   {
     id: 44,
@@ -2240,6 +2500,10 @@ const questionBank = [
     explanation:
       "できるかどうかは「V辞書形＋ことができます」で表せます。 / Kemampuan atau izin umum bisa memakai V辞書形 + ことができます.",
     canDo: "shopping",
+    translation: [
+      "Apakah bisa membayar dengan kartu?",
+      "Ya, bisa.",
+    ],
   },
   {
     id: 45,
@@ -2257,6 +2521,10 @@ const questionBank = [
     explanation:
       "意志のある目的には「ために」を使います。 / Jika tujuannya adalah tindakan yang disengaja, gunakan ために: 働くために.",
     canDo: "study",
+    translation: [
+      "Kenapa Anda belajar bahasa Jepang?",
+      "Untuk bekerja di Jepang, saya belajar setiap hari.",
+    ],
   },
   {
     id: 46,
@@ -2274,6 +2542,10 @@ const questionBank = [
     explanation:
       "丁寧に理由を言うときは「ので」を使います。 / Untuk memberi alasan dengan sopan, gunakan ので.",
     canDo: "study",
+    translation: [
+      "Malam ini, mau makan bersama?",
+      "Maaf. Karena besok ada ujian, hari ini saya pulang cepat.",
+    ],
   },
   {
     id: 47,
@@ -2291,6 +2563,10 @@ const questionBank = [
     explanation:
       "許可を求めるときは「Vてもいいですか」を使います。 / Meminta izin memakai Vてもいいですか: 写真を撮ってもいいですか.",
     canDo: "study",
+    translation: [
+      "Pak guru, boleh saya memotret di sini?",
+      "Ya, boleh.",
+    ],
   },
   {
     id: 48,
@@ -2308,6 +2584,10 @@ const questionBank = [
     explanation:
       "禁止を伝えるときは「Vてはいけません」を使います。 / Larangan dinyatakan dengan Vてはいけません.",
     canDo: "social",
+    translation: [
+      "Boleh saya memotret lukisan ini?",
+      "Sudah tertulis di pintu masuk, lho. Di sini dilarang memotret.",
+    ],
   },
   {
     id: 49,
@@ -2325,6 +2605,10 @@ const questionBank = [
     explanation:
       "話す人が相手にあげるときは「あげます」を使います。 / Jika pembicara memberi kepada orang lain, gunakan あげます.",
     canDo: "social",
+    translation: [
+      "Anda mau melakukan apa pada ulang tahun adik perempuan Anda?",
+      "Saya akan memberi bunga kepada adik saya.",
+    ],
   },
   {
     id: 50,
@@ -2342,6 +2626,10 @@ const questionBank = [
     explanation:
       "イ形容詞の変化は「くなります」で表します。「楽しい→楽しくなりました」。 / Perubahan untuk イ形容詞 memakai くなります: 楽しい -> 楽しくなりました.",
     canDo: "study",
+    translation: [
+      "Bagaimana belajar bahasa Jepangnya?",
+      "Setelah berlatih setiap hari, belajar bahasa Jepang jadi agak menyenangkan.",
+    ],
   },
   {
     id: 51,
@@ -2359,6 +2647,10 @@ const questionBank = [
     explanation:
       "状態の変化は「なります」で表します。 / Untuk perubahan keadaan, gunakan なります: すずしくなります.",
     canDo: "social",
+    translation: [
+      "Bagaimana musim gugur di Jepang?",
+      "Mulai sekitar bulan September, lama-lama menjadi sejuk.",
+    ],
   },
   {
     id: 52,
@@ -2376,6 +2668,10 @@ const questionBank = [
     explanation:
       "前もって準備することは「Vておきます」で表します。 / Persiapan sebelum kejadian memakai Vておきます: 予約しておきます.",
     canDo: "reservation",
+    translation: [
+      "Sebelum perjalanan, Anda melakukan apa?",
+      "Saya memesan hotel terlebih dahulu.",
+    ],
   },
   {
     id: 53,
@@ -2393,6 +2689,10 @@ const questionBank = [
     explanation:
       "具合が悪い人には「お大事に」と言います。 / Kepada orang yang sakit, ucapkan お大事に.",
     canDo: "hospital",
+    translation: [
+      "Karena kepala saya sakit, hari ini saya pulang.",
+      "Begitu ya. Semoga lekas sembuh.",
+    ],
   },
   {
     id: 54,
@@ -2410,6 +2710,10 @@ const questionBank = [
     explanation:
       "確認する間、客に待ってもらうので「少々お待ちください」です。 / Saat meminta pelanggan menunggu, gunakan 少々お待ちください.",
     canDo: "food",
+    translation: [
+      "Malam ini apakah ada tempat?",
+      "Saya cek dulu, mohon tunggu sebentar.",
+    ],
   },
   {
     id: 55,
@@ -2427,6 +2731,10 @@ const questionBank = [
     explanation:
       "会社で部屋に入るときは「失礼します」です。「おじゃまします」は人の家に入るときに使います。 / Di kantor gunakan 失礼します; おじゃまします dipakai saat masuk rumah orang.",
     canDo: "workplace",
+    translation: [
+      "Permisi. Saya membawa dokumennya.",
+      "Terima kasih.",
+    ],
   },
   {
     id: 56,
@@ -2444,6 +2752,10 @@ const questionBank = [
     explanation:
       "食べ終わったあとは「ごちそうさまでした」と言います。 / Setelah selesai makan, ucapkan ごちそうさまでした.",
     canDo: "food",
+    translation: [
+      "Hari ini kita makan banyak ya.",
+      "Ya, enak sekali. Terima kasih atas hidangannya.",
+    ],
   },
   {
     id: 57,
@@ -2461,6 +2773,10 @@ const questionBank = [
     explanation:
       "初めて会った人には「どうぞよろしくお願いします」と言います。 / Saat pertama kali bertemu, ucapkan どうぞよろしくお願いします.",
     canDo: "social",
+    translation: [
+      "Perkenalkan, saya Ali. Saya datang dari Indonesia.",
+      "Saya Tanaka. Mohon kerja samanya.",
+    ],
   },
   {
     id: 58,
@@ -2478,6 +2794,10 @@ const questionBank = [
     explanation:
       "聞こえなかったときは「もう一度お願いします」と言います。 / Kalau tidak terdengar, katakan もう一度お願いします.",
     canDo: "study",
+    translation: [
+      "PR-nya sampai halaman 20.",
+      "Maaf. Tolong ulangi sekali lagi.",
+    ],
   },
   {
     id: 59,
@@ -2495,6 +2815,10 @@ const questionBank = [
     explanation:
       "客に何かをすすめるときは「いかがですか」を使います。 / Menawarkan sesuatu kepada pelanggan memakai いかがですか.",
     canDo: "food",
+    translation: [
+      "Mau minum apa?",
+      "Air putih, tolong.",
+    ],
   },
   {
     id: 60,
@@ -2512,6 +2836,10 @@ const questionBank = [
     explanation:
       "予約したいことを丁寧に伝えるときは「予約したいんですが」と言います。 / Untuk menyampaikan ingin reservasi dengan sopan, gunakan 予約したいんですが.",
     canDo: "reservation",
+    translation: [
+      "Ya, dengan Sakura Hotel.",
+      "Permisi. Saya ingin memesan kamar.",
+    ],
   },
   {
     id: 61,
@@ -2529,6 +2857,10 @@ const questionBank = [
     explanation:
       "店の人におすすめを聞くときの言い方です。 / Menanyakan menu andalan memakai おすすめは何ですか.",
     canDo: "food",
+    translation: [
+      "Permisi. Apa menu yang direkomendasikan?",
+      "Rekomendasi hari ini adalah kari.",
+    ],
   },
   {
     id: 62,
@@ -2546,6 +2878,10 @@ const questionBank = [
     explanation:
       "相手の様子を心配して聞くときは「大丈夫ですか」を使います。「お大事に」は別れるときの言葉です。 / 大丈夫ですか untuk menanyakan keadaan; お大事に dipakai saat berpisah.",
     canDo: "workplace",
+    translation: [
+      "Wajah Anda pucat. Anda tidak apa-apa?",
+      "Kepala saya agak sakit.",
+    ],
   },
   {
     id: 63,
@@ -2563,6 +2899,10 @@ const questionBank = [
     explanation:
       "注文を受けたときの丁寧な返事は「かしこまりました」です。 / Jawaban sopan saat menerima pesanan adalah かしこまりました.",
     canDo: "food",
+    translation: [
+      "Satu kopi, tolong.",
+      "Baik. Mohon tunggu sebentar.",
+    ],
   },
   {
     id: 64,
@@ -2580,6 +2920,10 @@ const questionBank = [
     explanation:
       "職場で先に帰るときは「お先に失礼します」と言います。 / Saat pulang lebih dulu dari kantor, ucapkan お先に失礼します.",
     canDo: "workplace",
+    translation: [
+      "Saya pulang duluan.",
+      "Terima kasih atas kerja kerasnya.",
+    ],
   },
   {
     id: 65,
@@ -2597,6 +2941,10 @@ const questionBank = [
     explanation:
       "手伝ってもらってありがたいときは「助かりました」と言います。 / Saat merasa terbantu, ucapkan 助かりました.",
     canDo: "social",
+    translation: [
+      "Mari saya bawakan barangnya.",
+      "Terima kasih. Sangat membantu.",
+    ],
   },
   {
     id: 66,
@@ -2614,6 +2962,10 @@ const questionBank = [
     explanation:
       "できないことを言うときは可能形の「読めません」を使います。「読みません」は「読まない」という意味になります。 / Untuk menyatakan tidak mampu, gunakan bentuk potensial 読めません. 読みません berarti memilih tidak membaca.",
     canDo: "study",
+    translation: [
+      "Apakah Tanaka-san bisa membaca kanji ini?",
+      "Tidak, karena sulit saya tidak bisa membacanya.",
+    ],
   },
   {
     id: 67,
@@ -2631,6 +2983,10 @@ const questionBank = [
     explanation:
       "まだ経験がないときは「まだありません」と答えます。 / Untuk menjawab pengalaman belum pernah, gunakan まだありません.",
     canDo: "social",
+    translation: [
+      "Pernah pergi ke Okinawa?",
+      "Belum pernah.",
+    ],
   },
   {
     id: 68,
@@ -2648,6 +3004,10 @@ const questionBank = [
     explanation:
       "歯をみがくのは寝る前なので「寝る前に」を使います。 / Menyikat gigi dilakukan sebelum tidur, jadi gunakan 寝る前に.",
     canDo: "housing",
+    translation: [
+      "Sebelum tidur, sikatlah gigi.",
+      "Baik.",
+    ],
   },
   {
     id: 69,
@@ -2665,6 +3025,10 @@ const questionBank = [
     explanation:
       "日本にいる期間の中でしたいことなので「間に」を使います。 / Untuk kegiatan yang ingin dilakukan selama periode tinggal, gunakan 間に.",
     canDo: "social",
+    translation: [
+      "Selama di Jepang, Anda ingin melakukan apa?",
+      "Selama di Jepang, saya ingin mendaki Gunung Fuji.",
+    ],
   },
   {
     id: 70,
@@ -2682,6 +3046,10 @@ const questionBank = [
     explanation:
       "朝ごはんを食べない状態で来たので「食べないで」を使います。 / Untuk menyatakan tanpa sarapan, gunakan 食べないで.",
     canDo: "study",
+    translation: [
+      "Kenapa Anda kelihatan tidak bersemangat?",
+      "Saya datang ke sekolah tanpa sarapan.",
+    ],
   },
   {
     id: 71,
@@ -2699,6 +3067,10 @@ const questionBank = [
     explanation:
       "仕事が終わった後の順番なので「終わってから」を使います。 / Untuk urutan setelah pekerjaan selesai, gunakan 終わってから.",
     canDo: "workplace",
+    translation: [
+      "Kapan Anda akan menelepon?",
+      "Saya akan menelepon setelah pekerjaan selesai.",
+    ],
   },
   {
     id: 72,
@@ -2716,6 +3088,10 @@ const questionBank = [
     explanation:
       "子どものころのことを言うときは「子どものとき」を使います。 / Saat menyebut waktu masa kecil, gunakan 子どものとき.",
     canDo: "social",
+    translation: [
+      "Waktu kecil, Anda sering melakukan apa?",
+      "Waktu kecil, saya berenang di sungai.",
+    ],
   },
   {
     id: 73,
@@ -2733,6 +3109,10 @@ const questionBank = [
     explanation:
       "「時間があれば」という条件は「あれば」で表します。 / Untuk kondisi 'kalau ada waktu', gunakan あれば.",
     canDo: "social",
+    translation: [
+      "Minggu ini, mau pergi menonton film?",
+      "Kalau ada waktu, saya mau pergi.",
+    ],
   },
   {
     id: 74,
@@ -2750,6 +3130,10 @@ const questionBank = [
     explanation:
       "イ形容詞をつなぐときは「い」を「くて」に変えます。 / Untuk menghubungkan イ形容詞, ubah い menjadi くて: 広くて.",
     canDo: "housing",
+    translation: [
+      "Bagaimana kamar barunya?",
+      "Luas dan bersih.",
+    ],
   },
   {
     id: 75,
@@ -2767,6 +3151,10 @@ const questionBank = [
     explanation:
       "メニューを選ぶときは「Nにします」を使います。 / Saat memilih menu, gunakan Nにします.",
     canDo: "food",
+    translation: [
+      "Mau pesan apa?",
+      "Saya pilih kari.",
+    ],
   },
   {
     id: 76,
@@ -2784,6 +3172,10 @@ const questionBank = [
     explanation:
       "かたい言い方の義務は「Vなければなりません」で表します。 / Kewajiban formal dinyatakan dengan Vなければなりません.",
     canDo: "study",
+    translation: [
+      "Hari ini ada PR juga?",
+      "Ya. Setiap hari saya harus berlatih kanji.",
+    ],
   },
   {
     id: 77,
@@ -2801,6 +3193,10 @@ const questionBank = [
     explanation:
       "「雨が降っても」のように、逆の条件は「ても」で表します。 / Untuk 'meskipun hujan', gunakan 降っても.",
     canDo: "social",
+    translation: [
+      "Besok hujan, lho.",
+      "Meskipun hujan turun, saya tetap pergi.",
+    ],
   },
   {
     id: 78,
@@ -2818,6 +3214,10 @@ const questionBank = [
     explanation:
       "使うのが簡単なことは「使いやすいです」と言います。 / Mudah digunakan dinyatakan dengan 使いやすいです.",
     canDo: "study",
+    translation: [
+      "Bagaimana kamus ini?",
+      "Karena hurufnya besar, mudah dipakai.",
+    ],
   },
   {
     id: 79,
@@ -2835,6 +3235,10 @@ const questionBank = [
     explanation:
       "覚えるのが難しいことは「覚えにくいです」と言います。 / Sulit diingat dinyatakan dengan 覚えにくいです.",
     canDo: "study",
+    translation: [
+      "Apakah Anda sudah hafal kanji ini?",
+      "Belum, bentuknya rumit, jadi sulit dihafal.",
+    ],
   },
   {
     id: 80,
@@ -2852,6 +3256,10 @@ const questionBank = [
     explanation:
       "前から決まっている予定は「予定です」で表せます。 / Rencana yang sudah dipikirkan dapat dinyatakan dengan 予定です.",
     canDo: "study",
+    translation: [
+      "Tahun depan Anda mau melakukan apa?",
+      "Saya berencana pergi belajar ke Jepang.",
+    ],
   },
   {
     id: 81,
@@ -2869,6 +3277,10 @@ const questionBank = [
     explanation:
       "知らない人に何かを聞く前は「すみませんが」と言います。 / Sebelum bertanya kepada orang asing, awali dengan すみませんが.",
     canDo: "directions",
+    translation: [
+      "Permisi, di mana toiletnya?",
+      "Di sebelah sana.",
+    ],
   },
   {
     id: 82,
@@ -2886,6 +3298,10 @@ const questionBank = [
     explanation:
       "職場ですれちがったときのあいさつは「お疲れさまです」です。朝なら「おはようございます」も使います。 / Sapaan saat berpapasan di tempat kerja adalah お疲れさまです.",
     canDo: "workplace",
+    translation: [
+      "Terima kasih atas kerja kerasnya.",
+      "Oh, halo. Hari ini panas juga ya.",
+    ],
   },
   {
     id: 83,
@@ -2904,6 +3320,11 @@ const questionBank = [
     explanation:
       "待たせたあとは「お待たせしました」と言います。 / Setelah membuat menunggu, ucapkan お待たせしました.",
     canDo: "food",
+    translation: [
+      "Permisi, tolong menunya.",
+      "Mohon tunggu sebentar.",
+      "Maaf sudah menunggu. Ini menunya.",
+    ],
   },
   {
     id: 84,
@@ -2921,6 +3342,10 @@ const questionBank = [
     explanation:
       "座ってもらうときは「おかけください」と言います。 / Mempersilakan duduk memakai おかけください.",
     canDo: "social",
+    translation: [
+      "Silakan duduk di sini.",
+      "Terima kasih.",
+    ],
   },
   {
     id: 85,
@@ -2938,6 +3363,10 @@ const questionBank = [
     explanation:
       "食べ終わって払うときは「お会計お願いします」と言います。 / Setelah selesai makan, katakan お会計お願いします.",
     canDo: "food",
+    translation: [
+      "Permisi. Tolong hitung pembayarannya.",
+      "Baik, mohon tunggu sebentar.",
+    ],
   },
   {
     id: 86,
@@ -2955,6 +3384,10 @@ const questionBank = [
     explanation:
       "別々に払いたいときは「別々でお願いします」と言います。 / Saat ingin membayar terpisah, gunakan 別々でお願いします.",
     canDo: "food",
+    translation: [
+      "Pembayarannya digabung?",
+      "Maaf, tolong dipisah.",
+    ],
   },
   {
     id: 87,
@@ -2972,6 +3405,10 @@ const questionBank = [
     explanation:
       "家で食べるので「持ち帰りでお願いします」と言います。 / Untuk dibawa pulang, gunakan 持ち帰りでお願いします.",
     canDo: "food",
+    translation: [
+      "Mau makan di sini?",
+      "Dibawa pulang saja.",
+    ],
   },
   {
     id: 88,
@@ -2989,6 +3426,10 @@ const questionBank = [
     explanation:
       "店の中で食べるときは「店内で食べます」と答えます。 / Jika makan di tempat, jawab 店内で食べます.",
     canDo: "food",
+    translation: [
+      "Dibawa pulang?",
+      "Tidak, saya makan di dalam toko.",
+    ],
   },
   {
     id: 89,
@@ -3006,6 +3447,10 @@ const questionBank = [
     explanation:
       "知らない人に丁寧にお願いするときは「Vていただけませんか」を使います。 / Permintaan sangat sopan memakai ていただけませんか.",
     canDo: "directions",
+    translation: [
+      "Permisi. Bisakah Anda memberi tahu jalan ke stasiun?",
+      "Ya, boleh.",
+    ],
   },
   {
     id: 90,
@@ -3023,6 +3468,10 @@ const questionBank = [
     explanation:
       "「曲がらないで」と言っているので「まっすぐ行ってください」です。 / Karena diminta tidak berbelok, jawabannya まっすぐ行ってください.",
     canDo: "directions",
+    translation: [
+      "Di mana stasiunnya?",
+      "Jalan lurus terus di jalan ini. Jangan berbelok ya.",
+    ],
   },
   {
     id: 91,
@@ -3040,6 +3489,10 @@ const questionBank = [
     explanation:
       "左は駅なので、郵便局へは「右に曲がってください」です。 / Karena kiri menuju stasiun, kantor pos ada di arah kanan.",
     canDo: "directions",
+    translation: [
+      "Di mana kantor posnya?",
+      "Belok kanan di lampu merah berikutnya. Kalau belok kiri, itu stasiun.",
+    ],
   },
   {
     id: 92,
@@ -3057,6 +3510,10 @@ const questionBank = [
     explanation:
       "部屋や席があるかを聞くときは「空いていますか」を使います。 / Untuk menanyakan ketersediaan kamar atau tempat, gunakan 空いていますか.",
     canDo: "reservation",
+    translation: [
+      "Malam ini apakah ada kamar kosong?",
+      "Ya, ada satu kamar.",
+    ],
   },
   {
     id: 93,
@@ -3074,6 +3531,10 @@ const questionBank = [
     explanation:
       "「大きいです」と言っているので、小さいサイズを聞きます。 / Karena kebesaran, yang ditanyakan adalah ukuran yang lebih kecil.",
     canDo: "shopping",
+    translation: [
+      "Permisi. Ini agak besar. Apakah ada ukuran yang lebih kecil?",
+      "Ya, ada di sini.",
+    ],
   },
   {
     id: 94,
@@ -3091,6 +3552,10 @@ const questionBank = [
     explanation:
       "買う前に着てみることを「試着」と言います。 / Mencoba pakaian sebelum membeli disebut 試着.",
     canDo: "shopping",
+    translation: [
+      "Bolehkah saya mencoba kemeja ini?",
+      "Ya, silakan.",
+    ],
   },
   {
     id: 95,
@@ -3108,6 +3573,10 @@ const questionBank = [
     explanation:
       "支払いの証明になる紙は「レシート」です。 / Bukti pembayaran adalah レシート.",
     canDo: "shopping",
+    translation: [
+      "Terima kasih banyak.",
+      "Permisi. Tolong struknya.",
+    ],
   },
   {
     id: 96,
@@ -3125,6 +3594,10 @@ const questionBank = [
     explanation:
       "体調がよくないときは「気分が悪いです」と言います。 / Saat kondisi badan tidak enak, gunakan 気分が悪いです.",
     canDo: "hospital",
+    translation: [
+      "Ada keluhan apa?",
+      "Saya merasa tidak enak badan. Saya ingin istirahat sebentar.",
+    ],
   },
   {
     id: 97,
@@ -3142,6 +3615,10 @@ const questionBank = [
     explanation:
       "「38度」は体温なので「熱があります」です。 / 38 derajat adalah suhu badan, jadi jawabannya 熱があります.",
     canDo: "hospital",
+    translation: [
+      "Gejalanya seperti apa?",
+      "Kepala saya sakit dan saya demam. Suhunya 38 derajat.",
+    ],
   },
   {
     id: 98,
@@ -3159,6 +3636,10 @@ const questionBank = [
     explanation:
       "初めての病院では「診察券」はまだありません。見せるのは「保険証」です。 / Pada kunjungan pertama belum ada 診察券, jadi yang ditunjukkan adalah 保険証.",
     canDo: "hospital",
+    translation: [
+      "Baru pertama kali ya. Kalau begitu, tolong tunjukkan kartu asuransi kesehatan Anda.",
+      "Ya, silakan.",
+    ],
   },
   {
     id: 99,
@@ -3176,6 +3657,10 @@ const questionBank = [
     explanation:
       "予約をやめるときは「キャンセルしたいんですが」と言います。 / Untuk membatalkan reservasi, gunakan キャンセルしたいんですが.",
     canDo: "reservation",
+    translation: [
+      "Ya, dengan Sakura Restaurant.",
+      "Permisi. Saya ingin membatalkan reservasi.",
+    ],
   },
   {
     id: 100,
@@ -3193,6 +3678,10 @@ const questionBank = [
     explanation:
       "やわらかく断って次の機会を残すときは「また今度お願いします」と言います。 / Menolak dengan halus sambil membuka kesempatan lain memakai また今度お願いします.",
     canDo: "social",
+    translation: [
+      "Malam ini mau pergi karaoke?",
+      "Maaf. Hari ini saya ada urusan. Lain kali ya.",
+    ],
   },
   {
     id: 101,
@@ -3209,6 +3698,9 @@ const questionBank = [
     explanation:
       "病院で最初に名前を言うところは「受付」です。 / Tempat pertama untuk menyebutkan nama di rumah sakit adalah 受付.",
     canDo: "hospital",
+    translation: [
+      "Setelah sampai di rumah sakit, sebutkan nama Anda di resepsionis terlebih dahulu.",
+    ],
   },
   {
     id: 102,
@@ -3225,6 +3717,9 @@ const questionBank = [
     explanation:
       "席や部屋を先にとっておくことを「予約」と言います。 / Memesan tempat lebih dulu disebut 予約.",
     canDo: "reservation",
+    translation: [
+      "Hari Sabtu ramai, jadi ayo pesan tempat dulu baru pergi ke restorannya.",
+    ],
   },
   {
     id: 103,
@@ -3241,6 +3736,9 @@ const questionBank = [
     explanation:
       "お金をはらうことを「支払い」と言います。 / Kegiatan membayar disebut 支払い.",
     canDo: "shopping",
+    translation: [
+      "Saat membayar di kasir, Anda bisa memilih tunai atau kartu.",
+    ],
   },
   {
     id: 104,
@@ -3257,6 +3755,9 @@ const questionBank = [
     explanation:
       "決まっていた予定を変えることを「変更」と言います。 / Mengubah jadwal yang sudah ditentukan disebut 変更.",
     canDo: "workplace",
+    translation: [
+      "Karena waktunya tidak cocok, saya minta hari wawancaranya diubah.",
+    ],
   },
   {
     id: 105,
@@ -3273,6 +3774,9 @@ const questionBank = [
     explanation:
       "予定していたことをやめることを「中止」と言います。 / Kegiatan yang dibatalkan disebut 中止.",
     canDo: "social",
+    translation: [
+      "Karena hujan deras, festival hari ini dibatalkan.",
+    ],
   },
   {
     id: 106,
@@ -3289,6 +3793,9 @@ const questionBank = [
     explanation:
       "「なければならない」ものを言うときは「必要」を使います。 / Sesuatu yang harus ada dinyatakan dengan 必要.",
     canDo: "cityhall",
+    translation: [
+      "Untuk prosedur ini, kartu izin tinggal diperlukan. Jangan lupa.",
+    ],
   },
   {
     id: 107,
@@ -3305,6 +3812,9 @@ const questionBank = [
     explanation:
       "お金がかからないことを「無料」と言います。 / Tidak perlu membayar disebut 無料.",
     canDo: "transport",
+    translation: [
+      "Tempat parkir ini gratis sampai 2 jam, jadi tidak perlu bayar.",
+    ],
   },
   {
     id: 108,
@@ -3321,6 +3831,9 @@ const questionBank = [
     explanation:
       "カードではないお金を「現金」と言います。 / Uang tunai (bukan kartu) disebut 現金.",
     canDo: "shopping",
+    translation: [
+      "Toko ini tidak menerima kartu. Tolong bayar dengan uang tunai.",
+    ],
   },
   {
     id: 109,
@@ -3337,6 +3850,9 @@ const questionBank = [
     explanation:
       "電車に忘れた物は「忘れ物センター」で聞きます。 / Barang yang tertinggal ditanyakan di 忘れ物センター.",
     canDo: "transport",
+    translation: [
+      "Saya meninggalkan tas di kereta. Saya akan bertanya ke bagian barang hilang di stasiun.",
+    ],
   },
   {
     id: 110,
@@ -3353,6 +3869,9 @@ const questionBank = [
     explanation:
       "医者が体を見ることを「診察」と言います。 / Pemeriksaan oleh dokter disebut 診察.",
     canDo: "hospital",
+    translation: [
+      "Di rumah sakit, dokter memeriksa tubuh kita. Ini disebut pemeriksaan (診察).",
+    ],
   },
   {
     id: 111,
@@ -3369,6 +3888,9 @@ const questionBank = [
     explanation:
       "提出や申し込みの最終日を「締め切り」と言います。 / Batas akhir pengumpulan atau pendaftaran disebut 締め切り.",
     canDo: "cityhall",
+    translation: [
+      "Formulir permohonan diterima sampai hari Jumat. Hari Jumat adalah batas waktunya.",
+    ],
   },
   {
     id: 112,
@@ -3385,6 +3907,9 @@ const questionBank = [
     explanation:
       "帰りの切符がいらないときは「片道」です。 / Jika hanya pergi tanpa tiket pulang, gunakan 片道.",
     canDo: "transport",
+    translation: [
+      "Saya tidak perlu tiket pulang. Tolong berikan tiket sekali jalan.",
+    ],
   },
   {
     id: 113,
@@ -3401,6 +3926,9 @@ const questionBank = [
     explanation:
       "行きと帰りの切符を「往復」と言います。 / Tiket pergi dan pulang disebut 往復.",
     canDo: "transport",
+    translation: [
+      "Saya membeli tiket pergi dan pulang. Ini tiket pulang pergi.",
+    ],
   },
   {
     id: 114,
@@ -3418,6 +3946,10 @@ const questionBank = [
     explanation:
       "「病院」は「びょういん」と読みます。 / 病院 dibaca びょういん (bukan びよういん yang berarti salon).",
     canDo: "hospital",
+    translation: [
+      "Karena demam saya tinggi, sekarang saya pergi ke rumah sakit.",
+      "Bagaimana cara membaca 「病院」?",
+    ],
   },
   {
     id: 115,
@@ -3435,6 +3967,10 @@ const questionBank = [
     explanation:
       "「会社」は「かいしゃ」と読みます。 / 会社 dibaca かいしゃ.",
     canDo: "workplace",
+    translation: [
+      "Setiap pagi saya tiba di kantor jam 8.",
+      "Bagaimana cara membaca 「会社」?",
+    ],
   },
   {
     id: 116,
@@ -3452,6 +3988,10 @@ const questionBank = [
     explanation:
       "「住所」は「じゅうしょ」と読みます。 / 住所 dibaca じゅうしょ dengan bunyi panjang.",
     canDo: "cityhall",
+    translation: [
+      "Tulislah nama dan alamat pada formulir ini.",
+      "Bagaimana cara membaca 「住所」?",
+    ],
   },
   {
     id: 117,
@@ -3469,6 +4009,10 @@ const questionBank = [
     explanation:
       "「電話」は「でんわ」と読みます。 / 電話 dibaca でんわ.",
     canDo: "workplace",
+    translation: [
+      "Nanti kami yang akan menelepon Anda.",
+      "Bagaimana cara membaca 「電話」?",
+    ],
   },
   {
     id: 118,
@@ -3486,6 +4030,10 @@ const questionBank = [
     explanation:
       "「休憩」は「きゅうけい」と読みます。 / 休憩 dibaca きゅうけい dengan bunyi panjang.",
     canDo: "workplace",
+    translation: [
+      "Dari jam 12 kami istirahat selama 1 jam.",
+      "Bagaimana cara membaca 「休憩」?",
+    ],
   },
   {
     id: 119,
@@ -3502,6 +4050,9 @@ const questionBank = [
     explanation:
       "「営業時間」は店やサービスが開いている時間のことです。 / 営業時間 berarti jam operasional toko atau layanan.",
     canDo: "shopping",
+    translation: [
+      "Apa arti 「営業時間」?",
+    ],
   },
   {
     id: 120,
@@ -3518,6 +4069,9 @@ const questionBank = [
     explanation:
       "「定休日」は毎週決まって休む日のことです。 / 定休日 adalah hari tutup rutin, misalnya setiap Selasa.",
     canDo: "shopping",
+    translation: [
+      "Apa arti 「定休日」?",
+    ],
   },
   {
     id: 121,
@@ -3535,6 +4089,10 @@ const questionBank = [
     explanation:
       "うれしいときの顔なので「わらっています」です。 / Wajah gembira berarti sedang tertawa/tersenyum.",
     canDo: "social",
+    translation: [
+      "Anak itu menerima hadiah dan wajahnya terlihat gembira.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 122,
@@ -3552,6 +4110,10 @@ const questionBank = [
     explanation:
       "一人で持てないので「おもいです」です。 / Tidak bisa diangkat sendiri berarti berat.",
     canDo: "workplace",
+    translation: [
+      "Barang ini tidak bisa diangkat sendirian.",
+      "Kata apa yang menggambarkan keadaan ini?",
+    ],
   },
   {
     id: 123,
@@ -3569,6 +4131,10 @@ const questionBank = [
     explanation:
       "人が多い状態は「こんでいます」です。 / Kereta penuh orang disebut こんでいます.",
     canDo: "transport",
+    translation: [
+      "Kereta pagi penuh dengan orang sehingga tidak bisa duduk.",
+      "Kata apa yang menggambarkan keadaan ini?",
+    ],
   },
   {
     id: 124,
@@ -3586,6 +4152,10 @@ const questionBank = [
     explanation:
       "一列に待つ状態は「ならんでいます」です。 / Berdiri satu baris menunggu disebut ならんでいます.",
     canDo: "shopping",
+    translation: [
+      "Di depan kasir, para pelanggan berdiri satu baris sambil menunggu.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 125,
@@ -3603,6 +4173,10 @@ const questionBank = [
     explanation:
       "元の場所にもどすことを「かたづけます」と言います。 / Mengembalikan alat ke tempatnya disebut かたづけます.",
     canDo: "workplace",
+    translation: [
+      "Pekerjaan sudah selesai, dan alat yang dipakai dikembalikan ke tempat semula.",
+      "Setelah ini orang ini akan melakukan apa?",
+    ],
   },
   {
     id: 126,
@@ -3620,6 +4194,10 @@ const questionBank = [
     explanation:
       "時間がなくて急ぐ様子は「いそいでいます」です。 / Terburu-buru karena waktu mepet disebut いそいでいます.",
     canDo: "transport",
+    translation: [
+      "Karena tinggal 3 menit sebelum kereta datang, dia berlari menuju stasiun.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 127,
@@ -3637,6 +4215,10 @@ const questionBank = [
     explanation:
       "体が疲れた状態は「つかれました」です。 / Badan lelah setelah bekerja seharian disebut つかれました.",
     canDo: "workplace",
+    translation: [
+      "Karena bekerja berdiri seharian, kakinya sakit dan tidak mau bergerak.",
+      "Kata apa yang menggambarkan keadaan ini?",
+    ],
   },
   {
     id: 128,
@@ -3654,6 +4236,10 @@ const questionBank = [
     explanation:
       "動かない状態は「こわれています」です。 / Alat yang tidak berfungsi disebut こわれています.",
     canDo: "housing",
+    translation: [
+      "Meskipun tombol TV ditekan, tidak ada yang muncul.",
+      "Kata apa yang menggambarkan keadaan ini?",
+    ],
   },
   {
     id: 129,
@@ -3671,6 +4257,10 @@ const questionBank = [
     explanation:
       "置いてきてしまったので「わすれました」です。 / Meninggalkan tas di kereta berarti わすれました.",
     canDo: "transport",
+    translation: [
+      "Dia turun dari kereta dengan tas tertinggal di dalam.",
+      "Orang ini melakukan apa?",
+    ],
   },
   {
     id: 130,
@@ -3688,6 +4278,10 @@ const questionBank = [
     explanation:
       "いっしょにすることを「てつだっています」と言います。 / Membantu bersama disebut てつだっています.",
     canDo: "workplace",
+    translation: [
+      "Karena rekan kerja sedang mengangkat kardus berat, dia ikut mengangkatnya bersama.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 131,
@@ -3705,6 +4299,10 @@ const questionBank = [
     explanation:
       "道が分からない状態は「まよっています」です。 / Tersesat disebut まよっています.",
     canDo: "directions",
+    translation: [
+      "Dia sudah melihat peta, tetapi tidak tahu sekarang berada di mana.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 132,
@@ -3722,6 +4320,10 @@ const questionBank = [
     explanation:
       "自分から落ちてしまったので「おとしました」です。 / Menjatuhkan tanpa sadar disebut おとしました.",
     canDo: "social",
+    translation: [
+      "Saat berjalan, tanpa sadar dompetnya jatuh ke tanah.",
+      "Orang ini melakukan apa?",
+    ],
   },
   {
     id: 133,
@@ -3739,6 +4341,10 @@ const questionBank = [
     explanation:
       "電気を切ることを「けします」と言います。 / Mematikan lampu disebut けします.",
     canDo: "housing",
+    translation: [
+      "Saat keluar dari kamar, dia mematikan saklar lampu.",
+      "Setelah ini orang ini akan melakukan apa?",
+    ],
   },
   {
     id: 134,
@@ -3756,6 +4362,10 @@ const questionBank = [
     explanation:
       "水がついた状態は「ぬれました」です。 / Basah karena hujan disebut ぬれました.",
     canDo: "social",
+    translation: [
+      "Karena berjalan di tengah hujan tanpa payung, bajunya penuh air.",
+      "Kata apa yang menggambarkan keadaan ini?",
+    ],
   },
   {
     id: 135,
@@ -3773,6 +4383,10 @@ const questionBank = [
     explanation:
       "先に来て相手を待つので「まっています」です。 / Datang lebih awal lalu menunggu disebut まっています.",
     canDo: "social",
+    translation: [
+      "Temannya datang 30 menit lebih awal dari janji dan berada di depan toko.",
+      "Sekarang orang ini sedang apa?",
+    ],
   },
   {
     id: 136,
@@ -3790,6 +4404,10 @@ const questionBank = [
     explanation:
       "「料金」は「りょうきん」と読みます。 / 料金 dibaca りょうきん.",
     canDo: "transport",
+    translation: [
+      "Ongkos bus adalah 210 yen.",
+      "Bagaimana cara membaca 「料金」?",
+    ],
   },
   {
     id: 137,
@@ -3807,6 +4425,10 @@ const questionBank = [
     explanation:
       "「危険」は「きけん」と読みます。 / 危険 dibaca きけん.",
     canDo: "workplace",
+    translation: [
+      "Karena di sini berbahaya, jangan masuk.",
+      "Bagaimana cara membaca 「危険」?",
+    ],
   },
   {
     id: 138,
@@ -3824,6 +4446,10 @@ const questionBank = [
     explanation:
       "「注意」は「ちゅうい」と読みます。 / 注意 dibaca ちゅうい.",
     canDo: "workplace",
+    translation: [
+      "Hati-hati dengan langkah kaki Anda.",
+      "Bagaimana cara membaca 「注意」?",
+    ],
   },
   {
     id: 139,
@@ -3841,6 +4467,10 @@ const questionBank = [
     explanation:
       "「非常口」は「ひじょうぐち」と読みます。 / 非常口 dibaca ひじょうぐち.",
     canDo: "workplace",
+    translation: [
+      "Saat kebakaran, keluarlah lewat pintu darurat.",
+      "Bagaimana cara membaca 「非常口」?",
+    ],
   },
   {
     id: 140,
@@ -3858,6 +4488,10 @@ const questionBank = [
     explanation:
       "「確認」は「かくにん」と読みます。 / 確認 dibaca かくにん.",
     canDo: "workplace",
+    translation: [
+      "Sebelum menyerahkannya, periksalah dokumen itu.",
+      "Bagaimana cara membaca 「確認」?",
+    ],
   },
   {
     id: 141,
@@ -3875,6 +4509,10 @@ const questionBank = [
     explanation:
       "「出口」は「でぐち」と読みます。 / 出口 dibaca でぐち.",
     canDo: "transport",
+    translation: [
+      "Saya menunggu di pintu keluar stasiun.",
+      "Bagaimana cara membaca 「出口」?",
+    ],
   },
   {
     id: 142,
@@ -3892,6 +4530,10 @@ const questionBank = [
     explanation:
       "「作業」は「さぎょう」と読みます。 / 作業 dibaca さぎょう.",
     canDo: "workplace",
+    translation: [
+      "Pekerjaan hari ini selesai jam 5.",
+      "Bagaimana cara membaca 「作業」?",
+    ],
   },
   {
     id: 143,
@@ -3908,6 +4550,9 @@ const questionBank = [
     explanation:
       "「光る」は明かりが出ることです。 / 光る berarti memancarkan cahaya.",
     canDo: "social",
+    translation: [
+      "Tokyo Tower bersinar terang di malam hari dan sangat indah.",
+    ],
   },
   {
     id: 144,
@@ -3924,6 +4569,9 @@ const questionBank = [
     explanation:
       "木のようにずっと立っている状態は「立っています」です。 / Pohon yang berdiri di depan kantor memakai 立っています.",
     canDo: "social",
+    translation: [
+      "Di depan kantor berdiri sebuah pohon besar.",
+    ],
   },
   {
     id: 145,
@@ -3940,6 +4588,9 @@ const questionBank = [
     explanation:
       "「立入禁止」は入ってはいけないという意味です。 / 立入禁止 berarti dilarang masuk.",
     canDo: "workplace",
+    translation: [
+      "Apa arti 「立入禁止」?",
+    ],
   },
   {
     id: 146,
@@ -3956,6 +4607,9 @@ const questionBank = [
     explanation:
       "「使用中」は今使われているという意味です。 / 使用中 berarti sedang dipakai.",
     canDo: "housing",
+    translation: [
+      "Apa arti 「使用中」?",
+    ],
   },
   {
     id: 147,
@@ -3972,6 +4626,9 @@ const questionBank = [
     explanation:
       "「準備中」はまだ開いていないという意味です。 / 準備中 berarti belum buka.",
     canDo: "food",
+    translation: [
+      "Apa arti 「準備中」?",
+    ],
   },
   {
     id: 148,
@@ -3988,6 +4645,9 @@ const questionBank = [
     explanation:
       "「受付時間」は手続きを受け付けている時間です。 / 受付時間 adalah jam pendaftaran dilayani.",
     canDo: "cityhall",
+    translation: [
+      "Apa arti 「受付時間」?",
+    ],
   },
   {
     id: 149,
@@ -4004,6 +4664,9 @@ const questionBank = [
     explanation:
       "「満車」は駐車場がいっぱいという意味です。 / 満車 berarti tempat parkir penuh.",
     canDo: "transport",
+    translation: [
+      "Apa arti 「満車」?",
+    ],
   },
   {
     id: 150,
@@ -4020,6 +4683,9 @@ const questionBank = [
     explanation:
       "「割引券」は値段が安くなる紙です。 / 割引券 adalah kupon potongan harga.",
     canDo: "shopping",
+    translation: [
+      "Apa arti 「割引券」?",
+    ],
   },
   {
     id: 151,
@@ -4036,6 +4702,9 @@ const questionBank = [
     explanation:
       "「持参」は自分で持って行くという意味です。 / 持参 berarti membawa sendiri.",
     canDo: "cityhall",
+    translation: [
+      "Apa arti 「持参」?",
+    ],
   },
   {
     id: 152,
@@ -4052,6 +4721,9 @@ const questionBank = [
     explanation:
       "「記入」は紙に書くという意味です。 / 記入 berarti menulis pada formulir.",
     canDo: "cityhall",
+    translation: [
+      "Apa arti 「記入」?",
+    ],
   },
   {
     id: 153,
@@ -4071,6 +4743,10 @@ const questionBank = [
     setId: "R01",
     canDo: "shopping",
     posterImage: "images/r01.webp",
+    translation: [
+      "",
+      "Supermarket ini tutup kapan?",
+    ],
   },
   {
     id: 154,
@@ -4090,6 +4766,10 @@ const questionBank = [
     setId: "R01",
     canDo: "shopping",
     posterImage: "images/r01.webp",
+    translation: [
+      "",
+      "Mulai bulan September, hari Minggu bisa berbelanja mulai jam berapa?",
+    ],
   },
   {
     id: 155,
@@ -4109,6 +4789,10 @@ const questionBank = [
     setId: "R02",
     canDo: "food",
     posterImage: "images/r02.webp",
+    translation: [
+      "",
+      "Waktu terakhir untuk memesan adalah kapan?",
+    ],
   },
   {
     id: 156,
@@ -4128,6 +4812,10 @@ const questionBank = [
     setId: "R02",
     canDo: "food",
     posterImage: "images/r02.webp",
+    translation: [
+      "",
+      "Kalau pergi hari Sabtu, apa yang perlu diperhatikan?",
+    ],
   },
   {
     id: 157,
@@ -4147,6 +4835,10 @@ const questionBank = [
     setId: "R03",
     canDo: "social",
     posterImage: "images/r03.webp",
+    translation: [
+      "",
+      "Bertemu di mana?",
+    ],
   },
   {
     id: 158,
@@ -4166,6 +4858,10 @@ const questionBank = [
     setId: "R03",
     canDo: "social",
     posterImage: "images/r03.webp",
+    translation: [
+      "",
+      "Orang ini bilang ingin melakukan apa setelah bertemu?",
+    ],
   },
   {
     id: 159,
@@ -4186,6 +4882,10 @@ const questionBank = [
     canDo: "food",
     poster: {"title":"料理教室のお知らせ","icon":"🍳","items":[{"icon":"🕙","text":"明日の 料理教室は 10時からです。"},{"icon":"👕","text":"エプロンと タオルを 持ってきて ください。"},{"icon":"🥬","text":"材料は こちらで 用意します。"},{"icon":"🍱","text":"作った 料理は 持って 帰れます。"},{"icon":"📦","text":"入れ物が あると いいですよ。"}],"note":"おいしく 作って 持って 帰ろう！"},
     posterImage: "images/r04.webp",
+    translation: [
+      "",
+      "Apa yang harus dibawa?",
+    ],
   },
   {
     id: 160,
@@ -4206,6 +4906,10 @@ const questionBank = [
     canDo: "food",
     poster: {"title":"料理教室のお知らせ","icon":"🍳","items":[{"icon":"🕙","text":"明日の 料理教室は 10時からです。"},{"icon":"👕","text":"エプロンと タオルを 持ってきて ください。"},{"icon":"🥬","text":"材料は こちらで 用意します。"},{"icon":"🍱","text":"作った 料理は 持って 帰れます。"},{"icon":"📦","text":"入れ物が あると いいですよ。"}],"note":"おいしく 作って 持って 帰ろう！"},
     posterImage: "images/r04.webp",
+    translation: [
+      "",
+      "Masakan yang sudah dibuat bisa diapakan?",
+    ],
   },
   {
     id: 161,
@@ -4224,6 +4928,10 @@ const questionBank = [
       "「会社が家から遠いので」とあります。 / Karena kantornya jauh dari rumah.",
     setId: "R05",
     canDo: "workplace",
+    translation: [
+      "",
+      "Kenapa Lin-san bangun pagi-pagi?",
+    ],
   },
   {
     id: 162,
@@ -4242,6 +4950,10 @@ const questionBank = [
       "「電車の中では食べないで、家で食べます」とあります。 / Ia sarapan di rumah, bukan di kereta.",
     setId: "R05",
     canDo: "workplace",
+    translation: [
+      "",
+      "Lin-san sarapan di mana?",
+    ],
   },
   {
     id: 163,
@@ -4260,6 +4972,10 @@ const questionBank = [
       "「友だちと公園へ行きます」とあります。 / Tertulis pergi ke taman bersama teman.",
     setId: "R06",
     canDo: "social",
+    translation: [
+      "",
+      "Ali-san melakukan apa pada hari Minggu?",
+    ],
   },
   {
     id: 164,
@@ -4278,6 +4994,10 @@ const questionBank = [
       "「雨が降ったら、公園ではなく映画を見に行きます」とあります。 / Kalau hujan, ia pergi menonton film.",
     setId: "R06",
     canDo: "social",
+    translation: [
+      "",
+      "Kalau hujan turun, Ali-san akan bagaimana?",
+    ],
   },
   {
     id: 165,
@@ -4297,6 +5017,10 @@ const questionBank = [
     setId: "R07",
     canDo: "study",
     posterImage: "images/r07.webp",
+    translation: [
+      "",
+      "Kelas percakapan ada di mana?",
+    ],
   },
   {
     id: 166,
@@ -4316,6 +5040,10 @@ const questionBank = [
     setId: "R07",
     canDo: "study",
     posterImage: "images/r07.webp",
+    translation: [
+      "",
+      "Kelas percakapan ada pada hari apa?",
+    ],
   },
   {
     id: 167,
@@ -4335,6 +5063,10 @@ const questionBank = [
     setId: "R08",
     canDo: "transport",
     posterImage: "images/r08.webp",
+    translation: [
+      "",
+      "Pada hari kerja, setelah jam 8.30, bus paling awal jam berapa?",
+    ],
   },
   {
     id: 168,
@@ -4354,6 +5086,10 @@ const questionBank = [
     setId: "R08",
     canDo: "transport",
     posterImage: "images/r08.webp",
+    translation: [
+      "",
+      "Pada hari Minggu, setelah jam 8.30, bus paling awal jam berapa?",
+    ],
   },
   {
     id: 169,
@@ -4374,6 +5110,10 @@ const questionBank = [
     canDo: "housing",
     poster: {"title":"水道工事の お知らせ","icon":"🚰","items":[{"icon":"📅","text":"6月10日（水） 9:00〜12:00"},{"icon":"🚱","text":"この 時間は 水が 使えません。"},{"icon":"🥛","text":"前の 日に、水を コップや なべに 入れて おいて ください。"}],"note":"ご協力 お願いします。"},
     posterImage: "images/r09.webp",
+    translation: [
+      "",
+      "Pada pagi hari tanggal 10 Juni, apa yang tidak bisa dilakukan?",
+    ],
   },
   {
     id: 170,
@@ -4394,6 +5134,10 @@ const questionBank = [
     canDo: "housing",
     poster: {"title":"水道工事の お知らせ","icon":"🚰","items":[{"icon":"📅","text":"6月10日（水） 9:00〜12:00"},{"icon":"🚱","text":"この 時間は 水が 使えません。"},{"icon":"🥛","text":"前の 日に、水を コップや なべに 入れて おいて ください。"}],"note":"ご協力 お願いします。"},
     posterImage: "images/r09.webp",
+    translation: [
+      "",
+      "Apa yang sebaiknya dilakukan pada tanggal 9 Juni?",
+    ],
   },
   {
     id: 171,
@@ -4413,6 +5157,10 @@ const questionBank = [
     setId: "R10",
     canDo: "study",
     posterImage: "images/r10.webp",
+    translation: [
+      "",
+      "Apa yang tidak boleh dilakukan di perpustakaan?",
+    ],
   },
   {
     id: 172,
@@ -4432,6 +5180,10 @@ const questionBank = [
     setId: "R10",
     canDo: "study",
     posterImage: "images/r10.webp",
+    translation: [
+      "",
+      "Buku bisa dipinjam berapa jilid sekaligus?",
+    ],
   },
   {
     id: 173,
@@ -4451,6 +5203,10 @@ const questionBank = [
     setId: "R11",
     canDo: "workplace",
     posterImage: "images/r11.webp",
+    translation: [
+      "",
+      "Yamada-san akan melakukan apa?",
+    ],
   },
   {
     id: 174,
@@ -4470,6 +5226,10 @@ const questionBank = [
     setId: "R11",
     canDo: "workplace",
     posterImage: "images/r11.webp",
+    translation: [
+      "",
+      "Dokumen yang sudah difotokopi diapakan?",
+    ],
   },
   {
     id: 175,
@@ -4488,6 +5248,10 @@ const questionBank = [
       "「とても新鮮です。だから」とあります。 / Karena sayurnya sangat segar.",
     setId: "R12",
     canDo: "shopping",
+    translation: [
+      "",
+      "Kenapa Mira-san membeli sayuran di toko ini?",
+    ],
   },
   {
     id: 176,
@@ -4506,6 +5270,10 @@ const questionBank = [
       "「日曜日が休みなので、いつも土曜日に行きます」とあります。 / Karena Minggu tutup, ia pergi hari Sabtu.",
     setId: "R12",
     canDo: "shopping",
+    translation: [
+      "",
+      "Mira-san pergi ke toko ini kapan?",
+    ],
   },
   {
     id: 177,
@@ -4525,6 +5293,10 @@ const questionBank = [
     setId: "R13",
     canDo: "workplace",
     posterImage: "images/r13.webp",
+    translation: [
+      "",
+      "Apa yang diperlukan untuk pekerjaan ini?",
+    ],
   },
   {
     id: 178,
@@ -4544,6 +5316,10 @@ const questionBank = [
     setId: "R13",
     canDo: "workplace",
     posterImage: "images/r13.webp",
+    translation: [
+      "",
+      "Apa yang didapat orang yang bekerja di toko ini?",
+    ],
   },
   {
     id: 179,
@@ -4564,6 +5340,10 @@ const questionBank = [
     canDo: "food",
     poster: {"title":"メニュー","icon":"🍽️","items":[{"icon":"🍛","text":"カレー　　　　750円"},{"icon":"🍜","text":"ラーメン　　　680円"},{"icon":"🍤","text":"てんぷら定食　980円"},{"icon":"☕","text":"コーヒー　　　300円"}],"note":"※ 食事を 注文した 人は、コーヒーが 100円に なります。"},
     posterImage: "images/r14.webp",
+    translation: [
+      "",
+      "Ramen harganya berapa?",
+    ],
   },
   {
     id: 180,
@@ -4584,6 +5364,10 @@ const questionBank = [
     canDo: "food",
     poster: {"title":"メニュー","icon":"🍽️","items":[{"icon":"🍛","text":"カレー　　　　750円"},{"icon":"🍜","text":"ラーメン　　　680円"},{"icon":"🍤","text":"てんぷら定食　980円"},{"icon":"☕","text":"コーヒー　　　300円"}],"note":"※ 食事を 注文した 人は、コーヒーが 100円に なります。"},
     posterImage: "images/r14.webp",
+    translation: [
+      "",
+      "Kalau memesan kari dan kopi, totalnya berapa?",
+    ],
   },
   {
     id: 181,
@@ -4604,6 +5388,10 @@ const questionBank = [
     canDo: "social",
     poster: {"title":"国際交流パーティー","icon":"🎉","items":[{"icon":"📅","text":"7月5日（土） 18:30〜20:30"},{"icon":"📍","text":"市民センター 2階"},{"icon":"💴","text":"参加費 500円"},{"icon":"🍲","text":"自分の 国の 料理を 一つ 持ってきて ください。"}],"note":"みなさんの 参加を お待ちして います。"},
     posterImage: "images/r15.webp",
+    translation: [
+      "",
+      "Pesta dimulai jam berapa?",
+    ],
   },
   {
     id: 182,
@@ -4624,6 +5412,10 @@ const questionBank = [
     canDo: "social",
     poster: {"title":"国際交流パーティー","icon":"🎉","items":[{"icon":"📅","text":"7月5日（土） 18:30〜20:30"},{"icon":"📍","text":"市民センター 2階"},{"icon":"💴","text":"参加費 500円"},{"icon":"🍲","text":"自分の 国の 料理を 一つ 持ってきて ください。"}],"note":"みなさんの 参加を お待ちして います。"},
     posterImage: "images/r15.webp",
+    translation: [
+      "",
+      "Apa yang harus dibawa peserta?",
+    ],
   },
   {
     id: 183,
@@ -4642,6 +5434,10 @@ const questionBank = [
       "「夜コーヒーを飲まないで」とあります。 / Dokter menyarankan tidak minum kopi malam hari.",
     setId: "R16",
     canDo: "hospital",
+    translation: [
+      "",
+      "Dokter mengatakan apa?",
+    ],
   },
   {
     id: 184,
@@ -4660,6 +5456,10 @@ const questionBank = [
       "「寝る前にスマートフォンを見ないほうがいい」とあります。 / Sebaiknya tidak melihat ponsel sebelum tidur.",
     setId: "R16",
     canDo: "hospital",
+    translation: [
+      "",
+      "Satu hal lagi yang dikatakan dokter adalah apa?",
+    ],
   },
   {
     id: 185,
@@ -4679,6 +5479,10 @@ const questionBank = [
     setId: "R17",
     canDo: "study",
     posterImage: "images/r17.webp",
+    translation: [
+      "",
+      "Kelompok belajar mulai jam berapa?",
+    ],
   },
   {
     id: 186,
@@ -4698,6 +5502,10 @@ const questionBank = [
     setId: "R17",
     canDo: "study",
     posterImage: "images/r17.webp",
+    translation: [
+      "",
+      "Kalau terlambat, harus bagaimana?",
+    ],
   },
   {
     id: 187,
@@ -4718,6 +5526,10 @@ const questionBank = [
     canDo: "transport",
     poster: {"title":"自転車置き場","icon":"🚲","items":[{"icon":"🕕","text":"利用時間　6:00〜23:00"},{"icon":"🚫","text":"夜23時から 朝6時までは 入れません。"},{"icon":"💴","text":"1日 100円　／　1か月 2,000円"},{"icon":"🏷️","text":"自転車には 名前を 書いて ください。"}],"note":""},
     posterImage: "images/r18.webp",
+    translation: [
+      "",
+      "Kapan tempat parkir sepeda tidak bisa dimasuki?",
+    ],
   },
   {
     id: 188,
@@ -4738,6 +5550,10 @@ const questionBank = [
     canDo: "transport",
     poster: {"title":"自転車置き場","icon":"🚲","items":[{"icon":"🕕","text":"利用時間　6:00〜23:00"},{"icon":"🚫","text":"夜23時から 朝6時までは 入れません。"},{"icon":"💴","text":"1日 100円　／　1か月 2,000円"},{"icon":"🏷️","text":"自転車には 名前を 書いて ください。"}],"note":""},
     posterImage: "images/r18.webp",
+    translation: [
+      "",
+      "Kalau memakai selama 1 bulan, membayar berapa?",
+    ],
   },
   {
     id: 189,
@@ -4757,6 +5573,10 @@ const questionBank = [
     setId: "R19",
     canDo: "study",
     posterImage: "images/r19.webp",
+    translation: [
+      "",
+      "Hari Rabu belajar apa?",
+    ],
   },
   {
     id: 190,
@@ -4776,6 +5596,10 @@ const questionBank = [
     setId: "R19",
     canDo: "study",
     posterImage: "images/r19.webp",
+    translation: [
+      "",
+      "Hari Jumat belajar di mana?",
+    ],
   },
   {
     id: 191,
@@ -4794,6 +5618,10 @@ const questionBank = [
       "「晴れの日は歩きます」とあります。 / Saat cerah ia berjalan kaki.",
     setId: "R20",
     canDo: "transport",
+    translation: [
+      "",
+      "Pada hari cerah, bagaimana caranya pergi ke kantor?",
+    ],
   },
   {
     id: 192,
@@ -4812,6 +5640,10 @@ const questionBank = [
       "「雨の日はバス」「急いでいるときも、バスに乗ります」とあります。 / Saat hujan dan saat sedang terburu-buru.",
     setId: "R20",
     canDo: "transport",
+    translation: [
+      "",
+      "Naik bus pada saat seperti apa?",
+    ],
   },
   {
     id: 193,
@@ -4829,6 +5661,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "相談するときは「Vたいんですが」を使うと自然です。 / Untuk membuka konsultasi dengan sopan, gunakan Vたいんですが.",
+    translation: [
+      "Permisi. Saya ingin mengubah alamat.",
+      "Kalau begitu, tulislah pada formulir ini.",
+    ],
   },
   {
     id: 194,
@@ -4846,6 +5682,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "役所の手続きでよく使う身分証明は「在留カード」です。 / Kartu identitas yang dipakai dalam urusan di kantor kelurahan adalah 在留カード.",
+    translation: [
+      "Tolong tunjukkan kartu izin tinggal Anda.",
+      "Ya, silakan.",
+    ],
   },
   {
     id: 195,
@@ -4863,6 +5703,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "書く場所を表すときは「用紙に書く」と言います。 / Tempat menulis ditandai dengan partikel に: 用紙に書く.",
+    translation: [
+      "Tulislah nama dan alamat pada formulir ini.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 196,
@@ -4880,6 +5724,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "番号札は「取る」を使います。文を続けるので「取って」です。 / Nomor antrean memakai kata kerja 取る; karena kalimat berlanjut, bentuknya 取って.",
+    translation: [
+      "Pertama, ambil nomor antrean, lalu silakan menunggu.",
+      "Baik.",
+    ],
   },
   {
     id: 197,
@@ -4897,6 +5745,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "可能形を使って「もらえますか」と聞きます。 / Gunakan bentuk potensial もらえますか untuk menanyakan di mana bisa menerimanya.",
+    translation: [
+      "Permisi. Di mana saya bisa mendapatkan surat keterangan domisili?",
+      "Bisa didapat di loket nomor 3.",
+    ],
   },
   {
     id: 198,
@@ -4914,6 +5766,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "締め切りを言うときは「までに」を使います。 / Batas waktu dinyatakan dengan までに.",
+    translation: [
+      "Serahkan dokumen ini paling lambat minggu depan.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 199,
@@ -4931,6 +5787,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "番号を聞くときは「何番ですか」を使います。 / Untuk menanyakan nomor, gunakan 何番ですか.",
+    translation: [
+      "Permisi. Loket asuransi nomor berapa?",
+      "Nomor 5.",
+    ],
   },
   {
     id: 200,
@@ -4948,6 +5808,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "依頼は「て形 + ください」です。 / Permintaan dinyatakan dengan bentuk て + ください.",
+    translation: [
+      "Periksa isinya, lalu tanda tangani di sini.",
+      "Baik.",
+    ],
   },
   {
     id: 201,
@@ -4965,6 +5829,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "手続きに必要なものを言うときは「必要です」を使います。 / Untuk menyebut sesuatu yang diperlukan, gunakan 必要です.",
+    translation: [
+      "Untuk prosedur ini diperlukan dokumen identitas diri.",
+      "Apakah kartu izin tinggal boleh?",
+    ],
   },
   {
     id: 202,
@@ -4982,6 +5850,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "丁寧にお願いするときは「教えていただけますか」が自然です。 / Permintaan yang sopan memakai 教えていただけますか.",
+    translation: [
+      "Permisi. Bisakah Anda mengajari saya cara mengisi formulir permohonan?",
+      "Ya, saya jelaskan.",
+    ],
   },
   {
     id: 203,
@@ -4999,6 +5871,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "今していることは「Vています」で表します。 / Kegiatan yang sedang berlangsung dinyatakan dengan Vています.",
+    translation: [
+      "Permisi. Saya sedang mencari kamar.",
+      "Kamar seperti apa yang Anda inginkan?",
+    ],
   },
   {
     id: 204,
@@ -5016,6 +5892,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "値段や料金を聞くときは「いくらですか」を使います。 / Untuk menanyakan harga atau biaya, gunakan いくらですか.",
+    translation: [
+      "Berapa sewa kamar ini?",
+      "70.000 yen per bulan.",
+    ],
   },
   {
     id: 205,
@@ -5033,6 +5913,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "距離の起点は「から」で表します。 / Titik awal jarak ditandai dengan から.",
+    translation: [
+      "Apakah apartemen ini dekat dari stasiun?",
+      "Ya, 5 menit jalan kaki.",
+    ],
   },
   {
     id: 206,
@@ -5050,6 +5934,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "自分でこわしたのではなく、こわれた状態が続いているので自動詞の「壊れています」を使います。 / Karena keadaan rusak yang berlanjut, gunakan kata kerja intransitif 壊れています.",
+    translation: [
+      "Permisi. AC-nya rusak.",
+      "Saya akan segera memeriksanya.",
+    ],
   },
   {
     id: 207,
@@ -5067,6 +5955,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "水が出ない状態は「水が出ません」と言います。 / Keadaan air tidak keluar dinyatakan dengan 水が出ません.",
+    translation: [
+      "Air di dapur tidak keluar.",
+      "Wah, itu merepotkan ya.",
+    ],
   },
   {
     id: 208,
@@ -5084,6 +5976,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "予定や習慣を聞くときは「出しますか」が自然です。 / Untuk menanyakan kebiasaan atau jadwal rutin, gunakan 出しますか.",
+    translation: [
+      "Sampah yang bisa dibakar dibuang kapan?",
+      "Hari Senin dan Kamis.",
+    ],
   },
   {
     id: 209,
@@ -5101,6 +5997,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "これからの予定なので「来月」が合います。 / Karena rencana yang akan datang, yang cocok adalah 来月.",
+    translation: [
+      "Kapan Anda pindah?",
+      "Saya pindah bulan depan.",
+    ],
   },
   {
     id: 210,
@@ -5118,6 +6018,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "許可を聞くときは「て形 + もいいですか」を使います。 / Untuk meminta izin, gunakan bentuk て + もいいですか.",
+    translation: [
+      "Bolehkah saya tinggal di kamar ini bersama keluarga?",
+      "Ya, tidak apa-apa.",
+    ],
   },
   {
     id: 211,
@@ -5135,6 +6039,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "困っていることを相談するときは「んですが」を使うと自然です。 / Saat membuka konsultasi karena kesulitan, gunakan んですが.",
+    translation: [
+      "Permisi. Kamar sebelah berisik sekali.",
+      "Begitu ya. Saya akan memeriksanya.",
+    ],
   },
   {
     id: 212,
@@ -5152,6 +6060,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "助言するときは「た形 + ほうがいいです」を使います。 / Nasihat dinyatakan dengan bentuk た + ほうがいいです.",
+    translation: [
+      "AC-nya rusak.",
+      "Sebaiknya Anda menghubungi pengelola.",
+    ],
   },
   {
     id: 213,
@@ -5169,6 +6081,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "希望を言うときは「ます形 + たいです」を使います。 / Keinginan dinyatakan dengan bentuk ます + たいです.",
+    translation: [
+      "Permisi. Saya ingin memesan untuk hari Jumat.",
+      "Jam berapa yang Anda inginkan?",
+    ],
   },
   {
     id: 214,
@@ -5186,6 +6102,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "可能かどうか聞くときは「できますか」を使います。 / Untuk menanyakan apakah sesuatu bisa dilakukan, gunakan できますか.",
+    translation: [
+      "Bisakah saya mengubah waktu reservasi?",
+      "Ya, bisa.",
+    ],
   },
   {
     id: 215,
@@ -5203,6 +6123,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "予約の内容を変えたいときは「変更したいんですが」と言います。 / Untuk mengubah isi reservasi, gunakan 変更したいんですが.",
+    translation: [
+      "Permisi. Saya ingin mengubah jumlah orang dari 4 menjadi 3.",
+      "Baik.",
+    ],
   },
   {
     id: 216,
@@ -5220,6 +6144,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "予約名を言うときは「田中で予約しています」と言います。 / Nama reservasi disebutkan dengan pola 田中で予約しています.",
+    translation: [
+      "Nama Anda siapa?",
+      "Reservasi atas nama Tanaka.",
+    ],
   },
   {
     id: 217,
@@ -5237,6 +6165,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「より」は比較に使います。 / Untuk membandingkan dua benda, gunakan より.",
+    translation: [
+      "Apakah kemeja ini lebih murah daripada kemeja itu?",
+      "Ya, lebih murah 500 yen.",
+    ],
   },
   {
     id: 218,
@@ -5254,6 +6186,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「小さいです」と言っているので、大きいサイズを頼みます。 / Karena kekecilan, yang diminta adalah ukuran yang lebih besar.",
+    translation: [
+      "Sepatu ini agak kecil. Apakah ada yang satu ukuran lebih besar?",
+      "Ya, saya ambilkan.",
+    ],
   },
   {
     id: 219,
@@ -5270,6 +6206,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "値段が安くなることを「割引」と言います。 / Harga yang dikurangi disebut 割引.",
+    translation: [
+      "Kalau menunjukkan kartu pelajar, harganya mendapat potongan 20%.",
+    ],
   },
   {
     id: 220,
@@ -5289,6 +6228,10 @@ const questionBank = [
       "「くつ 20%引き」とあります。 / Tertulis sepatu diskon 20%.",
     setId: "R21",
     posterImage: "images/r21.webp",
+    translation: [
+      "",
+      "Barang apa yang mendapat potongan 20%?",
+    ],
   },
   {
     id: 221,
@@ -5308,6 +6251,10 @@ const questionBank = [
       "「3,000円以上買った人は、袋が無料です」とあります。 / Yang belanja 3.000 yen ke atas mendapat kantong gratis.",
     setId: "R21",
     posterImage: "images/r21.webp",
+    translation: [
+      "",
+      "Siapa yang mendapat kantong gratis?",
+    ],
   },
   {
     id: 222,
@@ -5325,6 +6272,10 @@ const questionBank = [
     answer: 1,
     explanation:
       "交通手段は「で」で表します。 / Alat transportasi untuk pergi dinyatakan dengan で.",
+    translation: [
+      "Bagaimana cara pergi ke stasiun?",
+      "Saya pergi dengan bus.",
+    ],
   },
   {
     id: 223,
@@ -5342,6 +6293,10 @@ const questionBank = [
     answer: 2,
     explanation:
       "行き帰りの切符は「往復でお願いします」と言います。 / Untuk tiket pergi dan pulang, gunakan 往復でお願いします.",
+    translation: [
+      "Sekali jalan atau pulang pergi?",
+      "Pulang pergi, tolong.",
+    ],
   },
   {
     id: 224,
@@ -5358,6 +6313,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "別の電車やバスに移ることを「乗り換え」と言います。 / Pindah ke kereta atau bus lain disebut 乗り換え.",
+    translation: [
+      "Di Stasiun Tokyo, saya berganti dari shinkansen ke kereta bawah tanah.",
+    ],
   },
   {
     id: 225,
@@ -5377,6 +6335,10 @@ const questionBank = [
       "「10分遅れています」とあります。 / Tertulis terlambat 10 menit.",
     setId: "R22",
     posterImage: "images/r22.webp",
+    translation: [
+      "",
+      "Jalur Chuo terlambat berapa lama?",
+    ],
   },
   {
     id: 226,
@@ -5396,6 +6358,10 @@ const questionBank = [
       "「お急ぎの方は山手線をご利用ください」とあります。 / Yang terburu-buru disarankan naik jalur Yamanote.",
     setId: "R22",
     posterImage: "images/r22.webp",
+    translation: [
+      "",
+      "Orang yang sedang terburu-buru sebaiknya bagaimana?",
+    ],
   },
   {
     id: 227,
@@ -5413,6 +6379,10 @@ const questionBank = [
     answer: 2,
     explanation:
       "順番を言うときは「Vてから」を使います。 / Untuk menyatakan urutan setelah melakukan sesuatu, gunakan Vてから.",
+    translation: [
+      "Setelah minum obat ini, silakan tidur.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 228,
@@ -5430,6 +6400,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "診察券がないのは初めて来たからです。「初めてです」と答えます。 / Belum punya kartu berobat karena baru pertama kali datang, jadi jawab 初めてです.",
+    translation: [
+      "Apakah Anda membawa kartu berobat?",
+      "Tidak, ini pertama kali.",
+    ],
   },
   {
     id: 229,
@@ -5446,6 +6420,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "診察の前に症状を書く紙を「問診票」と言います。 / Formulir untuk menulis gejala sebelum diperiksa disebut 問診票.",
+    translation: [
+      "Di rumah sakit yang baru pertama kali dikunjungi, kita menulis gejala pada formulir kesehatan sebelum diperiksa.",
+    ],
   },
   {
     id: 230,
@@ -5465,6 +6442,10 @@ const questionBank = [
       "「午後受付 14:00-17:30」とあります。 / Pendaftaran sore mulai pukul 14:00.",
     setId: "R23",
     posterImage: "images/r23.webp",
+    translation: [
+      "",
+      "Pendaftaran sore mulai jam berapa?",
+    ],
   },
   {
     id: 231,
@@ -5484,6 +6465,10 @@ const questionBank = [
       "受付は17:30までで、初めての人はその30分前までです。 / Pendaftaran tutup 17:30, pasien baru 30 menit sebelumnya.",
     setId: "R23",
     posterImage: "images/r23.webp",
+    translation: [
+      "",
+      "Orang yang baru pertama kali datang harus datang sebelum jam berapa pada sore hari?",
+    ],
   },
   {
     id: 232,
@@ -5501,6 +6486,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「コピーしてから」はコピーした後で、という意味です。 / してから berarti setelah menyalin lalu melakukan langkah berikutnya.",
+    translation: [
+      "Dokumen ini difotokopi dulu, baru diserahkan.",
+      "Baik.",
+    ],
   },
   {
     id: 233,
@@ -5518,6 +6507,10 @@ const questionBank = [
     answer: 1,
     explanation:
       "相談を始めるときは「んですが」を使うと自然です。 / Saat membuka konsultasi dengan sopan, gunakan んですが.",
+    translation: [
+      "Permisi. Alamat saya berubah.",
+      "Perubahan alamat ya. Silakan ke sini.",
+    ],
   },
   {
     id: 234,
@@ -5534,6 +6527,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "サインの代わりに紙に押すはんこを「印鑑」と言います。 / Stempel pribadi sebagai pengganti tanda tangan disebut 印鑑.",
+    translation: [
+      "Dokumen ini memerlukan tanda tangan atau stempel pribadi.",
+    ],
   },
   {
     id: 235,
@@ -5553,6 +6549,10 @@ const questionBank = [
       "「3番: 在留カードの相談」とあります。 / Konsultasi kartu izin tinggal di loket 3.",
     setId: "R24",
     posterImage: "images/r24.webp",
+    translation: [
+      "",
+      "Untuk berkonsultasi tentang kartu izin tinggal, harus pergi ke mana?",
+    ],
   },
   {
     id: 236,
@@ -5572,6 +6572,10 @@ const questionBank = [
       "「12時から13時までは、1番の窓口だけ開いています」とあります。 / Pukul 12:00-13:00 hanya loket 1 yang buka.",
     setId: "R24",
     posterImage: "images/r24.webp",
+    translation: [
+      "",
+      "Orang yang datang jam setengah satu bisa memakai loket yang mana?",
+    ],
   },
   {
     id: 237,
@@ -5589,6 +6593,10 @@ const questionBank = [
     answer: 1,
     explanation:
       "イ形容詞をつなぐとき、「近い」は「近くて」になります。 / Untuk menghubungkan i-keiyoushi, 近い berubah menjadi 近くて.",
+    translation: [
+      "Bagaimana apartemen ini?",
+      "Dekat dengan stasiun dan praktis.",
+    ],
   },
   {
     id: 238,
@@ -5606,6 +6614,10 @@ const questionBank = [
     answer: 2,
     explanation:
       "部屋を見る許可を聞くときは「見てもいいですか」を使います。 / Untuk meminta izin melihat kamar, gunakan 見てもいいですか.",
+    translation: [
+      "Bolehkah saya melihat kamar ini?",
+      "Ya, saya antar.",
+    ],
   },
   {
     id: 239,
@@ -5622,6 +6634,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "部屋を借りるときにあずける保証のお金を「敷金」と言います。 / Uang jaminan saat menyewa kamar disebut 敷金.",
+    translation: [
+      "Saat menyewa kamar, selain uang sewa kita membayar uang jaminan. Sebagiannya dikembalikan nanti.",
+    ],
   },
   {
     id: 240,
@@ -5642,6 +6657,10 @@ const questionBank = [
     setId: "R25",
     poster: {"title":"ごみ出しの お知らせ","icon":"🗑️","items":[{"icon":"🔥","text":"燃えるごみ … 月曜日・木曜日　朝8時まで"},{"icon":"🍶","text":"びん・缶 … 水曜日"},{"icon":"⚠️","text":"前の 日の 夜に 出さないで ください。"}],"note":"時間を 守りましょう。"},
     posterImage: "images/r25.webp",
+    translation: [
+      "",
+      "Sampah yang bisa dibakar dibuang kapan?",
+    ],
   },
   {
     id: 241,
@@ -5662,6 +6681,10 @@ const questionBank = [
     setId: "R25",
     poster: {"title":"ごみ出しの お知らせ","icon":"🗑️","items":[{"icon":"🔥","text":"燃えるごみ … 月曜日・木曜日　朝8時まで"},{"icon":"🍶","text":"びん・缶 … 水曜日"},{"icon":"⚠️","text":"前の 日の 夜に 出さないで ください。"}],"note":"時間を 守りましょう。"},
     posterImage: "images/r25.webp",
+    translation: [
+      "",
+      "Apa yang tidak boleh dilakukan?",
+    ],
   },
   {
     id: 242,
@@ -5679,6 +6702,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "理由を言うので「なので」を使います。「なのに」「だけど」は逆の内容をつなぐときの言い方です。 / Untuk menyatakan alasan gunakan なので.",
+    translation: [
+      "Mau pesan apa?",
+      "Karena saya suka ikan, saya pilih sashimi teishoku.",
+    ],
   },
   {
     id: 243,
@@ -5696,6 +6723,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "しないようにお願いするときは「しないでください」を使います。 / Untuk meminta agar sesuatu tidak dilakukan, gunakan しないでください.",
+    translation: [
+      "Permisi. Tolong jangan dibuat terlalu pedas.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 244,
@@ -5712,6 +6743,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "ふつうより量が多いことを「大盛り」と言います。 / Porsi lebih banyak dari biasa disebut 大盛り.",
+    translation: [
+      "Karena lapar, saya minta nasinya dibuat porsi besar.",
+    ],
   },
   {
     id: 245,
@@ -5731,6 +6765,10 @@ const questionBank = [
       "「ごはん・みそ汁つき」とあります。 / Tertulis termasuk nasi dan sup miso.",
     setId: "R26",
     posterImage: "images/r26.webp",
+    translation: [
+      "",
+      "Apa saja yang termasuk dalam karaage teishoku?",
+    ],
   },
   {
     id: 246,
@@ -5750,6 +6788,10 @@ const questionBank = [
       "「11時から14時までです」とあります。 / Set menu ini hanya sampai pukul 14:00.",
     setId: "R26",
     posterImage: "images/r26.webp",
+    translation: [
+      "",
+      "Teishoku ini bisa dipesan sampai jam berapa?",
+    ],
   },
   {
     id: 247,
@@ -5767,6 +6809,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "予約の人数は「3人で」のように言います。 / Jumlah orang untuk reservasi dapat dinyatakan dengan 3人で.",
+    translation: [
+      "Hari Sabtu, saya mau memesan untuk 3 orang.",
+      "Baik, jam berapa yang Anda inginkan?",
+    ],
   },
   {
     id: 248,
@@ -5784,6 +6830,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "予約が入っているか調べてもらうときは「確認したいんですが」と言います。 / Untuk mengecek reservasi, gunakan 確認したいんですが.",
+    translation: [
+      "Permisi. Saya ingin mengonfirmasi reservasi.",
+      "Nama Anda siapa?",
+    ],
   },
   {
     id: 249,
@@ -5800,6 +6850,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "席が全部うまっていることを「満席」と言います。 / Semua kursi penuh disebut 満席.",
+    translation: [
+      "Sabtu malam sering penuh, jadi sebaiknya memesan tempat.",
+    ],
   },
   {
     id: 250,
@@ -5819,6 +6872,10 @@ const questionBank = [
       "「チェックイン 15:00から」とあります。 / Check-in mulai pukul 15:00.",
     setId: "R27",
     posterImage: "images/r27.webp",
+    translation: [
+      "",
+      "Check-in mulai jam berapa?",
+    ],
   },
   {
     id: 251,
@@ -5838,6 +6895,10 @@ const questionBank = [
       "「チェックインの前でもフロントであずかります」とあります。 / Sebelum check-in, barang bisa dititipkan di resepsionis.",
     setId: "R27",
     posterImage: "images/r27.webp",
+    translation: [
+      "",
+      "Orang yang tiba jam 12 siang bisa mengapakan barangnya?",
+    ],
   },
   {
     id: 252,
@@ -5855,6 +6916,10 @@ const questionBank = [
     answer: 1,
     explanation:
       "続けて指示するときは「て形」を使います。 / Untuk menghubungkan instruksi berurutan, gunakan bentuk て.",
+    translation: [
+      "Di mana kantor balai kota?",
+      "Keluarlah dari stasiun, lalu belok kiri.",
+    ],
   },
   {
     id: 253,
@@ -5872,6 +6937,10 @@ const questionBank = [
     answer: 2,
     explanation:
       "場所や物があるか聞くときは「ありますか」を使います。 / Untuk menanyakan keberadaan tempat atau benda, gunakan ありますか.",
+    translation: [
+      "Permisi. Apakah ada ATM di dekat sini?",
+      "Ya, ada di dalam minimarket.",
+    ],
   },
   {
     id: 254,
@@ -5888,6 +6957,9 @@ const questionBank = [
     answer: 0,
     explanation:
       "道と道が交わるところを「交差点」と言います。 / Tempat dua jalan bersilangan disebut 交差点.",
+    translation: [
+      "Karena banyak kecelakaan, hati-hatilah di persimpangan ini. Mobil datang dari empat arah.",
+    ],
   },
   {
     id: 255,
@@ -5906,6 +6978,10 @@ const questionBank = [
     explanation:
       "「銀行のとなりが郵便局です」とあります。 / Kantor pos ada di sebelah bank.",
     setId: "R28",
+    translation: [
+      "",
+      "Kantor pos ada di mana?",
+    ],
   },
   {
     id: 256,
@@ -5924,6 +7000,10 @@ const questionBank = [
     explanation:
       "「郵便局の前にバス停があります」とあります。 / Halte bus ada di depan kantor pos.",
     setId: "R28",
+    translation: [
+      "",
+      "Halte bus ada di mana?",
+    ],
   },
   {
     id: 257,
@@ -5942,6 +7022,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "指示を受けたときは「わかりました」と答えます。 / Saat menerima perintah, jawablah わかりました.",
+    translation: [
+      "Tolong bawa kardus ini ke gudang lantai 2.",
+      "Gudang lantai 2 ya. Saya mengerti.",
+    ],
   },
   {
     id: 258,
@@ -5960,6 +7044,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "聞こえなかったときは「もう一度お願いします」と言います。 / Kalau tidak terdengar, katakan もう一度お願いします.",
+    translation: [
+      "Tolong bawa dokumen ini ke lantai 3.",
+      "Maaf, saya tidak mendengarnya. Tolong ulangi sekali lagi.",
+    ],
   },
   {
     id: 259,
@@ -5978,6 +7066,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "作業が完了したことを報告するので「終わりました」を使います。 / Untuk melaporkan pekerjaan yang sudah selesai, gunakan 終わりました.",
+    translation: [
+      "Senior, pembersihannya sudah selesai. Selanjutnya apa yang harus saya lakukan?",
+      "Terima kasih. Kalau begitu, selanjutnya tolong hitung barangnya.",
+    ],
   },
   {
     id: 260,
@@ -5996,6 +7088,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "失敗して残念な気持ちを表すときは「Vてしまいました」を使います。 / Kesalahan yang tidak disengaja dinyatakan dengan Vてしまいました.",
+    translation: [
+      "Maaf. Saya tidak sengaja menjatuhkan satu kardus.",
+      "Apakah Anda terluka? Tidak apa-apa kok.",
+    ],
   },
   {
     id: 261,
@@ -6014,6 +7110,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "今の様子から「これから遅れる」と判断するので「Vそうです」を使います。 / Perkiraan dari keadaan sekarang memakai Vそうです.",
+    translation: [
+      "Kereta berhenti karena kecelakaan. Sepertinya saya akan terlambat sekitar 10 menit.",
+      "Baik. Hati-hati di jalan.",
+    ],
   },
   {
     id: 262,
@@ -6032,6 +7132,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "許可を求めるときは「Vてもいいですか」を使います。 / Meminta izin memakai Vてもいいですか.",
+    translation: [
+      "Maaf, karena saya demam, bolehkah hari ini saya pulang lebih awal?",
+      "Boleh. Semoga lekas sembuh.",
+    ],
   },
   {
     id: 263,
@@ -6050,6 +7154,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "希望を丁寧に相談するときは「Vたいんですが」を使います。 / Menyampaikan keinginan dengan sopan memakai Vたいんですが.",
+    translation: [
+      "Besok saya mau ke rumah sakit, jadi saya ingin mengambil cuti.",
+      "Baik. Tolong serahkan dokumennya.",
+    ],
   },
   {
     id: 264,
@@ -6068,6 +7176,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "体調が悪いことを伝えるときは「〜んです」で理由を説明します。 / Untuk menjelaskan kondisi badan, gunakan pola 〜んです.",
+    translation: [
+      "Wajah Anda pucat. Anda tidak apa-apa?",
+      "Sebenarnya, sejak pagi kepala saya sakit.",
+    ],
   },
   {
     id: 265,
@@ -6086,6 +7198,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "相手に何かをしてほしいときは「Vてもらえませんか」を使います。 / Permintaan kepada orang lain memakai Vてもらえませんか.",
+    translation: [
+      "Maaf, Sabtu depan bisakah Anda menukar sif dengan saya?",
+      "Hari Sabtu ya? Boleh.",
+    ],
   },
   {
     id: 266,
@@ -6104,6 +7220,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "引き受けるときは「大丈夫です」と答えます。 / Untuk menyanggupi, jawablah 大丈夫です.",
+    translation: [
+      "Hari ini bisakah Anda lembur sedikit?",
+      "Ya, bisa. Sampai jam berapa?",
+    ],
   },
   {
     id: 267,
@@ -6122,6 +7242,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "断る前に「申し訳ありませんが」と置くと、やわらかい言い方になります。 / Sebelum menolak, awali dengan 申し訳ありませんが.",
+    translation: [
+      "Hari ini bisakah saya minta Anda lembur?",
+      "Mohon maaf, hari ini saya ada janji di rumah sakit...",
+    ],
   },
   {
     id: 268,
@@ -6140,6 +7264,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "始まりの時間を聞くときは「から」を使います。 / Waktu mulai ditanyakan dengan から.",
+    translation: [
+      "Istirahat mulai jam berapa?",
+      "Mulai jam 12. Anda bisa istirahat 1 jam.",
+    ],
   },
   {
     id: 269,
@@ -6158,6 +7286,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "理由を言って注意するときは「〜ですから」を使います。 / Menyebut alasan saat memperingatkan memakai 〜ですから.",
+    translation: [
+      "Karena di situ berbahaya, jangan masuk.",
+      "Baik, maaf.",
+    ],
   },
   {
     id: 270,
@@ -6176,6 +7308,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "物の場所を聞くときは「どこにありますか」を使います。 / Menanyakan letak benda memakai どこにありますか.",
+    translation: [
+      "Permisi, guntingnya ada di mana?",
+      "Ada di dalam laci itu.",
+    ],
   },
   {
     id: 271,
@@ -6194,6 +7330,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "やり方を言うときは「ます形＋方」で「使い方」になります。 / Cara melakukan sesuatu memakai bentuk ます + 方.",
+    translation: [
+      "Bisakah Anda mengajari saya cara memakai mesin ini?",
+      "Boleh. Pertama, tekan di sini.",
+    ],
   },
   {
     id: 272,
@@ -6212,6 +7352,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "相手を表すときは「に」を使います。 / Lawan bicara yang dituju ditandai dengan に.",
+    translation: [
+      "Kalau sudah selesai, saya harus melapor kepada siapa?",
+      "Katakan kepada saya.",
+    ],
   },
   {
     id: 273,
@@ -6230,6 +7374,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "会社へ物を持って来るので「持ってきます」を使います。 / Membawa barang ke tempat kerja memakai 持ってきます.",
+    translation: [
+      "Besok jangan lupa sepatu keselamatan ya.",
+      "Baik, besok saya bawa.",
+    ],
   },
   {
     id: 274,
@@ -6248,6 +7396,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "気をつけて続けることを言うときは「Vないようにします」を使います。 / Niat untuk selalu berhati-hati memakai Vないようにします.",
+    translation: [
+      "Waktu pulang, tekanlah kartu absen ya.",
+      "Baik. Saya akan berusaha tidak lupa menekannya.",
+    ],
   },
   {
     id: 275,
@@ -6267,6 +7419,11 @@ const questionBank = [
     answer: 0,
     explanation:
       "してほしくないことは「Vないでください」で表します。 / Larangan yang sopan memakai Vないでください.",
+    translation: [
+      "Rapat mulai jam 3 di ruang rapat lantai 2.",
+      "Baik.",
+      "Jangan terlambat.",
+    ],
   },
   {
     id: 276,
@@ -6285,6 +7442,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "話しかける前に「今、よろしいでしょうか」と聞くと丁寧です。 / Sebelum menyela, tanyakan 今、よろしいでしょうか.",
+    translation: [
+      "Senior, apakah sekarang boleh? Ada sedikit yang ingin saya tanyakan.",
+      "Ya, silakan.",
+    ],
   },
   {
     id: 277,
@@ -6303,6 +7464,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "期限を聞くときは「いつまでに」を使います。 / Batas waktu ditanyakan dengan いつまでに.",
+    translation: [
+      "Pekerjaan ini harus saya selesaikan paling lambat kapan?",
+      "Tolong selesaikan sebelum hari Jumat jam 3.",
+    ],
   },
   {
     id: 278,
@@ -6321,6 +7486,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "しなければならない決まりは「Vなければなりません」で表します。 / Kewajiban dinyatakan dengan Vなければなりません.",
+    translation: [
+      "Tolong beri tahu aturan saat masuk pabrik.",
+      "Anda wajib memakai topi.",
+    ],
   },
   {
     id: 279,
@@ -6339,6 +7508,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "次の動作を続けて言うときは「それから」を使います。 / Urutan kegiatan berikutnya memakai それから.",
+    translation: [
+      "Lap dulu mejanya, setelah itu bersihkan lantainya.",
+      "Baik, saya mengerti.",
+    ],
   },
   {
     id: 280,
@@ -6357,6 +7530,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "物の数を聞くときは「いくつ」を使います。 / Jumlah benda ditanyakan dengan いくつ.",
+    translation: [
+      "Kardusnya semuanya ada berapa?",
+      "Ada 20. Coba hitung.",
+    ],
   },
   {
     id: 281,
@@ -6377,6 +7554,10 @@ const questionBank = [
     explanation:
       "「参加できる人は、水曜日までに私にメールしてください」とあります。 / Yang ikut harus mengirim surel paling lambat hari Rabu.",
     posterImage: "images/r29.webp",
+    translation: [
+      "",
+      "Orang yang ingin ikut harus melakukan apa dan paling lambat kapan?",
+    ],
   },
   {
     id: 282,
@@ -6397,6 +7578,10 @@ const questionBank = [
     explanation:
       "「お金は会社が半分出します」とあります。 / Perusahaan menanggung setengah dari biayanya.",
     posterImage: "images/r29.webp",
+    translation: [
+      "",
+      "Tentang biaya, mana yang benar?",
+    ],
   },
   {
     id: 283,
@@ -6416,6 +7601,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「12の国の料理を食べることができました」とあります。 / Pengunjung bisa mencicipi masakan dari 12 negara.",
+    translation: [
+      "",
+      "Di festival itu, apa yang bisa dilakukan?",
+    ],
   },
   {
     id: 284,
@@ -6435,6 +7624,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「また出たいと思ったそうです」とあります。 / Ia merasa ingin ikut lagi.",
+    translation: [
+      "",
+      "Hoa-san berpikir bagaimana tentang lomba pidato itu?",
+    ],
   },
   {
     id: 285,
@@ -6455,6 +7648,10 @@ const questionBank = [
     explanation:
       "「手伝ってもらえませんか」と頼んでいます。 / Ia meminta bantuan untuk pindahan.",
     posterImage: "images/r31.webp",
+    translation: [
+      "",
+      "Orang ini meminta tolong apa?",
+    ],
   },
   {
     id: 286,
@@ -6475,6 +7672,10 @@ const questionBank = [
     explanation:
       "「お昼ごはんは私が用意します」とあります。 / Makan siang disiapkan oleh pengirim pesan.",
     posterImage: "images/r31.webp",
+    translation: [
+      "",
+      "Makan siangnya bagaimana?",
+    ],
   },
   {
     id: 287,
@@ -6495,6 +7696,10 @@ const questionBank = [
     explanation:
       "「その時間は、3番の機械を使ってください」とあります。 / Selama waktu itu memakai mesin nomor 3.",
     posterImage: "images/r32.webp",
+    translation: [
+      "",
+      "Besok dari jam 9 sampai jam 11, mesin mana yang dipakai?",
+    ],
   },
   {
     id: 288,
@@ -6515,6 +7720,10 @@ const questionBank = [
     explanation:
       "「点検が終わったら、私が知らせます」とあります。 / Penulis surel yang akan memberi tahu.",
     posterImage: "images/r32.webp",
+    translation: [
+      "",
+      "Bagaimana kita tahu bahwa pemeriksaan sudah selesai?",
+    ],
   },
   {
     id: 289,
@@ -6534,6 +7743,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「教室を2階の大きい部屋に変えます」とあります。 / Yang berubah adalah tempat kelasnya.",
+    translation: [
+      "",
+      "Hari Rabu depan, apa yang berubah?",
+    ],
   },
   {
     id: 290,
@@ -6553,6 +7766,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「いすが足りないので」とあります。 / Karena kursinya tidak cukup.",
+    translation: [
+      "",
+      "Kenapa ruang kelasnya diganti?",
+    ],
   },
   {
     id: 291,
@@ -6572,6 +7789,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「買い物がこわかったそうです」とあります。 / Awalnya ia merasa takut berbelanja.",
+    translation: [
+      "",
+      "Pada awalnya, Ali-san merasa bagaimana?",
+    ],
   },
   {
     id: 292,
@@ -6591,6 +7812,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「店の人と少し話せるようになりました。それがうれしくて」とあります。 / Karena senang sudah bisa berbicara dengan penjaga toko.",
+    translation: [
+      "",
+      "Kenapa sekarang dia sering pergi ke toko pada hari libur?",
+    ],
   },
   {
     id: 293,
@@ -6611,6 +7836,10 @@ const questionBank = [
     explanation:
       "「今日の仕事は、私がやっておきました」とあります。 / Ia mengerjakan pekerjaan Nia hari itu.",
     posterImage: "images/r35.webp",
+    translation: [
+      "",
+      "Hari ini orang ini melakukan apa?",
+    ],
   },
   {
     id: 294,
@@ -6631,6 +7860,10 @@ const questionBank = [
     explanation:
       "「明日、来られるかどうか、夜に教えてください」とあります。 / Malamnya Nia mengabari apakah besok bisa masuk.",
     posterImage: "images/r35.webp",
+    translation: [
+      "",
+      "Malam ini Nia-san akan melakukan apa?",
+    ],
   },
   {
     id: 295,
@@ -6650,6 +7883,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「お金はいりません」とあります。 / Kelas ini tidak dipungut biaya.",
+    translation: [
+      "",
+      "Tentang kelas ini, mana yang benar?",
+    ],
   },
   {
     id: 296,
@@ -6669,6 +7906,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「先生も友だちもやさしくて、休まずに通えました」とあります。 / Karena guru dan teman-temannya baik hati.",
+    translation: [
+      "",
+      "Kenapa Dewi-san bisa hadir terus tanpa absen?",
+    ],
   },
   {
     id: 297,
@@ -7368,6 +8609,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "水の出口である「蛇口」は「しめる」と言います。水そのものなら「水をとめる」、電気なら「電気をけす」です。 / Untuk keran air gunakan しめる. Air-nya sendiri: 水をとめる, lampu: 電気をけす.",
+    translation: [
+      "",
+      "Keran airnya diapakan?",
+    ],
   },
   {
     id: 338,
@@ -7387,6 +8632,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "指輪をつけて二人がいっしょに立っているので「結婚式」です。 / Karena bertukar cincin, ini adalah 結婚式 (upacara pernikahan).",
+    translation: [
+      "",
+      "Ini apa?",
+    ],
   },
   {
     id: 339,
@@ -7406,6 +8655,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "明かりが消えたので「電気を消しています」です。日本語では電気に「開ける」は使いません。 / Karena lampu menjadi mati, jawabannya 電気を消しています. 電気を開ける tidak dipakai dalam bahasa Jepang.",
+    translation: [
+      "",
+      "Orang ini sedang melakukan apa?",
+    ],
   },
   {
     id: 340,
@@ -7425,6 +8678,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "風が入ってカーテンがゆれているので「窓を開けています」です。 / Angin masuk dan gorden bergoyang, jadi jawabannya 窓を開けています.",
+    translation: [
+      "",
+      "Orang ini sedang melakukan apa?",
+    ],
   },
   {
     id: 341,
@@ -7444,6 +8701,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "出かけるときにドアを閉めて回すことを「鍵をかける」と言います。 / Mengunci pintu saat pergi disebut 鍵をかける.",
+    translation: [
+      "",
+      "Orang ini sedang melakukan apa?",
+    ],
   },
   {
     id: 342,
@@ -7463,6 +8724,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "十字のマークと「診察室」の案内があるので「病院」です。 / Tanda salib dan papan 診察室 menunjukkan bahwa ini rumah sakit.",
+    translation: [
+      "",
+      "Ini tempat apa?",
+    ],
   },
   {
     id: 343,
@@ -7482,6 +8747,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「きっぷうりば」は電車の切符を買うところです。「切手」は郵便局で買います。 / きっぷうりば adalah loket tiket kereta. 切手 (perangko) dibeli di kantor pos.",
+    translation: [
+      "",
+      "Di sini kita membeli apa?",
+    ],
   },
   {
     id: 344,
@@ -7501,6 +8770,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "店でお金をはらうところを「レジ」と言います。 / Tempat membayar di toko disebut レジ (kasir).",
+    translation: [
+      "",
+      "Orang ini membayar di mana?",
+    ],
   },
   {
     id: 345,
@@ -7520,6 +8793,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「薬局」は薬をもらうところです。 / 薬局 adalah apotek, tempat menerima obat.",
+    translation: [
+      "",
+      "Orang ini menerima apa?",
+    ],
   },
   {
     id: 346,
@@ -7540,6 +8817,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "サッカーはスポーツです。20:00からです。 / Sepak bola adalah olahraga, mulai pukul 20:00.",
+    translation: [
+      "",
+      "Acara olahraga mulai jam berapa?",
+    ],
   },
   {
     id: 347,
@@ -7560,6 +8841,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「カレーの作り方」が料理の番組です。18:30からです。 / Acara memasak adalah 「カレー」の作り方, mulai pukul 18:30.",
+    translation: [
+      "",
+      "Acara memasak mulai jam berapa?",
+    ],
   },
   {
     id: 348,
@@ -7579,6 +8864,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "赤いまるとななめの線は「してはいけない」という意味です。たばこの絵なので「禁煙」です。 / Lingkaran merah dengan garis miring berarti larangan. Gambar rokok = dilarang merokok (禁煙).",
+    translation: [
+      "",
+      "Di tempat ini, apa yang tidak boleh dilakukan?",
+    ],
   },
   {
     id: 349,
@@ -7598,6 +8887,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「立入禁止」は中に入ってはいけないという意味です。工場では危ない場所によくあります。 / 立入禁止 berarti dilarang masuk. Sering dipasang di tempat berbahaya dalam pabrik.",
+    translation: [
+      "",
+      "Apa arti papan ini?",
+    ],
   },
   {
     id: 350,
@@ -7617,6 +8910,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「段差注意」はゆかに高さの違いがあるという意味です。足元に気をつけます。 / 段差注意 berarti ada beda ketinggian di lantai. Hati-hati dengan langkah kaki (足元).",
+    translation: [
+      "",
+      "Apa yang harus diperhatikan?",
+    ],
   },
   {
     id: 351,
@@ -7636,6 +8933,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「工事中」は今その場所で工事をしているという意味です。コーンとバーで止めてあるので通れません。 / 工事中 berarti sedang ada pekerjaan konstruksi. Jalan ditutup dengan kerucut dan palang, jadi tidak bisa lewat.",
+    translation: [
+      "",
+      "Apakah jalan ini sekarang bisa dilewati?",
+    ],
   },
   {
     id: 352,
@@ -7655,6 +8956,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「非常口」は火事や地震など、危ないときに外へ逃げるための出口です。 / 非常口 adalah pintu darurat untuk keluar saat kebakaran atau gempa.",
+    translation: [
+      "",
+      "Pintu ini dipakai pada saat seperti apa?",
+    ],
   },
   {
     id: 353,
@@ -7674,6 +8979,10 @@ const questionBank = [
     answer: 0,
     explanation:
       "「使用禁止」は使ってはいけないという意味です。テープも張ってあるので入れません。 / 使用禁止 berarti dilarang dipakai. Pintunya juga dipasangi pita, jadi tidak bisa masuk.",
+    translation: [
+      "",
+      "Apakah toilet ini bisa dipakai?",
+    ],
   },
 ];
 
@@ -8748,10 +10057,39 @@ function posterHtml(poster) {
   `;
 }
 
+function filledSentenceFor(question, lineIndex) {
+  const raw = question.dialogue[lineIndex][1];
+  return raw.replace("[blank]", question.choices[question.answer]);
+}
+
+function renderTranslation(question) {
+  if (!Array.isArray(question.translation) || !question.translation.length) return "";
+  const rows = question.translation
+    .map((line, index) => {
+      if (!line) return "";
+      const ja = question.dialogue[index] ? filledSentenceFor(question, index) : "";
+      return `
+        <span class="translation-row">
+          <span class="translation-ja">${escapeHtml(ja)}</span>
+          <span class="translation-id">${escapeHtml(line)}</span>
+        </span>
+      `;
+    })
+    .join("");
+  if (!rows.trim()) return "";
+  return `
+    <span class="translation-block">
+      <strong>Arti kalimat / 文の意味</strong>
+      ${rows}
+    </span>
+  `;
+}
+
 function renderBilingualExplanation(question) {
   return `
     <span><strong>日本語:</strong> ${escapeHtml(explanationJaFor(question))}</span>
     <span><strong>Bahasa Indonesia:</strong> ${escapeHtml(explanationIdFor(question))}</span>
+    ${renderTranslation(question)}
   `;
 }
 
